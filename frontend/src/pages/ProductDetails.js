@@ -3,9 +3,11 @@ import { FaStar, FaStarHalf } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import SummaryApi from "../common";
 import CategroyWiseProductDisplay from "../components/home/CategoryWiseProductDisplay";
-import Context from "../context";
-import addToCart from "../helpers/addToCart";
+// import Context from "../context";
+// import addToCart from "../helpers/addToCart";
 import displayINRCurrency from "../helpers/displayCurrency";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 
 const ProductDetails = () => {
   const [data, setData] = useState({
@@ -21,6 +23,8 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const productImageListLoading = new Array(4).fill(null);
   const [activeImage, setActiveImage] = useState("");
+  const dispatch = useDispatch();
+  const isLoadingCart = useSelector((state) => state.cart.isLoading)
 
   const [zoomImageCoordinate, setZoomImageCoordinate] = useState({
     x: 0,
@@ -28,7 +32,7 @@ const ProductDetails = () => {
   });
   const [zoomImage, setZoomImage] = useState(false);
 
-  const { fetchUserAddToCart } = useContext(Context);
+  // const { fetchUserAddToCart } = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -89,8 +93,11 @@ const ProductDetails = () => {
 
   const handleAddToCart = async (e, id) => {
     try {
-      await addToCart(e, id);
-      fetchUserAddToCart();
+      // await addToCart(e, id);
+      // fetchUserAddToCart();
+      e?.stopPropagation();
+      e?.preventDefault();
+      dispatch(addToCart(id));
     } catch (err) {
       console.log(err.message);
     }
@@ -98,8 +105,11 @@ const ProductDetails = () => {
 
   const handleBuyProduct = async (e, id) => {
     try {
-      await addToCart(e, id);
-      fetchUserAddToCart();
+      // await addToCart(e, id);
+      // fetchUserAddToCart();
+      e?.stopPropagation();
+      e?.preventDefault();
+      dispatch(addToCart(id));
       navigate("/cart");
     } catch (err) {
       console.log(err.message);
@@ -227,12 +237,14 @@ const ProductDetails = () => {
               <button
                 className="border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white"
                 onClick={(e) => handleBuyProduct(e, data?._id)}
+                disabled={isLoadingCart}
               >
                 Buy
               </button>
               <button
                 className="border-2 border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:text-red-600 hover:bg-white"
                 onClick={(e) => handleAddToCart(e, data?._id)}
+                disabled={isLoadingCart}
               >
                 Add To Cart
               </button>

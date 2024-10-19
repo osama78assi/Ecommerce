@@ -1,22 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Context from "../../context";
-import addToCart from "../../helpers/addToCart";
+// import addToCart from "../../helpers/addToCart";
+import { useDispatch, useSelector } from "react-redux";
 import displayINRCurrency from "../../helpers/displayCurrency";
 import fetchCategoryWiseProduct from "../../helpers/fetchCategoryWiseProduct";
 import scrollTop from "../../helpers/scrollTop";
+import { addToCart } from "../../store/cartSlice";
 
 const CategroyWiseProductDisplay = ({ category, heading }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const loadingList = new Array(13).fill(null);
+  const dispatch = useDispatch();
+  const isLoadingCart = useSelector((state) => state.cart.isLoading);
 
-  const { fetchUserAddToCart } = useContext(Context);
+  // const { fetchUserAddToCart } = useContext(Context);
 
   const handleAddToCart = async (e, id) => {
     try {
-      await addToCart(e, id);
-      fetchUserAddToCart();
+      // await addToCart(e, id);
+      // fetchUserAddToCart();
+      e?.stopPropagation();
+      e?.preventDefault();
+      dispatch(addToCart(id));
     } catch (err) {
       console.log(err.message);
     }
@@ -94,6 +100,7 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
                     <button
                       className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
                       onClick={(e) => handleAddToCart(e, product?._id)}
+                      disabled={isLoadingCart}
                     >
                       Add to Cart
                     </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // import addToCart from "../helpers/addToCart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import displayINRCurrency from "../../helpers/displayCurrency";
 import scrollTop from "../../helpers/scrollTop";
 import { addToCart } from "../../store/cartSlice";
@@ -9,6 +9,7 @@ import { addToCart } from "../../store/cartSlice";
 const VerticalCard = ({ loading, data = [] }) => {
   const loadingList = new Array(13).fill(null);
   const dispatch = useDispatch();
+  const isLoadingCart = useSelector((state) => state.cart.isLoading);
   // const { fetchUserAddToCart } = useContext(Context);
 
   const handleAddToCart = async (e, id) => {
@@ -70,6 +71,7 @@ const VerticalCard = ({ loading, data = [] }) => {
                   <button
                     className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
                     onClick={(e) => handleAddToCart(e, product?._id)}
+                    disabled={isLoadingCart}
                   >
                     Add to Cart
                   </button>
