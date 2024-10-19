@@ -3,7 +3,7 @@ import { CgClose } from "react-icons/cg";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import SubmitBtn from "./SubmitBtn";
 
-function Confirm({ about, onConfirm, onClose, moreDetails = true }) {
+function Confirm({ about, onConfirm, onClose, moreDetails = true, children }) {
   const eleRef = useOutsideClick(() => {
     onClose?.();
   });
@@ -26,6 +26,9 @@ function Confirm({ about, onConfirm, onClose, moreDetails = true }) {
             Are you sure you want to {about}{" "}
             {moreDetails ? "This action can't be undo" : ""}
           </h3>
+
+          {children ? children : null}
+
           <div className="flex items-center justify-between p-1">
             <SubmitBtn
               title="Yes"

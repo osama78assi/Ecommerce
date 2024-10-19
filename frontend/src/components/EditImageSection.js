@@ -11,34 +11,32 @@ import EditUserSection from "./EditUserSection";
 
 function EditImageSection({ isLoading, setIsLoading }) {
   const user = useSelector((state) => state?.user?.user);
-  const [newImage, setNewImage] = useState("");
+  const [newImage, setNewImage] = useState(null);
+  const [newImgURL, setNewImgURL] = useState("");
   const imgUrl = useLazyloadingImg(user?.profilePic);
   const dispatch = useDispatch();
   const [confirmAbout, setConfirmAbout] = useState("");
 
-  async function handleUploadPic(e) {
+  async function handleUploadPic() {
     setConfirmAbout("");
-    const file = e.target.files[0];
-    if (file.size > 5 * 1024 * 1024) {
+    if (newImage.size > 5 * 1024 * 1024) {
       toast.warn("The image is biggen than 5MB. Pick another image please");
       return;
     }
 
     try {
       const formData = new FormData();
-      formData.append("profilePic", file);
+      formData.append("profilePic", newImage);
 
       setIsLoading?.(true);
       const res = await fetch(SummaryApi.updateImage.url, {
         method: SummaryApi.updateImage.method,
         credentials: "include",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: formData,
       });
 
       const data = await res.json();
+      console.log(data.data)
       if (data.success) {
         toast.success("New image updated successfully");
         dispatch(setUserDetails(data.data));
@@ -53,6 +51,20 @@ function EditImageSection({ isLoading, setIsLoading }) {
     }
   }
 
+  async function handleLoadImg(e) {
+    const file = e.target.files[0];
+    setNewImage(file);
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const previewImageUrl = event.target.result;
+      setNewImgURL(previewImageUrl);
+    };
+
+    reader.readAsDataURL(file); // Read file as data URL
+    setConfirmAbout("Change Image ?");
+  }
+
   return (
     <>
       {confirmAbout !== "" ? (
@@ -62,19 +74,31 @@ function EditImageSection({ isLoading, setIsLoading }) {
             setConfirmAbout("");
           }}
           onConfirm={handleUploadPic}
-        />
+        >
+          <div className="flex justify-center items-center">
+            {newImgURL ? (
+              <img
+                src={newImgURL}
+                alt="new profile"
+                className="w-[100px] h-[100px] rounded-full border-[1px] object-cover"
+              />
+            ) : (
+              <div className="w-[100px] h-[100px] rounded-full border-[1px] bg-gray-500 animate-pulse" />
+            )}
+          </div>
+        </Confirm>
       ) : null}
 
       <EditUserSection classes="items-center flex-col">
         {user?.profilePic ? (
           imgUrl ? (
-            <div className="w-[100px] h-[100px] rounded-full border-[1px] bg-gray-500 animate-pulse" />
-          ) : (
             <img
               src={imgUrl}
               className="w-[100px] h-[100px] rounded-full object-cover border-[1px]"
               alt={user?.name}
             />
+          ) : (
+            <div className="w-[100px] h-[100px] rounded-full border-[1px] bg-gray-500 animate-pulse" />
           )
         ) : (
           <FaRegCircleUser className="text-[100px]" />
@@ -85,9 +109,10 @@ function EditImageSection({ isLoading, setIsLoading }) {
               <FaPen className="fill-white text-[1.2rem]" />
             </div>
             <input
+              disabled={isLoading}
               type="file"
               className="hidden"
-              onChange={() => setConfirmAbout("Change Image ?")}
+              onChange={handleLoadImg}
             />
           </label>
         </form>

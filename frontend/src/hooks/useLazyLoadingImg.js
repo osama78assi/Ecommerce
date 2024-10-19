@@ -6,15 +6,12 @@ export function useLazyloadingImg(profilePic) {
   // To load the image async
   useEffect(() => {
     if (profilePic) {
-      // If the image loaded before then fine.
-      if (!imgUrl) {
-        fetch(profilePic, { method: "GET" })
-          .then((res) => res.blob())
-          .then((blob) => {
-            const url = URL.createObjectURL(blob);
-            setImgUrl(url);
-          });
-      }
+      fetch(profilePic, { method: "GET" })
+        .then((res) => res.blob())
+        .then((blob) => {
+          const url = URL.createObjectURL(blob);
+          setImgUrl(url);
+        });
     }
   }, [profilePic]);
 

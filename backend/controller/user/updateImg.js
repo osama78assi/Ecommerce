@@ -38,6 +38,8 @@ async function changeProfilePic(req, res) {
 
     try {
       const sessionUser = req.userId; // The currently logged-in user
+      const host = req.get("host"); // Get the host from the request
+      const protocol = req.protocol; // Get the protocol (http or https)
 
       // Find the user to retrieve the old profile picture
       const user = await userModel.findById(sessionUser);
@@ -46,11 +48,11 @@ async function changeProfilePic(req, res) {
       }
 
       // Save the old profile picture path
-      const oldPicPath = user.profilePic ? path.join(__dirname, "../../", user.profilePic) : null;
+      const oldPicPath = user.profilePic ? path.join(__dirname, "../../", user.profilePic.split(host)[1]) : null;
+
+      console.log("OLD PATH: ", oldPicPath, "\n\n\n")
 
       // Construct the new profile picture URL
-      const host = req.get("host"); // Get the host from the request
-      const protocol = req.protocol; // Get the protocol (http or https)
       const newProfilePicUrl = req.file
         ? `${protocol}://${host}/uploads/profile-pics/${req.file.filename}`
         : "";
