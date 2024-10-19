@@ -1,0 +1,66 @@
+.customShadow {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/***user table***/
+.userTable {
+  @apply bg-white;
+}
+.userTable th {
+  @apply border text-base font-medium;
+}
+
+.userTable td {
+  @apply border text-base text-center;
+}
+
+/**scrollbar hidden****/
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Slider arrows */
+
+.arr-slider {
+  fill: #fafafa;
+}
+
+/* Slide */
+
+.z-slide--1 {
+  z-index: -1;
+}
+
+.z-slide-1 {
+  z-index: 1;
+}
+
+.z-slide-2 {
+  z-index: 2;
+}
+.\!z-slide--1 {
+  z-index: -1 !important;
+}
+
+.\!z-slide-1 {
+  z-index: 1 !important;
+}
+
+.\!z-slide-2 {
+  z-index: 2 !important;
+}
+
+.transition-position {
+  transition: left 0.3s ease-in-out;
+}
+
+.active {
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity)) /* #f8fafc */;
+}
+
+@media (min-width: 768px) {
+  .active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(226 232 240 / var(--tw-bg-opacity)) /* #e2e8f0 */;
+  }
+}

@@ -1,0 +1,220 @@
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaPen, FaRegCircleUser } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import SummaryApi from "../common";
+
+const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    name: "",
+    confirmPassword: "",
+    profilePic: "",
+  });
+  const [imgUrl, setImgUrl] = useState("");
+  const navigate = useNavigate();
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((preve) => {
+      return {
+        ...preve,
+        [name]: value,
+      };
+    });
+  };
+
+  function handleUploadPic(e) {
+    console.log(e.target.files);
+    const file = e.target.files[0];
+    if (file.size > 5 * 1024 * 1024) {
+      toast.warn("The image is biggen than 5MB. Pick another image please");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const previewImageUrl = event.target.result;
+      setImgUrl(previewImageUrl);
+    };
+
+    reader.readAsDataURL(file); // Read file as data URL
+
+    setData((preve) => {
+      return {
+        ...preve,
+        profilePic: file,
+      };
+    });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      if (/\W+/.test(data.name)) {
+        toast.warn("Name mustn't include special chars");
+        return;
+      }
+
+      if (data.password !== data.confirmPassword) {
+        toast.warn("The password confirm is not correct. Check it please");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      formData.append("name", data.name);
+      formData.append("profilePic", data.profilePic);
+
+      const dataResponse = await fetch(SummaryApi.signUP.url, {
+        method: SummaryApi.signUP.method,
+        body: formData,
+      });
+
+      const dataApi = await dataResponse.json();
+
+      if (dataApi.success) {
+        toast.success(dataApi.message);
+        navigate("/login");
+      }
+
+      if (dataApi.error) {
+        toast.error(dataApi.message);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  return (
+    <section id="signup">
+      <div className="mx-auto container p-4">
+        <div className="bg-white p-5 w-full max-w-sm mx-auto">
+          <div className="w-20 h-20 mx-auto relative rounded-full">
+            <div className="w-[5rem] h-[5rem]">
+              {imgUrl ? (
+                <img
+                  src={imgUrl}
+                  alt="user"
+                  className="object-cover w-full h-full rounded-full"
+                />
+              ) : (
+                <FaRegCircleUser className="text-[5rem] rounded-[50%]" />
+              )}
+            </div>
+            <form>
+              <label>
+                <div className="text-xs bg-opacity-80 bg-blue-500 p-2 cursor-pointer text-center absolute bottom-[-10px] right-[-1.5rem] w-content rounded-full">
+                  <FaPen className="fill-white text-[1.2rem]" />
+                </div>
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleUploadPic}
+                />
+              </label>
+            </form>
+          </div>
+
+          <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
+            <div className="grid">
+              <label>Name : </label>
+              <div className="bg-slate-100 p-2">
+                <input
+                  type="text"
+                  placeholder="enter your name"
+                  name="name"
+                  value={data.name}
+                  onChange={handleOnChange}
+                  required
+                  className="w-full h-full outline-none bg-transparent"
+                />
+              </div>
+            </div>
+            <div className="grid">
+              <label>Email : </label>
+              <div className="bg-slate-100 p-2">
+                <input
+                  type="email"
+                  placeholder="enter email"
+                  name="email"
+                  value={data.email}
+                  onChange={handleOnChange}
+                  required
+                  className="w-full h-full outline-none bg-transparent"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label>Password : </label>
+              <div className="bg-slate-100 p-2 flex">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="enter password"
+                  value={data.password}
+                  name="password"
+                  onChange={handleOnChange}
+                  required
+                  className="w-full h-full outline-none bg-transparent"
+                />
+                <div
+                  className="cursor-pointer text-xl"
+                  onClick={() => setShowPassword((preve) => !preve)}
+                >
+                  <span>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label>Confirm Password : </label>
+              <div className="bg-slate-100 p-2 flex">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="enter confirm password"
+                  value={data.confirmPassword}
+                  name="confirmPassword"
+                  onChange={handleOnChange}
+                  required
+                  className="w-full h-full outline-none bg-transparent"
+                />
+
+                <div
+                  className="cursor-pointer text-xl"
+                  onClick={() => setShowConfirmPassword((preve) => !preve)}
+                >
+                  <span>
+                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
+              Sign Up
+            </button>
+          </form>
+
+          <p className="my-5">
+            Already have account ?{" "}
+            <Link
+              to={"/login"}
+              className=" text-blue-700 hover:text-blue-800 hover:underline"
+            >
+              Login
+            </Link>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SignUp;
