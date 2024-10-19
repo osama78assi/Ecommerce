@@ -28,6 +28,7 @@ const updateNameController = require("../controller/user/updateName");
 const uploadCategoryController = require("../controller/category/uploadCategory");
 const getAllCategoriesController = require("../controller/category/getAllCategories");
 const updateCategoryController = require("../controller/category/updateCategory");
+const updateImageController = require("../controller/user/updateImg");
 
 // Signin & signup
 router.post("/signup", userSignUpController);
@@ -66,4 +67,5 @@ router.post("/delete-cart-product", authToken, deleteAddToCartProduct);
 router.post("/update-password", authToken, updatePasswordController);
 router.post("/update-email", authToken, updateEmailController);
 router.post("/update-name", authToken, updateNameController);
+router.post("/update-image", authToken, updateImageController)
 module.exports = router;

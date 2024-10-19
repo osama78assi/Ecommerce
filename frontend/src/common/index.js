@@ -96,12 +96,15 @@ const SummaryApi = {
   updateCategory: {
     url: `${backendDomin}/api/update-category`,
     method: "post",
-  }
-  ,
+  },
   uploadCategory: {
     url: `${backendDomin}/api/upload-category`,
     method: "post",
-  }
+  },
+  updateImage: {
+    url: `${backendDomin}/api/update-image`,
+    method: "post",
+  },
 };
 
 export default SummaryApi;
