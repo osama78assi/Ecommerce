@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import EditEmailSection from "../components/EditEmailSection";
-import EditImageSection from "../components/EditImageSection";
-import EditNameSection from "../components/EditNameSection";
-import EditPasswordSection from "../components/EditPasswordSection";
-import LogoutSection from "../components/LogoutSection";
+import EditEmailSection from "../components/profile/EditEmailSection";
+import EditImageSection from "../components/profile/EditImageSection";
+import EditNameSection from "../components/profile/EditNameSection";
+import EditPasswordSection from "../components/profile/EditPasswordSection";
+import LogoutSection from "../components/profile/LogoutSection";
 
 function Profile() {
-  const user = useSelector((state) => state?.user?.user);
   const [isLoading, setIsLoading] = useState(false);
-  // This function to switch what does the user want to change
 
   return (
     <div className="w-[75%] p-4 m-auto bg-slate-50 space-y-4">

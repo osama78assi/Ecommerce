@@ -1,6 +1,6 @@
 import React from "react";
 import { CgClose } from "react-icons/cg";
-import { useOutsideClick } from "../hooks/useOutsideClick";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 const DisplayImage = ({ imgUrl, onClose }) => {
   const eleRef = useOutsideClick((e) => {

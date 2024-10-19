@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import SummaryApi from "../common";
-import { setUserDetails } from "../store/userSlice";
-import Confirm from "./Confirm";
+import SummaryApi from "../../common";
+import { setUserDetails } from "../../store/userSlice";
+import Confirm from "../ui/Confirm";
+import SubmitBtn from "../ui/SubmitBtn";
 import EditUserSection from "./EditUserSection";
-import SubmitBtn from "./SubmitBtn";
 
 function LogoutSection({ isLoading, setIsLoading }) {
   const [confirmAbout, setConfirmAbout] = useState("");

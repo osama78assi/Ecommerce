@@ -3,21 +3,20 @@ import { CgClose } from "react-icons/cg";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
-import SummaryApi from "../common";
-import productCategory from "../helpers/productCategory";
-import uploadImage from "../helpers/uploadImage";
-import DisplayImage from "./DisplayImage";
+import SummaryApi from "../../common";
+import productCategory from "../../helpers/productCategory";
+import uploadImage from "../../helpers/uploadImage";
+import DisplayImage from "../ui/DisplayImage";
 
-const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
+const UploadProduct = ({ onClose, fetchData }) => {
   const [data, setData] = useState({
-    ...productData,
-    productName: productData?.productName,
-    brandName: productData?.brandName,
-    category: productData?.category,
-    productImage: productData?.productImage || [],
-    description: productData?.description,
-    price: productData?.price,
-    sellingPrice: productData?.sellingPrice,
+    productName: "",
+    brandName: "",
+    category: "",
+    productImage: [],
+    description: "",
+    price: "",
+    sellingPrice: "",
   });
   const [openFullScreenImage, setOpenFullScreenImage] = useState(false);
   const [fullScreenImage, setFullScreenImage] = useState("");
@@ -71,8 +70,8 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(SummaryApi.updateProduct.url, {
-        method: SummaryApi.updateProduct.method,
+      const response = await fetch(SummaryApi.uploadProduct.url, {
+        method: SummaryApi.uploadProduct.method,
         credentials: "include",
         headers: {
           "content-type": "application/json",
@@ -85,7 +84,7 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
       if (responseData.success) {
         toast.success(responseData?.message);
         onClose();
-        fetchdata();
+        fetchData();
       }
 
       if (responseData.error) {
@@ -100,7 +99,7 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
     <div className="fixed w-full  h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
       <div className="bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
         <div className="flex justify-between items-center pb-3">
-          <h2 className="font-bold text-lg">Edit Product</h2>
+          <h2 className="font-bold text-lg">Upload Product</h2>
           <div
             className="w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer"
             onClick={onClose}
@@ -150,7 +149,7 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
             className="p-2 bg-slate-100 border rounded"
           >
             <option value={""}>Select Category</option>
-            {productCategory.map((el, index) => {
+            {productCategory?.map((el, index) => {
               return (
                 <option value={el.value} key={el.value + index}>
                   {el.label}
@@ -254,7 +253,7 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
           ></textarea>
 
           <button className="px-3 py-2 bg-red-600 text-white mb-10 hover:bg-red-700">
-            Update Product
+            Upload Product
           </button>
         </form>
       </div>
@@ -270,4 +269,4 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
   );
 };
 
-export default AdminEditProduct;
+export default UploadProduct;

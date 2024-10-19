@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import image1 from "../assest/banner/img1.webp";
-import image2 from "../assest/banner/img2.webp";
-import image3 from "../assest/banner/img3.jpg";
-import image4 from "../assest/banner/img4.jpg";
+import image1 from "../../assest/banner/img1.webp";
+import image2 from "../../assest/banner/img2.webp";
+import image3 from "../../assest/banner/img3.jpg";
+import image4 from "../../assest/banner/img4.jpg";
 import HeaderCard from "./HeaderCard";
 
 function HeaderSlider() {

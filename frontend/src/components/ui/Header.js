@@ -5,10 +5,10 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { GrSearch } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import ROLE from "../common/role";
-import { useLazyloadingImg } from "../hooks/useLazyLoadingImg";
-import { useOutsideClick } from "../hooks/useOutsideClick";
-import { getCartCount } from "../store/cartSlice";
+import ROLE from "../../common/role";
+import { useLazyloadingImg } from "../../hooks/useLazyLoadingImg";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { getCartCount } from "../../store/cartSlice";
 import Logo from "./Logo";
 
 const Header = () => {

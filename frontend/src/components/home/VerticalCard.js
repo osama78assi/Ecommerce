@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Context from "../context";
 // import addToCart from "../helpers/addToCart";
-import displayINRCurrency from "../helpers/displayCurrency";
-import scrollTop from "../helpers/scrollTop";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+import displayINRCurrency from "../../helpers/displayCurrency";
+import scrollTop from "../../helpers/scrollTop";
+import { addToCart } from "../../store/cartSlice";
 
 const VerticalCard = ({ loading, data = [] }) => {
   const loadingList = new Array(13).fill(null);
@@ -16,7 +15,7 @@ const VerticalCard = ({ loading, data = [] }) => {
     // await addToCart(e, id);
     e?.stopPropagation();
     e?.preventDefault();
-    dispatch(addToCart(id))
+    dispatch(addToCart(id));
     // fetchUserAddToCart();
   };
 

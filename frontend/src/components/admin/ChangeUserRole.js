@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
-import SummaryApi from "../common";
-import ROLE from "../common/role";
+import SummaryApi from "../../common";
+import ROLE from "../../common/role";
 
 const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
   const [userRole, setUserRole] = useState(role);

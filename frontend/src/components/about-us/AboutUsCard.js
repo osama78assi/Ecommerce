@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import DisplayImage from "./DisplayImage";
+import DisplayImage from "../ui/DisplayImage";
 
 function AboutUsCard({ imgUrl, content, leftRight = true }) {
   const [show, setShow] = useState(false);

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import DisplayImage from "./DisplayImage";
+import DisplayImage from "../ui/DisplayImage";
 
 function HeaderCard({ imgUrl, content, leftRight = true, getElement }) {
   const cardRef = useRef(null);

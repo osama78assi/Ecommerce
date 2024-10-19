@@ -3,10 +3,10 @@ import { FaPen } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import SummaryApi from "../common";
-import { useLazyloadingImg } from "../hooks/useLazyLoadingImg";
-import { setUserDetails } from "../store/userSlice";
-import Confirm from "./Confirm";
+import SummaryApi from "../../common";
+import { useLazyloadingImg } from "../../hooks/useLazyLoadingImg";
+import { setUserDetails } from "../../store/userSlice";
+import Confirm from "../ui/Confirm";
 import EditUserSection from "./EditUserSection";
 
 function EditImageSection({ isLoading, setIsLoading }) {
@@ -36,7 +36,7 @@ function EditImageSection({ isLoading, setIsLoading }) {
       });
 
       const data = await res.json();
-      console.log(data.data)
+      console.log(data.data);
       if (data.success) {
         toast.success("New image updated successfully");
         dispatch(setUserDetails(data.data));

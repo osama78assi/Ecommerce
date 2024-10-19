@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import Context from "../context";
 // import addToCart from "../helpers/addToCart";
 import { useDispatch, useSelector } from "react-redux";
-import displayINRCurrency from "../helpers/displayCurrency";
-import fetchCategoryWiseProduct from "../helpers/fetchCategoryWiseProduct";
-import { addToCart } from "../store/cartSlice";
+import displayINRCurrency from "../../helpers/displayCurrency";
+import fetchCategoryWiseProduct from "../../helpers/fetchCategoryWiseProduct";
+import { addToCart } from "../../store/cartSlice";
 
 const HorizontalCardProduct = ({ category, heading }) => {
   const [data, setData] = useState([]);

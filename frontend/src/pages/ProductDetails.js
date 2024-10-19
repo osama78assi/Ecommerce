@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import SummaryApi from "../common";
-import CategroyWiseProductDisplay from "../components/CategoryWiseProductDisplay";
+import CategroyWiseProductDisplay from "../components/home/CategoryWiseProductDisplay";
 import Context from "../context";
 import addToCart from "../helpers/addToCart";
 import displayINRCurrency from "../helpers/displayCurrency";

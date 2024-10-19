@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ui/ProtectedRoute";
 import "./index.css";
 import AboutUs from "./pages/AboutUs";
 import AdminPanel from "./pages/AdminPanel";

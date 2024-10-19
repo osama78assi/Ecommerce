@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import SummaryApi from "../common";
-import { setUserDetails } from "../store/userSlice";
-import Confirm from "./Confirm";
+import SummaryApi from "../../common";
+import { setUserDetails } from "../../store/userSlice";
+import Confirm from "../ui/Confirm";
+import SubmitBtn from "../ui/SubmitBtn";
 import EditUserInput from "./EditUserInput";
 import EditUserSection from "./EditUserSection";
-import SubmitBtn from "./SubmitBtn";
 
 function EditNameSection({ isLoading, setIsLoading }) {
   const user = useSelector((state) => state?.user?.user);

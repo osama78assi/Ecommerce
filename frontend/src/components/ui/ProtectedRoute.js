@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import ROLE from "../common/role";
-import FullPageLoading from "../pages/FullPageLoading";
+import ROLE from "../../common/role";
+import FullPageLoading from "../../pages/FullPageLoading";
 
 function ProtectedRoute({ forAdmin = false, children }) {
   const user = useSelector((state) => state.user.user);

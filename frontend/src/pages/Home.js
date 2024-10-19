@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderSlider from "../components/HeaderSlider";
-import HorizontalCardProduct from "../components/HorizontalCardProduct";
-import VerticalCardProduct from "../components/VerticalCardProduct";
+import HeaderSlider from "../components/home/HeaderSlider";
+import HorizontalCardProduct from "../components/home/HorizontalCardProduct";
+import VerticalCardProduct from "../components/home/VerticalCardProduct";
 
 const Home = () => {
   return (

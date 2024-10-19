@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AboutUsCard from "../components/AboutUsCard";
+import AboutUsCard from "../components/about-us/AboutUsCard";
 import image5Mobile from "../assest/banner/img5_mobile.png"
 
 function AboutUs() {

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import SummaryApi from "../common";
-import Confirm from "./Confirm";
+import SummaryApi from "../../common";
+import Confirm from "../ui/Confirm";
+import SubmitBtn from "../ui/SubmitBtn";
 import EditUserInput from "./EditUserInput";
 import EditUserSection from "./EditUserSection";
-import SubmitBtn from "./SubmitBtn";
 
 function EditPasswordSection({ isLoading, setIsLoading }) {
   const [userOldPassword, setUserOldPassword] = useState("");

@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { CgClose } from "react-icons/cg";
-import { useOutsideClick } from "../hooks/useOutsideClick";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 import SubmitBtn from "./SubmitBtn";
 
 function Confirm({ about, onConfirm, onClose, moreDetails = true, children }) {
