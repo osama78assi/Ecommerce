@@ -5,7 +5,7 @@ function SubmitBtn({ type = "primary", title, dis, classes, handleClick }) {
       colorClasses = "bg-red-500 hover:bg-red-600";
       break;
     default:
-      colorClasses = "bg-blue-500 hover:bg-blue-600";
+      colorClasses = "bg-[var(--primary-color-900)] hover:bg-[var(--primary-color-1100)]";
   }
 
   return (

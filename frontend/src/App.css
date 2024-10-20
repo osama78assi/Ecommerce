@@ -1,3 +1,10 @@
+:root {
+  --primary-color-1100: #c89329;
+  --primary-color-900: #cda452;
+  --primary-color-700: #edb542;
+  /* --primary-color-700: #f20; */
+}
+
 .customShadow {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -55,12 +62,36 @@
 }
 
 .active {
-  background-color: rgb(248 250 252 / var(--tw-bg-opacity)) /* #f8fafc */;
+  color: var(--primary-color-1100);
 }
 
 @media (min-width: 768px) {
   .active {
     --tw-bg-opacity: 1;
-    background-color: rgb(226 232 240 / var(--tw-bg-opacity)) /* #e2e8f0 */;
+    border-bottom: 2px solid var(--primary-color-900);
+    color: var(--primary-color-900);
+    background-color: #f1f5f9;
   }
+}
+
+
+/* Colors */
+
+.bg-primary-900 {
+  background-color: var(--primary-color-900);
+}
+.bg-primary-700 {
+  background-color: var(--primary-color-700);
+}
+.text-primary-900 {
+  color: var(--primary-color-900);
+}
+.text-primary-700 {
+  color: var(--primary-color-700);
+}
+.hover\:bg-primary-700:hover {
+  background: var(--primary-color-700);
+}
+.hover\:bg-primary-900:hover {
+  background: var(--primary-color-900);
 }

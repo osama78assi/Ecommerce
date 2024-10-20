@@ -58,21 +58,21 @@ function App() {
 
   return (
     <>
-      <Context.Provider
+      {/* <Context.Provider
         value={{
           fetchUserDetails, // user detail fetch
           cartProductCount, // current user add to cart product count,
           fetchUserAddToCart,
         }}
-      >
+      > */}
         <ToastContainer position="top-center" />
 
         <Header />
-        <main className="h-full min-h-[calc(100dvh-120px)] py-6 px-4 overflow-auto">
+        <main className="h-[calc(100dvh-120px)] py-6 px-4 overflow-auto">
           <Outlet />
         </main>
         <Footer />
-      </Context.Provider>
+      {/* </Context.Provider> */}
     </>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CgInfo } from "react-icons/cg";
-import { FaBars, FaCalculator, FaShoppingCart } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { GrSearch } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +10,7 @@ import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { getCartCount } from "../../store/cartSlice";
 import Logo from "./Logo";
 
-const Header = () => {
+function Header() {
   const [showSearch, setShowSearch] = useState(false);
   const [toggleNav, setToggleNav] = useState(() => {
     if (window.matchMedia("(max-width: 768px)").matches) {
@@ -36,8 +35,8 @@ const Header = () => {
 
   const navItemClasses = `flex justify-between ${
     toggleNav ? "w-full" : ""
-  } items-center gap-3 transition-all p-2 text-lg rounded-md hover:bg-slate-50 md:hover:bg-slate-200`;
-  const textNavItemClassess = "text-lg font-semibold";
+  } items-center gap-3 transition-all h-full p-2 hover:bg-slate-100`;
+  const textNavItemClassess = "text-base font-semibold";
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -141,7 +140,7 @@ const Header = () => {
             />
           </div>
           <div
-            className="rounded-full text-lg min-w-[50px] h-8 bg-blue-500 hover:bg-blue-600 transition-colors flex items-center justify-center lg:rounded-r-full text-white cursor-pointer "
+            className="rounded-full text-lg min-w-[50px] h-8 bg-primary-900 hover:bg-primary-700 transition-colors flex items-center justify-center lg:rounded-r-full text-white cursor-pointer "
             onClick={handleSearchSmallMedia}
             id="input-toggler"
           >
@@ -155,17 +154,17 @@ const Header = () => {
             className="p-1 bg-slate-100 rounded-lg"
             onClick={() => setShowtoggledNav((s) => !s)}
           >
-            <FaBars className="text-4xl" />
+            <FaBars className="text-4xl fill-[var(--primary-color-900)]" />
           </button>
         )}
         {/*Main Nav */}
         <div
           ref={navTogglerRef}
-          className={`flex items-center gap-7 ${
+          className={`flex items-center gap-7 h-full ${
             toggleNav
               ? `${
                   !showToggledNav ? "hidden" : "!block space-y-3"
-                } absolute flex-col right-11 top-12 p-1 bg-slate-200 rounded-b-lg rounded-l-lg !items-start border-[1px] border-slate-700`
+                } absolute h-fit flex-col right-11 top-12 p-1 bg-stone-200 shadow-2xl rounded-b-lg rounded-l-lg !items-start border-[1px] border-[var(--primary-color-1100)]`
               : ""
           }`}
         >
@@ -174,10 +173,15 @@ const Header = () => {
             className={navItemClasses}
             onClick={() => setShowtoggledNav(false)}
           >
-            <span className={`${textNavItemClassess} text-blue-500`}>
-              About us
-            </span>
-            <CgInfo className="text-2xl text-blue-500" />
+            <span className={`${textNavItemClassess} `}>About us</span>
+          </NavLink>
+
+          <NavLink
+            to={"/vision"}
+            className={navItemClasses}
+            onClick={() => setShowtoggledNav(false)}
+          >
+            <span className={`${textNavItemClassess} `}>Our vision</span>
           </NavLink>
 
           {user?._id && (
@@ -186,9 +190,7 @@ const Header = () => {
               className={navItemClasses}
               onClick={() => setShowtoggledNav(false)}
             >
-              <span className={`${textNavItemClassess} text-blue-500`}>
-                Profile
-              </span>
+              <span className={`${textNavItemClassess} `}>Profile</span>
 
               {/* If there is an image then loading it async otherwise render an icon */}
               {user?.profilePic ? (
@@ -202,7 +204,7 @@ const Header = () => {
                   />
                 )
               ) : (
-                <FaRegCircleUser className="text-2xl fill-blue-500" />
+                <FaRegCircleUser className="text-2xl fill-[var(--color-primary-700)]" />
               )}
             </NavLink>
           )}
@@ -213,11 +215,7 @@ const Header = () => {
               className={navItemClasses}
               onClick={() => setShowtoggledNav(false)}
             >
-              <span className={`${textNavItemClassess} text-blue-500`}>
-                {" "}
-                Admin Panel
-              </span>
-              <FaCalculator className="text-2xl text-blue-500" />
+              <span className={`${textNavItemClassess} `}> Admin Panel</span>
             </NavLink>
           )}
 
@@ -227,13 +225,10 @@ const Header = () => {
               className={`relative ${navItemClasses}`}
               onClick={() => setShowtoggledNav(false)}
             >
-              <span className={`${textNavItemClassess} text-blue-500`}>
-                Cart
-              </span>
-              <FaShoppingCart className="text-2xl text-blue-500" />
+              <span className={`${textNavItemClassess} `}>Cart</span>
 
               <div
-                className={`bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-0 -right-1 ${
+                className={`bg-primary-700 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute top-[0.5rem] right-[-0.7rem] ${
                   isLoadingCart ? "animate-pulse" : ""
                 }`}
               >
@@ -243,18 +238,18 @@ const Header = () => {
           )}
 
           {!user?._id && (
-            <Link
+            <NavLink
               to={"/login"}
-              className={`${navItemClasses} bg-blue-500 hover:!bg-blue-600 transition-colors text-white`}
+              className={`${navItemClasses} transition-colors`}
               onClick={() => setShowtoggledNav(false)}
             >
-              Login
-            </Link>
+              <span className={textNavItemClassess}>Login</span>
+            </NavLink>
           )}
         </div>
       </div>
     </header>
   );
-};
+}
 
 export default Header;

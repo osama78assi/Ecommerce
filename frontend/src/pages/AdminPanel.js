@@ -1,30 +1,28 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import ROLE from "../common/role";
+import { Link, Outlet } from "react-router-dom";
+import { useLazyloadingImg } from "../hooks/useLazyLoadingImg";
 
 const AdminPanel = () => {
   const user = useSelector((state) => state?.user?.user);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user?.role !== ROLE.ADMIN) {
-      navigate("/");
-    }
-  }, [user]);
+  const imgUrl = useLazyloadingImg(user?.profilePic);
 
   return (
-    <div className="min-h-[calc(100vh-120px)] md:flex hidden">
-      <aside className="bg-white min-h-full  w-full  max-w-60 customShadow">
+    <div className="h-full flex">
+      <aside className="bg-white min-h-full  w-full  max-w-60 customShadow py-2">
         <div className="h-32  flex justify-center items-center flex-col">
           <div className="text-5xl cursor-pointer relative flex justify-center">
             {user?.profilePic ? (
-              <img
-                src={user?.profilePic}
-                className="w-20 h-20 rounded-full"
-                alt={user?.name}
-              />
+              imgUrl ? (
+                <img
+                  src={imgUrl}
+                  className="w-20 h-20 rounded-full object-cover"
+                  alt={user?.name}
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full bg-gray-500 animate-pulse" />
+              )
             ) : (
               <FaRegCircleUser />
             )}
@@ -41,6 +39,21 @@ const AdminPanel = () => {
             </Link>
             <Link to={"all-products"} className="px-2 py-1 hover:bg-slate-100">
               All product
+            </Link>
+            <Link
+              to={"all-categories"}
+              className="px-2 py-1 hover:bg-slate-100"
+            >
+              All categories
+            </Link>
+            <Link to={"slider"} className="px-2 py-1 hover:bg-slate-100">
+              slider sections
+            </Link>
+            <Link to={"about-us-edit"} className="px-2 py-1 hover:bg-slate-100">
+              About us sections
+            </Link>
+            <Link to={"vision"} className="px-2 py-1 hover:bg-slate-100">
+              Vision sections
             </Link>
           </nav>
         </div>
