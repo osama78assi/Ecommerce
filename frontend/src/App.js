@@ -68,7 +68,7 @@ function App() {
         <ToastContainer position="top-center" />
 
         <Header />
-        <main className="h-[calc(100dvh-120px)] py-6 px-4 overflow-auto">
+        <main className="min-h-[calc(100dvh-120px)]">
           <Outlet />
         </main>
         <Footer />

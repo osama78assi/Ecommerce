@@ -54,7 +54,7 @@ function AboutUs() {
     //   })}
     //    </div>
 
-    <div className="container px-2 mx-auto bg-slate-100">
+    <div className="container mx-auto bg-slate-100 p-6">
       <div className="flex flex-wrap columns-12">
         <TextPart images={images} />
         <ImagesPart images={images} />

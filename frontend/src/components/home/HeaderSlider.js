@@ -29,10 +29,6 @@ function HeaderSlider() {
         "asdf adf'g ajds goaks gop[gfdsiojg apo rgpaldf;gjasp;djf ;aslkdfj asoipdjfarehg afdl;gjasd;lkfgj adfgadlfg;ja;sdlfgj adflg aisdfrgjaoigj afldsgjaosidfgjaogjraf adfoig jadfg adfgoiajsgl;k fdjgaosidfgj alkdfgj aoperhj alrfgjadofpigj adoifg adfiogad jfl;gjfd apfog hafdlg haofd gadf ",
     },
     {
-      content:
-        "asdf asdf ;'gas gjdfa ljasi gjfadsfogi adfl glksd aoilsfd la;sk asdio fjag ;ladf gsoi gaodifgj aoipfgjal;kdfj aoipsdfg jasdlkj; jjsadjfl ga;dlfg a;klsdgj a;odsgj arlk;dgj ad;flgj alkds gja;dfg ad;gj ad;sigj adl;fgj ad;igj aid;fgj ad;gj afdig jaigo haerghasdfg sdfj aofdpgh adf;lg hafdg ",
-    },
-    {
       imgUrl: image4,
     },
   ];
@@ -123,7 +119,7 @@ function HeaderSlider() {
 
   return (
     <div
-      className="h-[30rem] relative overflow-hidden"
+      className="h-[calc(100dvh-200px)] relative overflow-hidden"
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}
     >

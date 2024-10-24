@@ -9,7 +9,7 @@ const AdminPanel = () => {
   const imgUrl = useLazyloadingImg(user?.profilePic);
 
   return (
-    <div className="h-full flex">
+    <div className="h-full flex p-6">
       <aside className="bg-white min-h-full  w-full  max-w-60 customShadow py-2">
         <div className="h-32  flex justify-center items-center flex-col">
           <div className="text-5xl cursor-pointer relative flex justify-center">

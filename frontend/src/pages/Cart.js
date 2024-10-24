@@ -131,7 +131,7 @@ const Cart = () => {
     0
   );
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-6">
       <div className="text-center text-lg my-3">
         {data.length === 0 && !isLoadingCart && (
           <p className="bg-white py-5">No Data</p>
