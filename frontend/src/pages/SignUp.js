@@ -110,7 +110,7 @@ const SignUp = () => {
             </div>
             <form>
               <label>
-                <div className="text-xs bg-opacity-80 bg-blue-500 p-2 cursor-pointer text-center absolute bottom-[-10px] right-[-1.5rem] w-content rounded-full">
+                <div className="text-xs bg-opacity-80 bg-primary-900 p-2 cursor-pointer text-center absolute bottom-[-10px] right-[-1.5rem] w-content rounded-full">
                   <FaPen className="fill-white text-[1.2rem]" />
                 </div>
                 <input
@@ -197,7 +197,7 @@ const SignUp = () => {
               </div>
             </div>
 
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
+            <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
               Sign Up
             </button>
           </form>
@@ -206,7 +206,7 @@ const SignUp = () => {
             Already have account ?{" "}
             <Link
               to={"/login"}
-              className=" text-blue-700 hover:text-blue-800 hover:underline"
+              className="text-[var(--primary-color-1100)]  hover:underline"
             >
               Login
             </Link>

@@ -14,7 +14,7 @@ function EditUserInput({ label, type, id, name, placeholder, val, setVal }) {
         value={val}
         onChange={(e) => setVal?.(e.target.value)}
         placeholder={placeholder}
-        className="block p-2 border-[1px] border-blue-100 rounded-lg outline-none transition-all focus-within:focus:border-blue-300 basis-[100%] sm:basis-[75%]"
+        className="block p-2 border-[1px] border-[var(--primary-color-900)] rounded-lg outline-none transition-all basis-[100%] sm:basis-[75%]"
       />
     </div>
   );

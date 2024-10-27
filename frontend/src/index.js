@@ -20,9 +20,11 @@ import Profile from "./pages/Profile";
 import SearchProduct from "./pages/SearchProduct";
 import SignUp from "./pages/SignUp";
 import SliderAdmin from "./pages/SliderAdmin";
+import Store from "./pages/Store";
+import Vision from "./pages/Vision";
 import VisionAdmin from "./pages/VisionAdmin";
 import { store } from "./store/store";
-import Vision from "./pages/Vision";
+import "./i18next";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -36,6 +38,7 @@ root.render(
           <Route path="sign-up" element={<SignUp />} />
           <Route path="product-category" element={<CategoryProduct />} />
           <Route path="product/:id" element={<ProductDetails />} />
+          <Route path="store" element={<Store />} />
           <Route
             path="cart"
             element={

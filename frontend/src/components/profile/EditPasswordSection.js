@@ -56,6 +56,7 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
 
   return (
     <>
+    <span className="w-f"></span>
       {confirmAbout !== "" ? (
         <Confirm
           about={confirmAbout}
@@ -68,7 +69,7 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
 
       <EditUserSection
         title="Change Password"
-        classes="self-start m-auto flex-col w-[75%] space-y-3 "
+        classes="self-start m-auto flex-col w-[90%] space-y-3 "
       >
         <EditUserInput
           val={userOldPassword}
@@ -90,11 +91,12 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
           placeholder="Enter New Password"
         />
         <SubmitBtn
-          title="Confirm Change"
+          title="Confirm"
           dis={isLoading || !userOldPassword || !userNewPassword}
           handleClick={() => {
             setConfirmAbout("update the password ?");
           }}
+          classes="self-center w-[75%] sm:w-fit sm:self-end"
         />
       </EditUserSection>
     </>

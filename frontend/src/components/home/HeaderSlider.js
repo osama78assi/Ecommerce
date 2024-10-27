@@ -1,9 +1,5 @@
 import { useRef, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import image1 from "../../assest/banner/img1.webp";
-import image2 from "../../assest/banner/img2.webp";
-import image3 from "../../assest/banner/img3.jpg";
-import image4 from "../../assest/banner/img4.jpg";
 import HeaderCard from "./HeaderCard";
 
 function HeaderSlider() {
@@ -11,25 +7,24 @@ function HeaderSlider() {
   const cooldown = useRef(false);
   const cardsRefs = useRef([]);
 
-
   const cards = [
     {
-      imgUrl: image1,
+      title: "Subscribe",
+      imgUrl: "/slider-1.jpg",
       content:
         "asdf asf agf qpojrgadpfs gjapsodifj apfdgh apsd jfapdoifgj apsdo fjadfogp jp hqwaer9 hsdpofias jgpoafds gqparg adsf gqerp adsfdgakjdfg padf gpart pugafdsjga;psdf jqaprg jpaodfgj asdkl jafbn adf;gno;pxvjapodifjs kla gjpifdshg asdfg pagadfgadfgerdadfg ",
     },
     {
-      imgUrl: image2,
+      title: "Like Us",
+      imgUrl: "/slider-2.jpg",
       content:
         "asdf asd gafdiodfg houhyoidsfu alkjgh lqupiwh adsl;fja;slj fg;afgj a;ldfgj aosig l;fg had;foqgi ;j adslk jfa;lk gdafgh wiah adsf hdjkalg hadfg uhair ghadkgh aslg hafdkgh rakjlfgh aoigh adfgh adug adfklg hadfklgj hadfr g kjfadhgauifdhs gakldjfgh ka;jdgh akg adfg",
     },
     {
-      imgUrl: image3,
+      title: "LOL You Are Here ?",
+      imgUrl: "/slider-3.jpg",
       content:
         "asdf adf'g ajds goaks gop[gfdsiojg apo rgpaldf;gjasp;djf ;aslkdfj asoipdjfarehg afdl;gjasd;lkfgj adfgadlfg;ja;sdlfgj adflg aisdfrgjaoigj afldsgjaosidfgjaogjraf adfoig jadfg adfgoiajsgl;k fdjgaosidfgj alkdfgj aoperhj alrfgjadofpigj adoifg adfiogad jfl;gjfd apfog hafdlg haofd gadf ",
-    },
-    {
-      imgUrl: image4,
     },
   ];
   const [curChild, setCurChild] = useState(cards.length - 1);
@@ -117,6 +112,7 @@ function HeaderSlider() {
     }
   }
 
+
   return (
     <div
       className="h-[calc(100dvh-200px)] relative overflow-hidden"
@@ -130,13 +126,13 @@ function HeaderSlider() {
         } invisible absolute`}
       >
         <span
-          className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer rounded-l-lg"
+          className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer"
           onClick={slideLeft}
         >
           <FaAngleLeft className="arr-slider text-lg !color-white" />
         </span>
         <span
-          className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer rounded-r-lg"
+          className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer"
           onClick={slideRight}
         >
           <FaAngleRight className="arr-slider text-lg !color-white" />
@@ -149,13 +145,8 @@ function HeaderSlider() {
           <HeaderCard
             imgUrl={ele?.imgUrl ? ele.imgUrl : ""}
             content={ele?.content ? ele.content : ""}
-            key={
-              ele?.imgUrl
-                ? ele.imgUrl + index.toString()
-                : ele.content.slice(0, 40)
-            }
-            index={index}
-            leftRight={index % 2 === 0 ? true : false}
+            title={ele?.title ? ele.title : ""}
+            key={ele?.imgUrl}
             getElement={(ele) => cardsRefs.current.push(ele)}
           />
         ))}

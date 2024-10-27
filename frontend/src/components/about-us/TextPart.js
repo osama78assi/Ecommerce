@@ -10,8 +10,8 @@ function TextPart({ images }) {
   }
 
   return (
-    <div className="basis-full p-0 md:p-3 lg:basis-6/12">
-      <h1 className="text-2xl md:text-4xl py-3 text-primary-900">
+    <div className="basis-full mb-2 p-0 md:p-3 lg:basis-6/12 sm:mb-0">
+      <h1 className="text-2xl md:text-4xl py-3 text-primary-700">
         A few words about us
       </h1>
       <div className="flex justify-between flex-wrap mb-3 border-b-[1px] gap-3 border-b-gray-200">
@@ -20,7 +20,7 @@ function TextPart({ images }) {
             key={ele.title}
             className={`text-lg pt-2 pb-4 relative cursor-pointer ${
               index === activeP
-                ? "text-primary-900 before:content-none before:w-full before:absolute before:bottom-[-1px] before:left-0 before:h-[1px] before:bg-[var(--primary-color-900)] sm:before:content-['']"
+                ? "text-primary-700 before:content-none before:w-full before:absolute before:bottom-[-1px] before:left-0 before:h-[1px] before:bg-[var(--primary-color-900)] sm:before:content-['']"
                 : ""
             } md:text-xl`}
             onClick={() => setActiveP(index)}

@@ -2,7 +2,6 @@
   --primary-color-1100: #c89329;
   --primary-color-900: #cda452;
   --primary-color-700: #edb542;
-  /* --primary-color-700: #f20; */
 }
 
 .customShadow {
@@ -62,14 +61,15 @@
 }
 
 .active {
-  color: var(--primary-color-1100);
+  color: var(--primary-color-700);
+  background-color: #f1f5f9;
 }
 
 @media (min-width: 768px) {
   .active {
     --tw-bg-opacity: 1;
-    border-bottom: 2px solid var(--primary-color-900);
-    color: var(--primary-color-900);
+    border-bottom: 2px solid var(--primary-color-700);
+    color: var(--primary-color-700);
     background-color: #f1f5f9;
   }
 }

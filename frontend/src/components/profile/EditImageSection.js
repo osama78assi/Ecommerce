@@ -105,7 +105,7 @@ function EditImageSection({ isLoading, setIsLoading }) {
         )}
         <form className="relative">
           <label>
-            <div className="text-xs bg-opacity-80 bg-blue-500 p-2 cursor-pointer text-center absolute bottom-[-10px] right-[-4rem] w-content rounded-full">
+            <div className="text-xs bg-opacity-80 bg-primary-900 p-2 cursor-pointer text-center absolute bottom-[-10px] right-[-4rem] w-content rounded-full">
               <FaPen className="fill-white text-[1.2rem]" />
             </div>
             <input

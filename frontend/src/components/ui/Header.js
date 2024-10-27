@@ -112,7 +112,7 @@ function Header() {
   }, []);
 
   return (
-    <header className="h-16 shadow-xl bg-white sticky w-full z-40 top-0">
+    <header className="h-16 shadow-xl bg-white sticky w-full z-40 top-0 ">
       <div className=" h-full container mx-auto flex items-center px-4 justify-between">
         <div className="flex align-middle justify-center gap-4">
           <Link to={"/"}>
@@ -140,7 +140,7 @@ function Header() {
             />
           </div>
           <div
-            className="rounded-full text-lg min-w-[50px] h-8 bg-primary-900 hover:bg-primary-700 transition-colors flex items-center justify-center lg:rounded-r-full text-white cursor-pointer "
+            className="rounded-full text-lg min-w-[50px] h-8 bg-primary-700 hover:bg-primary-900 transition-colors flex items-center justify-center lg:rounded-r-full text-white cursor-pointer "
             onClick={handleSearchSmallMedia}
             id="input-toggler"
           >
@@ -154,7 +154,7 @@ function Header() {
             className="p-1 bg-slate-100 rounded-lg"
             onClick={() => setShowtoggledNav((s) => !s)}
           >
-            <FaBars className="text-4xl fill-[var(--primary-color-900)]" />
+            <FaBars className="text-4xl fill-[var(--primary-color-700)]" />
           </button>
         )}
         {/*Main Nav */}
@@ -164,10 +164,17 @@ function Header() {
             toggleNav
               ? `${
                   !showToggledNav ? "hidden" : "!block space-y-3"
-                } absolute h-fit flex-col right-11 top-12 p-1 bg-stone-200 shadow-2xl rounded-b-lg rounded-l-lg !items-start border-[1px] border-[var(--primary-color-1100)]`
+                } absolute !h-fit flex-col right-11 top-12 p-1 bg-stone-200 shadow-2xl rounded-b-lg rounded-l-lg !items-start border-[1px] border-[var(--primary-color-1100)]`
               : ""
           }`}
         >
+          <NavLink
+            to={"/"}
+            className={navItemClasses}
+            onClick={() => setShowtoggledNav(false)}
+          >
+            <span className={`${textNavItemClassess} `}>Home</span>
+          </NavLink>
           <NavLink
             to={"/about-us"}
             className={navItemClasses}
@@ -181,7 +188,7 @@ function Header() {
             className={navItemClasses}
             onClick={() => setShowtoggledNav(false)}
           >
-            <span className={`${textNavItemClassess} `}>Our vision</span>
+            <span className={`${textNavItemClassess} `}>vision</span>
           </NavLink>
 
           {user?._id && (

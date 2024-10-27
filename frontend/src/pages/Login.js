@@ -68,7 +68,7 @@ const Login = () => {
       <div className="mx-auto container p-4">
         <div className="bg-white p-5 w-full max-w-sm mx-auto">
           <div className="w-20 h-20 mx-auto">
-            <FaRegCircleUser className="text-[5rem] rounded-[50%] fill-blue-500" />
+            <FaRegCircleUser className="text-[5rem] rounded-[50%] fill-[var(--primary-color-900)]" />
           </div>
 
           <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
@@ -112,7 +112,7 @@ const Login = () => {
               </Link>
             </div>
 
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
+            <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
               Login
             </button>
           </form>
@@ -121,7 +121,7 @@ const Login = () => {
             Don't have account ?{" "}
             <Link
               to={"/sign-up"}
-              className=" text-blue-700 hover:text-blue-800 hover:underline"
+              className="text-[var(--primary-color-1100)] hover:underline"
             >
               Sign up
             </Link>

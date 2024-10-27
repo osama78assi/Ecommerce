@@ -22,7 +22,7 @@ function ImagesPart({ images }) {
   }, []);
 
   return (
-    <div className="basis-full lg:basis-6/12">
+    <div className="w-full basis-full lg:basis-6/12 lg:w-[50%]">
       {showImg && loadedImgs[activeImg] !== ""
         ? createPortal(
             <DisplayImage
@@ -48,7 +48,8 @@ function ImagesPart({ images }) {
           <div className="w-full h-[20rem] md:h-[25rem] bg-slate-500 animate-pulse sm:h-[420px]" />
         )}
       </div>
-      <div className="flex justify-between gap-2 overflow-auto">
+
+      <div className="flex justify-between gap-1 overflow-x-auto w-full">
         {loadedImgs.map((ele, index) =>
           ele ? (
             <img
@@ -57,7 +58,7 @@ function ImagesPart({ images }) {
               alt={ele}
               className={`cursor-pointer w-[144px] h-[144px] object-cover ${
                 index === activeImg
-                  ? "border-4 border-[var(--primary-color-900)]"
+                  ? "border-4 border-[var(--primary-color-700)]"
                   : ""
               }`}
               onClick={() => setActiveImg(index)}
@@ -66,7 +67,7 @@ function ImagesPart({ images }) {
           ) : (
             <div
               key={index + `${Math.random() * 1e9}`}
-              className="w-[144px] h-[144px] bg-slate-500 animate-pulse"
+              className="w-[144px] h-[144px] bg-slate-500 animate-pulse shrink-0"
             />
           )
         )}

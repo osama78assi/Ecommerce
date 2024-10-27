@@ -72,7 +72,7 @@ function EditNameSection({ isLoading, setIsLoading }) {
 
       <EditUserSection
         title="Change User Name"
-        classes="self-start m-auto flex-col w-[75%] space-y-3 "
+        classes="self-start m-auto w-[90%] gap-2 flex-col sm:flex-row"
       >
         <EditUserInput
           val={userName}
@@ -82,13 +82,15 @@ function EditNameSection({ isLoading, setIsLoading }) {
           id="userName"
           name="userName"
           placeholder="New Name"
+          
         />
         <SubmitBtn
-          title="Confirm Change"
+          title="Confirm"
           dis={isLoading || !userName}
           handleClick={() => {
             setConfirmAbout("update the name ?");
           }}
+          classes="w-[75%] mx-auto sm:w-fit sm:mx-0"
         />
       </EditUserSection>
     </>

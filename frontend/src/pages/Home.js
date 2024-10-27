@@ -1,36 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import Goals from "../components/home/Goals";
 import HeaderSlider from "../components/home/HeaderSlider";
-import HorizontalCardProduct from "../components/home/HorizontalCardProduct";
-import VerticalCardProduct from "../components/home/VerticalCardProduct";
+import Store from "../components/home/Store";
 
-const Home = () => {
+function Home () {
+
   return (
     <div>
       {/* <CategoryList/> */}
       {/* <BannerProduct/>
        */}
       <HeaderSlider />
-
-      <HorizontalCardProduct category={"airpodes"} heading={"Top's Airpodes"} />
-      <HorizontalCardProduct
-        category={"watches"}
-        heading={"Popular's Watches"}
-      />
-
-      <VerticalCardProduct category={"mobiles"} heading={"Mobiles"} />
-      <VerticalCardProduct category={"Mouse"} heading={"Mouse"} />
-      <VerticalCardProduct category={"televisions"} heading={"Televisions"} />
-      <VerticalCardProduct
-        category={"camera"}
-        heading={"Camera & Photography"}
-      />
-      <VerticalCardProduct category={"earphones"} heading={"Wired Earphones"} />
-      <VerticalCardProduct
-        category={"speakers"}
-        heading={"Bluetooth Speakers"}
-      />
-      <VerticalCardProduct category={"refrigerator"} heading={"Refrigerator"} />
-      <VerticalCardProduct category={"trimmers"} heading={"Trimmers"} />
+      <Goals />
+      <Store />
     </div>
   );
 };

@@ -68,7 +68,7 @@ function EditEmailSection({ isLoading, setIsLoading }) {
 
       <EditUserSection
         title="Change Email"
-        classes="self-start m-auto flex-col w-[75%] space-y-3 "
+        classes="self-start m-auto w-[90%] gap-2 flex-col sm:flex-row"
       >
         <EditUserInput
           val={email}
@@ -80,11 +80,12 @@ function EditEmailSection({ isLoading, setIsLoading }) {
           placeholder="New Email"
         />
         <SubmitBtn
-          title="Confirm Change"
+          title="Confirm"
           dis={isLoading || !email}
           handleClick={() => {
             setConfirmAbout("update the email ?");
           }}
+          classes="w-[75%] mx-auto sm:w-fit sm:mx-0"
         />
       </EditUserSection>
     </>

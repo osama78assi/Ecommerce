@@ -53,7 +53,7 @@ function LogoutSection({ isLoading, setIsLoading }) {
         />
       ) : null}
 
-      <EditUserSection classes="w-[75%]">
+      <EditUserSection classes="w-[25%]">
         <SubmitBtn
           title="Logout"
           type="danger"
