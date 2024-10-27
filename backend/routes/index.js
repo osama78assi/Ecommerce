@@ -29,7 +29,7 @@ const uploadCategoryController = require("../controller/category/uploadCategory"
 const getAllCategoriesController = require("../controller/category/getAllCategories");
 const updateCategoryController = require("../controller/category/updateCategory");
 const updateImageController = require("../controller/user/updateImg");
-
+const addCategoryController = require("../controller/category/AddCategory");
 // Signin & signup
 router.post("/signup", userSignUpController);
 router.post("/signin", userSignInController);
@@ -47,6 +47,7 @@ router.post("/update-product", authToken, updateProductController);
 router.get("/all-categories", getAllCategoriesController);
 router.post("/update-category", authToken, updateCategoryController);
 router.post("/upload-category", authToken, uploadCategoryController);
+router.post("/add-category", authToken, addCategoryController);
 
 // product
 router.get("/get-product", getProductController);
