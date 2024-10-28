@@ -2,12 +2,16 @@ import React from "react";
 import { CgClose } from "react-icons/cg";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 
-const DisplayImage = ({ imgUrl, onClose }) => {
+const DisplayImage = ({ imgUrl, onClose, classes = "" }) => {
   const eleRef = useOutsideClick((e) => {
     onClose?.();
   });
   return (
-    <div className="fixed inset-0 flex justify-center items-center z-50 backdrop-brightness-75 ">
+    <div
+      className={`fixed inset-0 flex justify-center items-center z-50 backdrop-brightness-75 ${
+        classes !== "" ? classes : ""
+      }`}
+    >
       <div
         className="bg-white shadow-lg rounded max-w-5xl mx-auto p-4 overflow-auto"
         ref={eleRef}

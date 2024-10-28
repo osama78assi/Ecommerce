@@ -2,8 +2,8 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 import { toast } from "react-toastify";
-import SummaryApi from "../common";
-import ChangeUserRole from "../components/admin/ChangeUserRole";
+import SummaryApi from "../../common";
+import ChangeUserRole from "./ChangeUserRole";
 
 const AllUsers = () => {
   const [allUser, setAllUsers] = useState([]);

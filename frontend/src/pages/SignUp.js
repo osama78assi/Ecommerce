@@ -44,7 +44,7 @@ const SignUp = () => {
     };
 
     reader.readAsDataURL(file); // Read file as data URL
-
+    
     setData((preve) => {
       return {
         ...preve,
@@ -114,6 +114,7 @@ const SignUp = () => {
                   <FaPen className="fill-white text-[1.2rem]" />
                 </div>
                 <input
+                  accept="image/*"
                   type="file"
                   className="hidden"
                   onChange={handleUploadPic}

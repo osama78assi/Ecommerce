@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SummaryApi from "../common";
-import AdminProductCard from "../components/admin/AdminProductCard";
-import UploadProduct from "../components/admin/UploadProduct";
+import SummaryApi from "../../common";
+import AdminProductCard from "./AdminProductCard";
+import UploadProduct from "./UploadProduct";
 
 const AllProducts = () => {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);

@@ -1,8 +1,24 @@
 {
   "navbar": {
-    "": ""
+    "home": "Home",
+    "aboutUs": "About Us",
+    "vision": "Vision",
+    "login": "Login",
+    "profile": "Profile",
+    "adminPanel": "Admin Panel",
+    "cart": "Cart",
+    "searchPlaceholder": "Search for product here..."
   },
-  "home": {
-    "header": "Welcome"
+  "headers":{
+    "vision": "Vision",
+    "store": "Store"
+  },
+  "aboutUs": {
+    "title": "A few words about us"
+  },
+  "footer": {
+    "contactWithUs": "Contact With Us",
+    "quickLinks": "Quick Links",
+    "right": "All rights reserved to the Al Shakhra Association"
   }
 }
