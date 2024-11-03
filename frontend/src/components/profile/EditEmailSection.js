@@ -7,8 +7,10 @@ import Confirm from "../ui/Confirm";
 import SubmitBtn from "../ui/SubmitBtn";
 import EditUserInput from "./EditUserInput";
 import EditUserSection from "./EditUserSection";
+import { useTranslation } from "react-i18next";
 
 function EditEmailSection({ isLoading, setIsLoading }) {
+  const {t} = useTranslation();
   const user = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -67,23 +69,23 @@ function EditEmailSection({ isLoading, setIsLoading }) {
       ) : null}
 
       <EditUserSection
-        title="Change Email"
+        title={t("forms.profile.changeEmailTitle")}
         classes="self-start m-auto w-[90%] gap-2 flex-col sm:flex-row"
       >
         <EditUserInput
           val={email}
           setVal={(val) => setEmail(val)}
-          label="Enter The New Email"
+          label={t("forms.profile.emailField.label")}
           type="email"
           id="email"
           name="email"
-          placeholder="New Email"
+          placeholder={t("forms.profile.emailField.placeholder")}
         />
         <SubmitBtn
-          title="Confirm"
+          title={t("forms.profile.confirm")}
           dis={isLoading || !email}
           handleClick={() => {
-            setConfirmAbout("update the email ?");
+            setConfirmAbout(t("forms.profile.emailField.confirmChange"));
           }}
           classes="w-[75%] mx-auto sm:w-fit sm:mx-0"
         />

@@ -1,12 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import SummaryApi from "../common";
 import CategroyWiseProductDisplay from "../components/home/CategoryWiseProductDisplay";
 // import Context from "../context";
 // import addToCart from "../helpers/addToCart";
-import displayINRCurrency from "../helpers/displayCurrency";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import displayINRCurrency from "../helpers/displayCurrency";
 import { addToCart } from "../store/cartSlice";
 
 const ProductDetails = () => {
@@ -24,8 +25,8 @@ const ProductDetails = () => {
   const productImageListLoading = new Array(4).fill(null);
   const [activeImage, setActiveImage] = useState("");
   const dispatch = useDispatch();
-  const isLoadingCart = useSelector((state) => state.cart.isLoading)
-
+  const isLoadingCart = useSelector((state) => state.cart.isLoading);
+  const { t } = useTranslation();
   const [zoomImageCoordinate, setZoomImageCoordinate] = useState({
     x: 0,
     y: 0,
@@ -168,7 +169,7 @@ const ProductDetails = () => {
                       key={imgURL}
                     >
                       <img
-                      alt={`product-${index}`}
+                        alt={`product-${index}`}
                         src={imgURL}
                         className="w-full h-full object-scale-down mix-blend-multiply cursor-pointer"
                         onMouseEnter={() => handleMouseEnterProduct(imgURL)}
@@ -216,14 +217,6 @@ const ProductDetails = () => {
             </h2>
             <p className="capitalize text-slate-400">{data?.category}</p>
 
-            <div className="text-red-600 flex items-center gap-1">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStarHalf />
-            </div>
-
             <div className="flex items-center gap-2 text-2xl lg:text-3xl font-medium my-1">
               <p className="text-red-600">
                 {displayINRCurrency(data.sellingPrice)}
@@ -234,19 +227,19 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex items-center gap-3 my-2">
-              <button
+              {/* <button
                 className="border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white"
                 onClick={(e) => handleBuyProduct(e, data?._id)}
                 disabled={isLoadingCart}
               >
                 Buy
-              </button>
+              </button> */}
               <button
                 className="border-2 border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:text-red-600 hover:bg-white"
                 onClick={(e) => handleAddToCart(e, data?._id)}
                 disabled={isLoadingCart}
               >
-                Add To Cart
+                {t("cart.addToBtn")}
               </button>
             </div>
 
@@ -257,13 +250,6 @@ const ProductDetails = () => {
           </div>
         )}
       </div>
-
-      {data.category && (
-        <CategroyWiseProductDisplay
-          category={data?.category}
-          heading={"Recommended Product"}
-        />
-      )}
     </div>
   );
 };

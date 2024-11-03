@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import addToCart from "../../helpers/addToCart";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import displayINRCurrency from "../../helpers/displayCurrency";
 import fetchCategoryWiseProduct from "../../helpers/fetchCategoryWiseProduct";
 import scrollTop from "../../helpers/scrollTop";
 import { addToCart } from "../../store/cartSlice";
+import SubmitBtn from "../ui/SubmitBtn";
 
 const CategroyWiseProductDisplay = ({ category, heading }) => {
   const [data, setData] = useState([]);
@@ -13,6 +15,7 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
   const loadingList = new Array(13).fill(null);
   const dispatch = useDispatch();
   const isLoadingCart = useSelector((state) => state.cart.isLoading);
+  const { t } = useTranslation();
 
   // const { fetchUserAddToCart } = useContext(Context);
 
@@ -97,13 +100,17 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
                         {displayINRCurrency(product?.price)}
                       </p>
                     </div>
-                    <button
+                    <SubmitBtn
+                      title={t("cart.addToBtn")}
+                      handleClick={(e) => handleAddToCart(e, product?._id)}
+                    />
+                    {/* <button
                       className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
                       onClick={(e) => handleAddToCart(e, product?._id)}
                       disabled={isLoadingCart}
                     >
                       Add to Cart
-                    </button>
+                    </button> */}
                   </div>
                 </Link>
               );

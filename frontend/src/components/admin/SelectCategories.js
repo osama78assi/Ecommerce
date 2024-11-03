@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-function SelectCategories() {
+function SelectCategories({ activeOption }) {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [active, setActive] = useState("Select a category");
@@ -13,14 +15,14 @@ function SelectCategories() {
   return isLoading ? (
     <>
       <label htmlFor="category" className="mt-3">
-        Category :
+        {t("forms.admin.categoryField.label")}
       </label>
       <div className="mt-3 h-8 bg-gray-400 animate-pulse rounded p-2" />
     </>
   ) : (
     <>
       <label htmlFor="category" className="mt-3">
-        Category :
+        {t("forms.admin.categoryField.label")}
       </label>
       <select
         required
@@ -29,11 +31,15 @@ function SelectCategories() {
         onChange={(e) => setActive(e.target.value)}
         className="p-2 bg-slate-100 border rounded"
       >
-        <option value={""}>Select Category</option>
+        <option value={""}>{t("forms.admin.categoryField.defaultOption")}</option>
         {data?.map((el, index) => {
           return (
-            <option value={el.value} key={el.value + index}>
-              {el.label}
+            <option
+              value={el.categoryName}
+              key={el.id}
+              selected={el.categoryName === activeOption}
+            >
+              {el.categoryName}
             </option>
           );
         })}

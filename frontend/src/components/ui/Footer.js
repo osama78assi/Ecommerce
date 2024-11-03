@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FaEnvelope, FaPhone } from "react-icons/fa";
 import { FaMobileButton } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 function Footer() {
+  const { t } = useTranslation();
   const footerNavClasses =
     "border-b-2 border-[var(--primary-color-1100)] p-2 cursor-pointer";
   const conectNavClasses =
@@ -25,7 +27,9 @@ function Footer() {
           <Logo w="200px" h="200px" />
 
           <div className="w-[250px] flex flex-col justify-center">
-            <h1 className="text-2xl font-semibold mb-3">Contact with us</h1>
+            <h1 className="text-2xl font-semibold mb-3">
+              {t("footer.contactWithUs")}
+            </h1>
             <ul>
               <li className={conectNavClasses}>
                 <FaPhone className={conectNavIconsClasses} />
@@ -44,30 +48,31 @@ function Footer() {
 
           <div className="w-[250px]">
             <h1 className="text-[var(--primary-color-1100)] text-2xl font-bold">
-              Quick links
+              {t("footer.quickLinks")}
             </h1>
             <ul className="space-y-5">
               <li className={footerNavClasses}>
                 <Link to="/about-us" className="w-full">
-                  About us
+                  {t("navbar.aboutUs")}
                 </Link>
               </li>
               <li className={footerNavClasses}>
                 <Link to="/vision" className="w-full">
-                  Vision
+                  {t("navbar.vision")}
                 </Link>
               </li>
               <li className={footerNavClasses}>
                 <Link to="/" className="w-full">
-                  Home
+                  {t("navbar.home")}
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-
       </div>
-      <div className="w-full p-2 bg-[#00000053] text-center">All rights reserved</div>
+      <div className="w-full p-2 bg-[#00000053] text-center">
+        {t("footer.rights")}
+      </div>
     </footer>
   );
 }

@@ -1,5 +1,234 @@
 {
-  "home": {
-    "header": "مرحبا"
+  "navbar": {
+    "home": "الصفحة الرئيسية",
+    "aboutUs": "من نحن",
+    "vision": "الرؤية",
+    "login": "تسجيل الدخول",
+    "profile": "الملف الشخصي",
+    "adminPanel": "لوحة التحكم",
+    "store": "المتجر",
+    "cart": "السلة",
+    "searchPlaceholder": "ابحث عن منتج ..."
+  },
+  "headers": {
+    "goals": "الأهداف",
+    "store": "المتجر"
+  },
+  "aboutUs": {
+    "title": "بعض المعلومات عنا"
+  },
+  "footer": {
+    "contactWithUs": "تواصل معنا",
+    "quickLinks": "روابط سريعة",
+    "rights": "جميع الحقوق محفوظة لجمعية الصخرة"
+  },
+  "cart": {
+    "addToBtn": "اضف إلى السلة",
+    "noData": "لا يوجد بيانات",
+    "summary": "ملخص",
+    "quantity": "الكمية",
+    "totalPrice": "السعر الكلي"
+  },
+  "search": {
+    "results": "نتائج البحث: ",
+    "noData": "لا يوجد نتائج..."
+  },
+  "store": {},
+  "admin": {
+    "users": "المستخدمين",
+    "products": "المنتجات",
+    "categories": "الفئات",
+    "slider": "فقرات المعرض",
+    "aboutUs": "فقرات معلومات عنا",
+    "vision": "فقرات الرؤية",
+    "goals": "فقرات الأهداف"
+  },
+  "forms": {
+    "profile": {
+      "emailField": {
+        "label": "ادخل البريد الإلكتروني الجديد",
+        "placeholder": "البريد الإلكتروني الجديد",
+        "confirmChange": "تحديث البريد الإلكتروني ؟"
+      },
+      "imageField": {
+        "confirmChange": "تغير الصورة ؟"
+      },
+      "nameField": {
+        "label": "ادخل الاسم الجديد",
+        "placeholder": "الاسم الجديد",
+        "confirmChange": "تحديث الاسم ؟"
+      },
+      "oldPasswordField": {
+        "label": "تأكيد كلمة المرور القديمة",
+        "placeholder": "تأكيد كلمة المرور",
+        "confirmChange": "تحديث كلمة المرور"
+      },
+      "newPasswordField": {
+        "label": "ادخل كلمة المرور الجديدة",
+        "placeholder": "كلمة المرور الجديدة"
+      },
+
+      "changeEmailTitle": "تغير البريد الإلكتروني",
+      "changeNameTitle": "تغير اسم المستخدم",
+      "changePasswordTitle": "تغير كلمة المرور",
+      "confirm": "تأكيد",
+      "logoutBtn": "تسجيل الخروج"
+    },
+    "admin": {
+      "nameField": {
+        "label": "الاسم : ",
+        "placeholder": "ادخل الاسم"
+      },
+      "emailField": {
+        "label": "البريد الإلكتروني : ",
+        "placeholder": "أدخل البريد الإلكتروني"
+      },
+      "passwordField": {
+        "label": "كلمة المرور : ",
+        "placeholder": "ادخل كلمة المرور"
+      },
+      "confirmPasswordField": {
+        "label": "قم بتأكيد كلمة المرور : ",
+        "placeholder": "تاكيد كلمة المرور"
+      },
+      "productNameField": {
+        "label": "اسم المنتج : ",
+        "placeholder": "ادخل اسم المنتج"
+      },
+      "categoryField": {
+        "label": "الفئة : ",
+        "defaultOption": "قم باختيار الفئة"
+      },
+      "imagesField": {
+        "outerLabel": "صورة المنتج : ",
+        "innerLabel": "قم برفع الصور من خلال سحبهم وافلاتهم هنا"
+      },
+      "priceField": {
+        "label": "السعر : ",
+        "placeholder": "ادخل السعر"
+      },
+      "sellingPriceField": {
+        "label": "سعر المبيع : ",
+        "placeholder": "ادخل سعر المبيع"
+      },
+      "descriptionField": {
+        "label": "الوصف : ",
+        "placeholder": "ادخل وصف المنتج"
+      },
+      "selectRoleField": {
+        "label": "اختيار الدور"
+      },
+      "categoryNameField": {
+        "label": "ادخل اسم الفئة: ",
+        "placeholder": "اسم الفئة"
+      },
+
+      "addUserBtn": "إضافة المستخدم",
+      "addCategoryBtn": "إضافة الفئة",
+
+      "editProductBtn": "تعديل المنتج",
+      "uploadProductBtn": "رفع منتج",
+      "editRoleBtn": "تغير الصلاحية",
+
+      "roleTitle": "تغير صلاحية المستخدم",
+      "nameLabel": "الاسم : ",
+      "emailLabel": "البريد الإلكتروني : ",
+      "roleLabel": "الصلاحية : ",
+
+      "uploadBtnUserTitle": "جميع المستخدمين",
+      "uploadProductTitle": "كل المنتجات",
+      "uploadCategoryTitle": "جميع الفئات",
+
+      "uploadBtnUserOpen": "إضافة مستخدم",
+      "uploadBtnProductOpen": "رفع المنتج",
+      "uploadBtnCategoryOpen": "إضافة فئة"
+    },
+    "login": {
+      "emailField": {
+        "label": "البريد الإلكتروني : ",
+        "placeholder": "ادخل البريد الالكتروني"
+      },
+      "passwordField": {
+        "label": "كلمة المرور : ",
+        "placeholder": "ادخل كلمة المرور"
+      },
+
+      "loginBtn": "تسجيل الدخول",
+      "signupBtn": "انشاء حساب",
+      "askAccount": "ليس لديك حساب ؟ "
+    },
+    "signup": {
+      "nameField": {
+        "label": "الاسم : ",
+        "placeholder": "اخل اسم المستخم"
+      },
+      "emailField": {
+        "label": "البريد الالكتروني : ",
+        "placeholder": "ادخل البريد الالكتروني"
+      },
+      "passwordField": {
+        "label": "كلمة المرور : ",
+        "placeholder": "ادخل كلمة المرور"
+      },
+      "confirmPasswordField": {
+        "label": "قم بتأكيد كلمة المرور : ",
+        "placeholder": "تاكيد كلمة المرور"
+      },
+
+      "signupBtn": "انشاء حساب",
+      "askAccount": "لديك حساب بالفعل ؟ ",
+      "loginBtn": "تسجيل الدخول"
+    }
+  },
+
+  "tables": {
+    "allUsers": {
+      "count": "الرقم",
+      "name": "الاسم",
+      "email": "البريد الالكتروني",
+      "role": "الصلاحية",
+      "createdAt": "تاريخ الانشاء",
+      "action": "التحكم"
+    },
+    "allCategories": {
+      "count": "الرقم",
+      "arabicName": "الاسم العربي",
+      "englishName": "الاسم الانجليزي",
+      "frenchName": "الاسم الفرنسي"
+    }
+  },
+
+  "messages": {
+    "yes": "نعم",
+    "no": "لا",
+    "confirmQuestion1": "هل أنت متأكد من ",
+    "confirmQuestion2": "لا يمكن التراجع عن هذه العملية ",
+    "errSpecialNameChars": "لا يجب ان يحتوي الاسم على احرف مميزة",
+    "errPasswordConfirm": "تأكيد كلمة المرور غير صحيح يرجى التأكد منه",
+    "errBigImage": "حجم الصورة أكبر من 5 ميغا بايت يرجى اختيار صورة اخرى",
+    "errProductImg": "يرجى رفع صورة للمنتج",
+    "errUploadingImage": "حدذ خطأ ما عند محاولة تحديث الصورة يرجى المحاولة مرة اخرى",
+    "errUsernameReq": "ادخل اسم المستخدم اولاً",
+    "errUsernameLong": "اسم المستخدم طويل جداً",
+    "errUsernameSame": "لم يتم تغير اسم المستهدم الرجاء المحاولة لاحقاً",
+    "errUnkown": "حدث خطأ ما يرجى المحاولة مرة اخرى",
+    "errOldPasswordReq": "يجب تأكيد كلمة المرور القديمة",
+    "errNewPasswordReq": "يجب عليك ادخال كلمة المرور الجديدة",
+    "genericErr": {
+      "title": "حدث خطأ غير متوقع عند جلب البيانات",
+      "btnTitle": "اضغط هنا للمحاولة مرة اخرى"
+    },
+    "errCartCount": "حدث خطأ اثناء جلب عدد عناصر السلة الرجاء المحاولة مرة اخرى",
+    "errDeleteCartItem": "حدث خطأ اثناء حذف عنصر من السلة الرجاء المحاولة مرة اخرى",
+    "errGetCartProducts": "حدث خطأ اثناء جلب عناصر السلة الرجاء المحاولة مرة اخرى",
+    "errUpdateQuantity": "حدث خطأ اثناء تحديث الكمية الرجاء المحاولة مرة اخرى",
+    "errAddItemToCart": "حدث خطأ اثناء اضافة عنصر الى السلة المحاولة مرة اخرى",
+    "errNoUserLoggedin": "انتهت مدة الجلسة الرجاء المحاولة مرة اخرى",
+    "errProductNameLong": "اسم المنتج طويل جداً",
+    "errCategoryNameLong": "اسم الفئة طويل جداً",
+
+    "successUploadingImage": "تم تحديث الصورة بنجاح",
+    "successCreateUser": "تمت اضافة مستخدم بنجاح",
+    "successChangeRole": "تم تعديل صلاحية المستخدم بنجاح"
   }
 }

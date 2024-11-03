@@ -5,6 +5,7 @@ function AdminInput({
   name,
   id,
   label,
+  defaultValue,
   classes = "",
   placeholder,
   required = false,
@@ -13,8 +14,12 @@ function AdminInput({
   const [value, setValue] = useState("");
 
   function hanldeChangeInput(e) {
-    const condition = sterilizer?.(e.target.value);
-    if (condition) {
+    if (sterilizer) {
+      const condition = sterilizer?.(e.target.value);
+      if (condition) {
+        setValue(e.target.value);
+      }
+    } else {
       setValue(e.target.value);
     }
   }
@@ -32,6 +37,7 @@ function AdminInput({
           onChange={hanldeChangeInput}
           className={classes}
           required={required}
+          {...(defaultValue ? { defaultValue } : {})}
         />
       ) : (
         <textarea
@@ -42,6 +48,7 @@ function AdminInput({
           onChange={hanldeChangeInput}
           className={classes}
           required={required}
+          {...(defaultValue ? { defaultValue } : {})}
         />
       )}
     </>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
@@ -9,7 +10,8 @@ import { getCartCount } from "../store/cartSlice";
 import { fetchCurrentUser } from "../store/userSlice";
 // import Context from "../context";
 
-const Login = () => {
+function Login() {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({
     email: "",
@@ -73,11 +75,11 @@ const Login = () => {
 
           <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
             <div className="grid">
-              <label>Email : </label>
+              <label>{t("forms.login.emailField.label")}</label>
               <div className="bg-slate-100 p-2">
                 <input
                   type="email"
-                  placeholder="enter email"
+                  placeholder={t("forms.login.emailField.placeholder")}
                   name="email"
                   value={data.email}
                   onChange={handleOnChange}
@@ -87,11 +89,11 @@ const Login = () => {
             </div>
 
             <div>
-              <label>Password : </label>
+              <label>{t("forms.login.passwordField.label")}</label>
               <div className="bg-slate-100 p-2 flex">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="enter password"
+                  placeholder={t("forms.login.passwordField.placeholder")}
                   value={data.password}
                   name="password"
                   onChange={handleOnChange}
@@ -104,32 +106,32 @@ const Login = () => {
                   <span>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
                 </div>
               </div>
-              <Link
+              {/* <Link
                 to={"/forgot-password"}
                 className="block w-fit ml-auto hover:underline hover:text-red-600"
               >
                 Forgot password ?
-              </Link>
+              </Link> */}
             </div>
 
             <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
-              Login
+              {t("forms.login.loginBtn")}
             </button>
           </form>
 
           <p className="my-5">
-            Don't have account ?{" "}
+            {t("forms.login.askAccount")}
             <Link
               to={"/sign-up"}
               className="text-[var(--primary-color-1100)] hover:underline"
             >
-              Sign up
+              {t("forms.login.signupBtn")}
             </Link>
           </p>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Login;

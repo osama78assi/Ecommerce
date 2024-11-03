@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import LoadingTexts from "./LoadingTexts";
 
 function TextPart({ images }) {
+  const { t } = useTranslation();
   const [activeP, setActiveP] = useState(0);
   const isLoading = false;
 
@@ -12,7 +14,7 @@ function TextPart({ images }) {
   return (
     <div className="basis-full mb-2 p-0 md:p-3 lg:basis-6/12 sm:mb-0">
       <h1 className="text-2xl md:text-4xl py-3 text-primary-700">
-        A few words about us
+        {t("aboutUs.title")}
       </h1>
       <div className="flex justify-between flex-wrap mb-3 border-b-[1px] gap-3 border-b-gray-200">
         {images.map((ele, index) => (

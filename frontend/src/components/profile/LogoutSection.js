@@ -7,8 +7,10 @@ import { setUserDetails } from "../../store/userSlice";
 import Confirm from "../ui/Confirm";
 import SubmitBtn from "../ui/SubmitBtn";
 import EditUserSection from "./EditUserSection";
+import { useTranslation } from "react-i18next";
 
 function LogoutSection({ isLoading, setIsLoading }) {
+  const {t} = useTranslation();
   const [confirmAbout, setConfirmAbout] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ function LogoutSection({ isLoading, setIsLoading }) {
       }
 
       if (data.error) {
-        toast.error("Something went wrong");
+        toast.error(t("messages.errUnkown"));
       }
     } catch (err) {
       console.log(err.message);
@@ -55,11 +57,11 @@ function LogoutSection({ isLoading, setIsLoading }) {
 
       <EditUserSection classes="w-[25%]">
         <SubmitBtn
-          title="Logout"
+          title={t("forms.profile.logoutBtn")}
           type="danger"
           dis={isLoading}
           handleClick={() => {
-            setConfirmAbout("Logout");
+            setConfirmAbout(t("forms.profile.logoutBtn"));
           }}
           classes="w-[100%]"
         />

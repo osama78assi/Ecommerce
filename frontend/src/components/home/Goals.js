@@ -6,8 +6,10 @@ import {
 } from "react-icons/fa6";
 import HeaderTag from "../ui/HeaderTag";
 import Goal from "./Goal";
+import { useTranslation } from "react-i18next";
 
 function Goals() {
+  const {t} = useTranslation();
   const [goals, setGoals] = useState([
     {
       id: "test1",
@@ -49,7 +51,7 @@ function Goals() {
 
   return (
     <>
-      <HeaderTag title="Goals" />
+      <HeaderTag title={t("headers.goals")}/>
 
       <div className="container mx-auto p-8 py-14">
         <div className="flex flex-col justify-between gap-[30px] md:flex-row">

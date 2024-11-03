@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import SummaryApi from "../../common";
@@ -9,6 +10,7 @@ import EditUserInput from "./EditUserInput";
 import EditUserSection from "./EditUserSection";
 
 function EditNameSection({ isLoading, setIsLoading }) {
+  const { t } = useTranslation();
   const user = useSelector((state) => state?.user?.user);
   const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
@@ -18,19 +20,19 @@ function EditNameSection({ isLoading, setIsLoading }) {
     setConfirmAbout("");
     try {
       if (userName === "") {
-        toast.warn("Add user name first");
+        toast.warn(t("messages.errUsernameReq"));
         return;
       }
       if (/\W+/g.test(userName)) {
-        toast.warn("Username mustn't have special chars");
+        toast.warn(t("messages.errSpecialNameChars"));
         return;
       }
       if (userName.length > 50) {
-        toast.warn("Username is too long");
+        toast.warn(t("messages.errUsernameLong"));
         return;
       }
       if (userName === user?.name) {
-        toast.warn("Username is the same. Change it please");
+        toast.warn(t("messages.errUsernameSame"));
         return;
       }
 
@@ -50,7 +52,7 @@ function EditNameSection({ isLoading, setIsLoading }) {
         setUserName("");
       }
       if (data.error) {
-        toast.error("Something went wrong. Try again");
+        toast.error(t("messages.errUnkown"));
       }
     } catch (err) {
       console.log(err.message);
@@ -71,24 +73,23 @@ function EditNameSection({ isLoading, setIsLoading }) {
       ) : null}
 
       <EditUserSection
-        title="Change User Name"
+        title={t("forms.profile.changeNameTitle")}
         classes="self-start m-auto w-[90%] gap-2 flex-col sm:flex-row"
       >
         <EditUserInput
           val={userName}
           setVal={(val) => setUserName(val)}
-          label="Enter The New Name"
+          label={t("forms.profile.nameField.label")}
           type="text"
           id="userName"
           name="userName"
-          placeholder="New Name"
-          
+          placeholder={t("forms.profile.nameField.placeholder")}
         />
         <SubmitBtn
-          title="Confirm"
+          title={t("forms.profile.confirm")}
           dis={isLoading || !userName}
           handleClick={() => {
-            setConfirmAbout("update the name ?");
+            setConfirmAbout(t("forms.profile.nameField.confirmChange"));
           }}
           classes="w-[75%] mx-auto sm:w-fit sm:mx-0"
         />

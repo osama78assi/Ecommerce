@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import displayINRCurrency from "../helpers/displayCurrency";
@@ -13,6 +14,7 @@ const Cart = () => {
   const isLoadingCart = useSelector((state) => state.cart.isLoadingCart);
   const loadingCart = new Array(4).fill(null);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   // const fetchData = async () => {
   //   try {
@@ -134,7 +136,7 @@ const Cart = () => {
     <div className="container mx-auto p-6">
       <div className="text-center text-lg my-3">
         {data.length === 0 && !isLoadingCart && (
-          <p className="bg-white py-5">No Data</p>
+          <p className="bg-white py-5">{t("cart.noData")}</p>
         )}
       </div>
 
@@ -219,14 +221,14 @@ const Cart = () => {
             <div className="h-36 bg-slate-200 border border-slate-300 animate-pulse"></div>
           ) : (
             <div className="h-36 bg-white">
-              <h2 className="text-white bg-primary-900 px-4 py-1">Summary</h2>
+              <h2 className="text-white bg-primary-900 px-4 py-1">{t("cart.summary")}</h2>
               <div className="flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600">
-                <p>Quantity</p>
+                <p>{t("cart.quantity")}</p>
                 <p>{totalQty}</p>
               </div>
 
               <div className="flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600">
-                <p>Total Price</p>
+                <p>{t("cart.totalPrice")}</p>
                 <p>{displayINRCurrency(totalPrice)}</p>
               </div>
             </div>

@@ -1,17 +1,28 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
+import { useLazyloadingImgs } from "../../hooks/useLazyLoadingImages";
 import DisplayImage from "../ui/DisplayImage";
 
-function UploadProductImages() {
+function UploadProductImages({ preImages, delImages }) {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [openFullScreenImage, setOpenFullScreenImage] = useState(false);
   const [fullScreenImage, setFullScreenImage] = useState("");
   const [dragableClass, setDragableClass] = useState("");
+  const images = useLazyloadingImgs(preImages || []);
 
   function handleSetImages(e, imgs) {
     if (imgs) {
       imgs.forEach((file) => {
+        // Ignore big image
+        if (file.size > 5 * 1024 * 1024) {
+          toast.error(t("messages.errProductImg"));
+          return;
+        }
+
         const reader = new FileReader();
         reader.onload = function (event) {
           const previewImageUrl = event.target.result;
@@ -21,6 +32,12 @@ function UploadProductImages() {
       });
     } else if (e) {
       [...e.target.files].forEach((file) => {
+        // Ignore big image
+        if (file.size > 5 * 1024 * 1024) {
+          toast.error(t("messages.errProductImg"));
+          return;
+        }
+
         const reader = new FileReader();
         reader.onload = function (event) {
           const previewImageUrl = event.target.result;
@@ -61,14 +78,14 @@ function UploadProductImages() {
   return (
     <>
       <label htmlFor="productImage" className="mt-3">
-        Product Images :
+        {t("forms.admin.imagesField.outerLabel")}
       </label>
       <label
         htmlFor="uploadImageInput"
         className={dragableClass}
         onDragOverCapture={handleDragOver}
         onDragLeaveCapture={handleDragLeave}
-        // onDragEnterCapture={handleDragOver}
+        onDragEnterCapture={handleDragOver}
         onDropCapture={handleDropFiles}
       >
         <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer">
@@ -77,7 +94,7 @@ function UploadProductImages() {
               <FaCloudUploadAlt />
             </span>
             <p className="text-sm">
-              Upload Product Images By Drag And Drop them here
+              {t("forms.admin.imagesField.innerLabel")}
             </p>
             <input
               type="file"
@@ -115,9 +132,37 @@ function UploadProductImages() {
                 </div>
               );
             })}
+            {images[0] &&
+              images.map((url, index) => {
+                if (url)
+                  return (
+                    <div className="relative group basis-[calc(50%-0.5rem)]">
+                      <img
+                        src={url}
+                        alt="product"
+                        className="bg-slate-100 object-cover border-[3px] border-stone-500 cursor-pointer"
+                        onClick={() => {
+                          setOpenFullScreenImage(true);
+                          setFullScreenImage(url);
+                        }}
+                      />
+
+                      <div
+                        className="absolute bottom-0 right-0 p-1 text-white bg-red-600 rounded-full hidden group-hover:block cursor-pointer"
+                        onClick={() => delImages?.(index)}
+                      >
+                        <MdDelete />
+                      </div>
+                    </div>
+                  );
+                else
+                  return (
+                    <div className="relative group basis-[calc(50%-0.5rem)] h-[10rem] bg-gray-500 animate-pulse" />
+                  );
+              })}
           </div>
         ) : (
-          <p className="text-red-600 text-xs">*Please upload product image</p>
+          <p className="text-red-600 text-xs">{t("messages.errProductImg")}</p>
         )}
       </div>
 

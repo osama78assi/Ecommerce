@@ -8,8 +8,10 @@ import { useLazyloadingImg } from "../../hooks/useLazyLoadingImg";
 import { setUserDetails } from "../../store/userSlice";
 import Confirm from "../ui/Confirm";
 import EditUserSection from "./EditUserSection";
+import { useTranslation } from "react-i18next";
 
 function EditImageSection({ isLoading, setIsLoading }) {
+  const {t} = useTranslation();
   const user = useSelector((state) => state?.user?.user);
   const [newImage, setNewImage] = useState(null);
   const [newImgURL, setNewImgURL] = useState("");
@@ -20,7 +22,7 @@ function EditImageSection({ isLoading, setIsLoading }) {
   async function handleUploadPic() {
     setConfirmAbout("");
     if (newImage.size > 5 * 1024 * 1024) {
-      toast.warn("The image is biggen than 5MB. Pick another image please");
+      toast.warn(t("messages.bigImage"));
       return;
     }
 
@@ -38,14 +40,14 @@ function EditImageSection({ isLoading, setIsLoading }) {
       const data = await res.json();
       console.log(data.data);
       if (data.success) {
-        toast.success("New image updated successfully");
+        toast.success(t("messages.successUploadingImage"));
         dispatch(setUserDetails(data.data));
       } else {
-        toast.error("Something went wrong while updating the iamge. Try again");
+        toast.error(t("messages.errUploadingImage"));
       }
     } catch (err) {
       console.log(err.message);
-      toast.error("Something went wrong while updating the iamge. Try again");
+      toast.error(t("messages.errUploadingImage"));
     } finally {
       setIsLoading?.(false);
     }
@@ -62,7 +64,7 @@ function EditImageSection({ isLoading, setIsLoading }) {
     };
 
     reader.readAsDataURL(file); // Read file as data URL
-    setConfirmAbout("Change Image ?");
+    setConfirmAbout(t("forms.profile.imageField.confirmChange"));
   }
 
   return (

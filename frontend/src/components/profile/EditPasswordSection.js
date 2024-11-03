@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import SummaryApi from "../../common";
 import Confirm from "../ui/Confirm";
@@ -7,6 +8,7 @@ import EditUserInput from "./EditUserInput";
 import EditUserSection from "./EditUserSection";
 
 function EditPasswordSection({ isLoading, setIsLoading }) {
+  const { t } = useTranslation();
   const [userOldPassword, setUserOldPassword] = useState("");
   const [userNewPassword, setUserNewPassword] = useState("");
   const [confirmAbout, setConfirmAbout] = useState("");
@@ -15,12 +17,12 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
     setConfirmAbout("");
     try {
       if (userOldPassword === "") {
-        toast.warn("You must confirm your old password");
+        toast.warn(t("messages.errOldPasswordReq"));
         return;
       }
 
       if (userNewPassword === "") {
-        toast.warn("You must add the new password");
+        toast.warn(t("messages.errNewPasswordReq"));
         return;
       }
       setIsLoading?.(true);
@@ -45,7 +47,7 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
       }
 
       if (data.error) {
-        toast.error(data.message);
+        toast.error(t("messages.errUnkown"));
       }
     } catch (err) {
       console.log(err.message);
@@ -56,7 +58,7 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
 
   return (
     <>
-    <span className="w-f"></span>
+      <span className="w-f"></span>
       {confirmAbout !== "" ? (
         <Confirm
           about={confirmAbout}
@@ -68,33 +70,33 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
       ) : null}
 
       <EditUserSection
-        title="Change Password"
+        title={t("forms.profile.changePasswordTitle")}
         classes="self-start m-auto flex-col w-[90%] space-y-3 "
       >
         <EditUserInput
           val={userOldPassword}
           setVal={(val) => setUserOldPassword(val)}
-          label="Confirm The Old Password"
+          label={t("forms.profile.oldPasswordField.label")}
           type="password"
           id="userOldPassword"
           name="userOldPassword"
-          placeholder="Confirm Password"
+          placeholder={t("forms.profile.oldPasswordField.placeholder")}
         />
 
         <EditUserInput
           val={userNewPassword}
           setVal={(val) => setUserNewPassword(val)}
-          label="Enter The New Password"
+          label={t("forms.profile.newPasswordField.label")}
           type="password"
           id="userNewPassword"
           name="userNewPassword"
-          placeholder="Enter New Password"
+          placeholder={t("forms.profile.newPasswordField.placeholder")}
         />
         <SubmitBtn
-          title="Confirm"
+          title={t("forms.profile.confirm")}
           dis={isLoading || !userOldPassword || !userNewPassword}
           handleClick={() => {
-            setConfirmAbout("update the password ?");
+            setConfirmAbout(t("forms.profile.oldPasswordField.confirmChange"));
           }}
           classes="self-center w-[75%] sm:w-fit sm:self-end"
         />

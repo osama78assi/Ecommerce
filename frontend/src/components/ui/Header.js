@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaBars } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { GrSearch } from "react-icons/gr";
@@ -9,11 +10,13 @@ import { useLazyloadingImg } from "../../hooks/useLazyLoadingImg";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { getCartCount } from "../../store/cartSlice";
 import Logo from "./Logo";
+import SelectLang from "./SelectLang";
 
 function Header() {
+  const { t, i18n } = useTranslation();
   const [showSearch, setShowSearch] = useState(false);
   const [toggleNav, setToggleNav] = useState(() => {
-    if (window.matchMedia("(max-width: 768px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
       return true;
     } else {
       return false;
@@ -61,6 +64,10 @@ function Header() {
     }
   }
 
+  function handleCloseNav() {
+    setShowtoggledNav(false);
+  }
+
   useEffect(() => {
     // This feature for logged in users
     if (user !== null) {
@@ -87,7 +94,7 @@ function Header() {
 
   useEffect(() => {
     function handleResize(e) {
-      if (window.matchMedia("(max-width: 768px)").matches) {
+      if (window.matchMedia("(max-width: 1025px)").matches) {
         setToggleNav(true);
       } else {
         setToggleNav(false);
@@ -113,26 +120,28 @@ function Header() {
 
   return (
     <header className="h-16 shadow-xl bg-white sticky w-full z-40 top-0 ">
-      <div className=" h-full container mx-auto flex items-center px-4 justify-between">
+      <div className=" h-full mx-auto flex items-center px-4 justify-between">
         <div className="flex align-middle justify-center gap-4">
           <Link to={"/"}>
             <Logo w={90} h={50} />
           </Link>
         </div>
         {/* Search */}
-        <div className="w-auto items-center justify-between max-w-sm border rounded-full focus-within:shadow lg:flex lg:pl-2 static sm:relative">
+        <div className="w-[12rem] items-center justify-between max-w-sm border rounded-full focus-within:shadow lg:flex static sm:relative lg:overflow-hidden">
           <div
             className={`${
               showSearch
-                ? "absolute -bottom-[4rem] left-0 w-[250px] h-[50px] z-50 p-1 flex items-center justify-center shadow-2xl"
+                ? `absolute -bottom-[4rem] ${
+                    i18n.language === "ar" ? "right-0" : "left-0"
+                  } w-[250px] h-[50px] z-50 p-1 flex items-center justify-center shadow-2xl`
                 : ""
             }`}
           >
             <input
               ref={searchRef}
               type="text"
-              placeholder="search product here..."
-              className={`w-full outline-none lg:flex ${
+              placeholder={t("navbar.searchPlaceholder")}
+              className={`w-full outline-none lg:flex px-2 ${
                 showSearch
                   ? "p-4 border-[1px] rounded-lg border-slate-900"
                   : "hidden"
@@ -160,44 +169,51 @@ function Header() {
         {/*Main Nav */}
         <div
           ref={navTogglerRef}
-          className={`flex items-center gap-7 h-full ${
+          className={`flex gap-2 h-full ${
             toggleNav
               ? `${
                   !showToggledNav ? "hidden" : "!block space-y-3"
-                } absolute !h-fit flex-col right-11 top-12 p-1 bg-stone-200 shadow-2xl rounded-b-lg rounded-l-lg !items-start border-[1px] border-[var(--primary-color-1100)]`
+                } absolute !h-fit flex-col right-0 w-full mt-4 top-12 p-1 bg-stone-200 shadow-2xl rounded-b-lg rounded-l-lg !items-start border-[1px] border-[var(--primary-color-1100)]`
               : ""
           }`}
         >
-          <NavLink
-            to={"/"}
-            className={navItemClasses}
-            onClick={() => setShowtoggledNav(false)}
-          >
-            <span className={`${textNavItemClassess} `}>Home</span>
+          <NavLink to={"/"} className={navItemClasses} onClick={handleCloseNav}>
+            <span className={`${textNavItemClassess} `}>
+              {t("navbar.home")}
+            </span>
           </NavLink>
+
+          <SelectLang />
+
           <NavLink
             to={"/about-us"}
             className={navItemClasses}
-            onClick={() => setShowtoggledNav(false)}
+            onClick={handleCloseNav}
           >
-            <span className={`${textNavItemClassess} `}>About us</span>
+            <span className={`${textNavItemClassess} `}>
+              {t("navbar.aboutUs")}
+            </span>
           </NavLink>
 
           <NavLink
             to={"/vision"}
             className={navItemClasses}
-            onClick={() => setShowtoggledNav(false)}
+            onClick={handleCloseNav}
           >
-            <span className={`${textNavItemClassess} `}>vision</span>
+            <span className={`${textNavItemClassess} `}>
+              {t("navbar.vision")}
+            </span>
           </NavLink>
 
           {user?._id && (
             <NavLink
               to="/profile"
               className={navItemClasses}
-              onClick={() => setShowtoggledNav(false)}
+              onClick={handleCloseNav}
             >
-              <span className={`${textNavItemClassess} `}>Profile</span>
+              <span className={`${textNavItemClassess} `}>
+                {t("navbar.profile")}
+              </span>
 
               {/* If there is an image then loading it async otherwise render an icon */}
               {user?.profilePic ? (
@@ -220,27 +236,40 @@ function Header() {
             <NavLink
               to={"/admin-panel/all-products"}
               className={navItemClasses}
-              onClick={() => setShowtoggledNav(false)}
+              onClick={handleCloseNav}
             >
-              <span className={`${textNavItemClassess} `}> Admin Panel</span>
+              <span className={`${textNavItemClassess} `}>
+                {t("navbar.adminPanel")}
+              </span>
             </NavLink>
           )}
+
+          <NavLink
+            to={"/store"}
+            className={`${navItemClasses}`}
+            onClick={handleCloseNav}
+          >
+            <span className={`${textNavItemClassess} `}>
+              {t("navbar.store")}
+            </span>
+          </NavLink>
 
           {user?._id && (
             <NavLink
               to={"/cart"}
-              className={`relative ${navItemClasses}`}
-              onClick={() => setShowtoggledNav(false)}
+              className={`${navItemClasses}`}
+              onClick={handleCloseNav}
             >
-              <span className={`${textNavItemClassess} `}>Cart</span>
-
-              <div
-                className={`bg-primary-700 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute top-[0.5rem] right-[-0.7rem] ${
-                  isLoadingCart ? "animate-pulse" : ""
-                }`}
-              >
-                <p className="text-sm">{isLoadingCart ? "" : count}</p>
-              </div>
+              <span className={`${textNavItemClassess} relative`}>
+                {t("navbar.cart")}{" "}
+                <div
+                  className={`bg-primary-700 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute top-[-0.4rem] right-[-1rem] ${
+                    isLoadingCart ? "animate-pulse" : ""
+                  }`}
+                >
+                  <p className="text-sm">{isLoadingCart ? "" : count}</p>
+                </div>
+              </span>
             </NavLink>
           )}
 
@@ -248,9 +277,9 @@ function Header() {
             <NavLink
               to={"/login"}
               className={`${navItemClasses} transition-colors`}
-              onClick={() => setShowtoggledNav(false)}
+              onClick={handleCloseNav}
             >
-              <span className={textNavItemClassess}>Login</span>
+              <span className={textNavItemClassess}>{t("navbar.login")}</span>
             </NavLink>
           )}
         </div>

@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import SummaryApi from "../common";
+import i18react from "../i18next";
+
+const { t } = i18react;
+
 
 export const fetchCurrentUser = createAsyncThunk(
   "user/currentLoggedIn",
@@ -15,14 +20,13 @@ export const fetchCurrentUser = createAsyncThunk(
       if (dataApi.success) {
         return dataApi.data;
       } else {
-        throw new Error("There is no logged in user");
+        throw new Error("something went wrong");
       }
     } catch (err) {
       console.log(err.message);
     }
   }
 );
-
 
 const initialState = {
   user: null,
@@ -49,6 +53,7 @@ export const userSlice = createSlice({
     builder.addCase(fetchCurrentUser.rejected, function (state, action) {
       state.isLoading = false;
       console.log(action.error.message);
+      toast.error(t("messages.errNoUserLoggedin"));
     });
   },
 });

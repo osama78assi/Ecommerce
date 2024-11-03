@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import SummaryApi from "../common";
+import i18react from "../i18next";
 
+const { t } = i18react;
 const initialState = {
   count: 0,
   cart: [],
@@ -9,20 +11,24 @@ const initialState = {
 };
 
 // This reducers must run when there is a logged in user
-export const getCartCount = createAsyncThunk("cart/getCount", async function () {
-  try {
-    const dataResponse = await fetch(SummaryApi.addToCartProductCount.url, {
-      method: SummaryApi.addToCartProductCount.method,
-      credentials: "include",
-    });
+export const getCartCount = createAsyncThunk(
+  "cart/getCount",
+  async function () {
+    try {
+      const dataResponse = await fetch(SummaryApi.addToCartProductCount.url, {
+        method: SummaryApi.addToCartProductCount.method,
+        credentials: "include",
+      });
 
-    const dataApi = await dataResponse.json();
+      const dataApi = await dataResponse.json();
 
-    return dataApi?.data?.count;
-  } catch (err) {
-    console.log(err.message);
+      if (dataApi.success) return dataApi?.data?.count;
+      else throw new Error("something went wrong");
+    } catch (err) {
+      console.log(err.message);
+    }
   }
-});
+);
 
 export const deleteCartProduct = createAsyncThunk(
   "cart/deleteProduct",
@@ -44,7 +50,7 @@ export const deleteCartProduct = createAsyncThunk(
         thunkAPI.dispatch(getCartProducts());
         thunkAPI.dispatch(getCartCount());
       } else {
-        throw new Error("Couldn't delete the item from cart");
+        throw new Error("something went wrong");
       }
     } catch (err) {
       console.log(err.message);
@@ -69,7 +75,7 @@ export const getCartProducts = createAsyncThunk(
       if (responseData.success) {
         return responseData.data;
       } else {
-        throw new Error("Couldn't get cart's products");
+        throw new Error("Something went wrong");
       }
     } catch (err) {
       console.log(err.message);
@@ -98,7 +104,7 @@ export const increastQty = createAsyncThunk(
       if (responseData.success) {
         thunkAPI.dispatch(getCartProducts());
       } else {
-        throw new Error("Couldn't update item's quantity");
+        throw new Error("Something went wrong");
       }
     } catch (err) {
       console.log(err.message);
@@ -128,7 +134,7 @@ export const decreaseQty = createAsyncThunk(
         if (responseData.success) {
           thunkAPI.dispatch(getCartProducts());
         } else {
-          throw new Error("Couldn't update item's quantity");
+          throw new Error("Something went wrong");
         }
       }
     } catch (err) {
@@ -158,7 +164,7 @@ export const addToCart = createAsyncThunk(
       }
 
       if (responseData.error) {
-        toast.error(responseData.message);
+        throw new Error("Somethin went wrong");
       }
 
       return responseData;
@@ -181,7 +187,7 @@ const slice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(getCartCount.rejected, function (state) {
-      toast.error("Something went wrong while fetching cart's prodcuts count.");
+      toast.error(t("messages.errCartCount"));
       state.isLoading = false;
     });
 
@@ -194,7 +200,7 @@ const slice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(getCartProducts.rejected, function (state, action) {
-      toast.error(action.error.message);
+      toast.error(t("messages.errGetCartProducts"));
       state.isLoading = false;
     });
 
@@ -208,6 +214,7 @@ const slice = createSlice({
     builder.addCase(addToCart.rejected, function (state, action) {
       state.isLoading = false;
       console.log(action.error.message);
+      toast.error(t("messages.errAddItemToCart"));
     });
 
     // Delete product
@@ -220,7 +227,7 @@ const slice = createSlice({
     });
     builder.addCase(deleteCartProduct.rejected, function (state, action) {
       state.isLoading = false;
-      toast.error(action.error.message);
+      toast.error(t("messages.errDeleteCartItem"));
     });
 
     // Increase quantity
@@ -232,7 +239,7 @@ const slice = createSlice({
     });
     builder.addCase(increastQty.rejected, function (state, action) {
       state.isLoading = false;
-      toast.error(action.error.message);
+      toast.error(t("messages.errUpdateQuantity"));
     });
 
     // Decrease quantity
@@ -244,7 +251,7 @@ const slice = createSlice({
     });
     builder.addCase(decreaseQty.rejected, function (state, action) {
       state.isLoading = false;
-      toast.error(action.error.message);
+      toast.error(t("messages.errUpdateQuantity"));
     });
   },
 });

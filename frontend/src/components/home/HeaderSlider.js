@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { useLazyloadingImgs } from "../../hooks/useLazyLoadingImages";
 import HeaderCard from "./HeaderCard";
 
 function HeaderSlider() {
@@ -7,7 +8,7 @@ function HeaderSlider() {
   const cooldown = useRef(false);
   const cardsRefs = useRef([]);
 
-  const cards = [
+  const data = [
     {
       title: "Subscribe",
       imgUrl: "/slider-1.jpg",
@@ -27,11 +28,21 @@ function HeaderSlider() {
         "asdf adf'g ajds goaks gop[gfdsiojg apo rgpaldf;gjasp;djf ;aslkdfj asoipdjfarehg afdl;gjasd;lkfgj adfgadlfg;ja;sdlfgj adflg aisdfrgjaoigj afldsgjaosidfgjaogjraf adfoig jadfg adfgoiajsgl;k fdjgaosidfgj alkdfgj aoperhj alrfgjadofpigj adoifg adfiogad jfl;gjfd apfog hafdlg haofd gadf ",
     },
   ];
-  const [curChild, setCurChild] = useState(cards.length - 1);
-  const prevChild = curChild === 0 ? cards.length - 1 : curChild - 1;
-  const nextChild = curChild === cards.length - 1 ? 0 : curChild + 1;
+  const [curChild, setCurChild] = useState(data.length - 1);
+  const images = useLazyloadingImgs(data.map((ele) => ele.imgUrl));
+  const prevChild = curChild === 0 ? data.length - 1 : curChild - 1;
+  const nextChild = curChild === data.length - 1 ? 0 : curChild + 1;
+  const [isLoading, setIsLoading] = useState(true);
 
-  function slideRight() {
+  async function fetchSliderData() {}
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchSliderData();
+    setIsLoading(false);
+  }, []);
+
+  function slideLeft() {
     if (!cooldown.current) {
       cooldown.current = true;
       // Take all cards except current one to the right, Hide every element excpect the target and current one
@@ -72,7 +83,7 @@ function HeaderSlider() {
     }
   }
 
-  function slideLeft() {
+  function slideRight() {
     if (!cooldown.current) {
       cooldown.current = true;
       cardsRefs.current.forEach((ele, index) => {
@@ -112,6 +123,13 @@ function HeaderSlider() {
     }
   }
 
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     slideRight();
+  //   }, 5000);
+
+  //   return () => clearInterval(timer);
+  // }, []);
 
   return (
     <div
@@ -129,27 +147,32 @@ function HeaderSlider() {
           className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer"
           onClick={slideLeft}
         >
-          <FaAngleLeft className="arr-slider text-lg !color-white" />
+          <FaAngleRight className="arr-slider text-lg !color-white" />
         </span>
         <span
           className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer"
           onClick={slideRight}
         >
-          <FaAngleRight className="arr-slider text-lg !color-white" />
+          <FaAngleLeft className="arr-slider text-lg !color-white" />
         </span>
       </div>
 
       {/* Images */}
-      <div className="w-full h-full relative">
-        {cards.map((ele, index) => (
-          <HeaderCard
-            imgUrl={ele?.imgUrl ? ele.imgUrl : ""}
-            content={ele?.content ? ele.content : ""}
-            title={ele?.title ? ele.title : ""}
-            key={ele?.imgUrl}
-            getElement={(ele) => cardsRefs.current.push(ele)}
-          />
-        ))}
+      <div
+        className={`w-full h-full relative ${
+          isLoading ? "bg-gray-700 animate-pulse" : ""
+        }`}
+      >
+        {!isLoading &&
+          data.map((ele, index) => (
+            <HeaderCard
+              imgUrl={images[index]}
+              content={ele?.content ? ele.content : ""}
+              title={ele?.title ? ele.title : ""}
+              key={ele?.imgUrl}
+              getElement={(ele) => cardsRefs.current.push(ele)}
+            />
+          ))}
       </div>
     </div>
   );

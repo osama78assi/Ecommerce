@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { useLazyloadingImg } from "../hooks/useLazyLoadingImg";
 
-const AdminPanel = () => {
+function AdminPanel() {
+  const { t } = useTranslation();
   const user = useSelector((state) => state?.user?.user);
   const imgUrl = useLazyloadingImg(user?.profilePic);
 
@@ -35,25 +37,28 @@ const AdminPanel = () => {
         <div>
           <nav className="grid p-4">
             <Link to={"all-users"} className="px-2 py-1 hover:bg-slate-100">
-              All users
+              {t("admin.users")}
             </Link>
             <Link to={"all-products"} className="px-2 py-1 hover:bg-slate-100">
-              All products
+              {t("admin.products")}
             </Link>
             <Link
               to={"all-categories"}
               className="px-2 py-1 hover:bg-slate-100"
             >
-              All categories
+              {t("admin.categories")}
             </Link>
             <Link to={"slider"} className="px-2 py-1 hover:bg-slate-100">
-              slider sections
+              {t("admin.slider")}
             </Link>
-            <Link to={"about-us-edit"} className="px-2 py-1 hover:bg-slate-100">
-              About us sections
+            <Link to={"about-us"} className="px-2 py-1 hover:bg-slate-100">
+            {t("admin.aboutUs")}
             </Link>
             <Link to={"vision"} className="px-2 py-1 hover:bg-slate-100">
-              Vision sections
+            {t("admin.vision")}
+            </Link>
+            <Link to={"goals"} className="px-2 py-1 hover:bg-slate-100">
+            {t("admin.goals")}
             </Link>
           </nav>
         </div>
@@ -64,6 +69,6 @@ const AdminPanel = () => {
       </main>
     </div>
   );
-};
+}
 
 export default AdminPanel;

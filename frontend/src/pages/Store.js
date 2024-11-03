@@ -1,29 +1,65 @@
-import HorizontalCardProduct from "../components/store/HorizontalCardProduct";
-import VerticalCardProduct from "../components/store/VerticalCardProduct";
-
 function Store() {
-  return (
-    <div>
-      <HorizontalCardProduct category={"airpodes"} heading={"Top's Airpodes"} />
-      <HorizontalCardProduct
-        category={"watches"}
-        heading={"Popular's Watches"}
-      />
+  const products = [
+    {
+      id: 1,
+      images: [
+        "https://via.placeholder.com/300x300?text=Image+1",
+        "https://via.placeholder.com/300x300?text=Image+2",
+        "https://via.placeholder.com/300x300?text=Image+3",
+      ],
+      brand: "Cool Sneakers",
+      price: 89.99,
+      originalPrice: 129.99,
+    },
+    {
+      id: 2,
+      images: [
+        "https://via.placeholder.com/300x300?text=Image+1",
+        "https://via.placeholder.com/300x300?text=Image+2",
+        "https://via.placeholder.com/300x300?text=Image+3",
+      ],
+      brand: "Cool Sneakers",
+      price: 89.99,
+      originalPrice: 129.99,
+    },
+    {
+      id: 3,
+      images: [
+        "https://via.placeholder.com/300x300?text=Image+1",
+        "https://via.placeholder.com/300x300?text=Image+2",
+        "https://via.placeholder.com/300x300?text=Image+3",
+      ],
+      brand: "Cool Sneakers",
+      price: 89.99,
+      originalPrice: 129.99,
+    },
+    {
+      id: 4,
+      images: [
+        "https://via.placeholder.com/300x300?text=Image+1",
+        "https://via.placeholder.com/300x300?text=Image+2",
+        "https://via.placeholder.com/300x300?text=Image+3",
+      ],
+      brand: "Cool Sneakers",
+      price: 89.99,
+      originalPrice: 129.99,
+    },
+    {
+      id: 5,
+      images: [
+        "https://via.placeholder.com/300x300?text=Image+1",
+        "https://via.placeholder.com/300x300?text=Image+2",
+        "https://via.placeholder.com/300x300?text=Image+3",
+      ],
+      brand: "Cool Sneakers",
+      price: 89.99,
+      originalPrice: 129.99,
+    },
+  ];
 
-      <VerticalCardProduct category={"mobiles"} heading={"Mobiles"} />
-      <VerticalCardProduct category={"Mouse"} heading={"Mouse"} />
-      <VerticalCardProduct category={"televisions"} heading={"Televisions"} />
-      <VerticalCardProduct
-        category={"camera"}
-        heading={"Camera & Photography"}
-      />
-      <VerticalCardProduct category={"earphones"} heading={"Wired Earphones"} />
-      <VerticalCardProduct
-        category={"speakers"}
-        heading={"Bluetooth Speakers"}
-      />
-    </div>
-  );
+  return <div className="container px-auto">
+    
+  </div>;
 }
 
 export default Store;

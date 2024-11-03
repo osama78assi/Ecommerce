@@ -10,7 +10,7 @@ function ModalWindow({ title, children, onClose, classes }) {
     <div className="fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex z-10 justify-center items-center">
       <div
         ref={ref}
-        className={`bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden ${
+        className={`bg-white p-4 rounded w-full max-w-2xl h-fit max-h-[80%] overflow-hidden ${
           classes ? classes : ""
         }`}
       >

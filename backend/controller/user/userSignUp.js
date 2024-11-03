@@ -96,6 +96,8 @@ async function userSignUpController(req, res) {
     try {
       const { email, password, name } = req.body;
 
+      const role = req.body?.role;
+
       const user = await userModel.findOne({ email });
 
       if (user) {
@@ -125,7 +127,7 @@ async function userSignUpController(req, res) {
         password: hashPassword,
         name,
         profilePic: profilePicUrl,
-        role: "GENERAL",
+        role: role ? role : "GENERAL",
       };
 
       const userData = new userModel(payload);

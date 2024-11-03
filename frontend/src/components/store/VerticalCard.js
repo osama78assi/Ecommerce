@@ -5,6 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import displayINRCurrency from "../../helpers/displayCurrency";
 import scrollTop from "../../helpers/scrollTop";
 import { addToCart } from "../../store/cartSlice";
+import { useTranslation } from "react-i18next";
+
+
+
+
 
 const VerticalCard = ({ loading, data = [] }) => {
   const loadingList = new Array(13).fill(null);

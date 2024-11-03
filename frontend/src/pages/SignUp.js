@@ -4,8 +4,10 @@ import { FaPen, FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SummaryApi from "../common";
+import { useTranslation } from "react-i18next";
 
-const SignUp = () => {
+function SignUp () {
+  const {t} = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [data, setData] = useState({
@@ -33,7 +35,7 @@ const SignUp = () => {
     console.log(e.target.files);
     const file = e.target.files[0];
     if (file.size > 5 * 1024 * 1024) {
-      toast.warn("The image is biggen than 5MB. Pick another image please");
+      toast.warn(t("messages.errBigImage"));
       return;
     }
 
@@ -57,12 +59,12 @@ const SignUp = () => {
     e.preventDefault();
     try {
       if (/\W+/.test(data.name)) {
-        toast.warn("Name mustn't include special chars");
+        toast.warn(t("messages.errSpecialNameChars"));
         return;
       }
 
       if (data.password !== data.confirmPassword) {
-        toast.warn("The password confirm is not correct. Check it please");
+        toast.warn(t("messages.errPasswordConfirm"));
         return;
       }
 
@@ -125,11 +127,11 @@ const SignUp = () => {
 
           <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
             <div className="grid">
-              <label>Name : </label>
+              <label>{t("forms.signup.nameField.label")}</label>
               <div className="bg-slate-100 p-2">
                 <input
                   type="text"
-                  placeholder="enter your name"
+                  placeholder={t("forms.signup.nameField.placeholder")}
                   name="name"
                   value={data.name}
                   onChange={handleOnChange}
@@ -139,11 +141,11 @@ const SignUp = () => {
               </div>
             </div>
             <div className="grid">
-              <label>Email : </label>
+              <label>{t("forms.signup.emailField.label")}</label>
               <div className="bg-slate-100 p-2">
                 <input
                   type="email"
-                  placeholder="enter email"
+                  placeholder={t("forms.signup.emailField.placeholder")}
                   name="email"
                   value={data.email}
                   onChange={handleOnChange}
@@ -154,11 +156,11 @@ const SignUp = () => {
             </div>
 
             <div>
-              <label>Password : </label>
+              <label>{t("forms.signup.passwordField.label")}</label>
               <div className="bg-slate-100 p-2 flex">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="enter password"
+                  placeholder={t("forms.signup.passwordField.placeholder")}
                   value={data.password}
                   name="password"
                   onChange={handleOnChange}
@@ -175,11 +177,11 @@ const SignUp = () => {
             </div>
 
             <div>
-              <label>Confirm Password : </label>
+              <label>{t("forms.signup.confirmPasswordField.label")}</label>
               <div className="bg-slate-100 p-2 flex">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
-                  placeholder="enter confirm password"
+                  placeholder={t("forms.signup.confirmPasswordField.placeholder")}
                   value={data.confirmPassword}
                   name="confirmPassword"
                   onChange={handleOnChange}
@@ -199,17 +201,17 @@ const SignUp = () => {
             </div>
 
             <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
-              Sign Up
+              {t("forms.signup.signupBtn")}
             </button>
           </form>
 
           <p className="my-5">
-            Already have account ?{" "}
+            {t("forms.signup.askAccount")}
             <Link
               to={"/login"}
               className="text-[var(--primary-color-1100)]  hover:underline"
             >
-              Login
+              {t("forms.signup.loginBtn")}
             </Link>
           </p>
         </div>

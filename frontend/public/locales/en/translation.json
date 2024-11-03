@@ -7,10 +7,11 @@
     "profile": "Profile",
     "adminPanel": "Admin Panel",
     "cart": "Cart",
+    "store": "Store",
     "searchPlaceholder": "Search for product here..."
   },
-  "headers":{
-    "vision": "Vision",
+  "headers": {
+    "goals": "Goals",
     "store": "Store"
   },
   "aboutUs": {
@@ -19,6 +20,215 @@
   "footer": {
     "contactWithUs": "Contact With Us",
     "quickLinks": "Quick Links",
-    "right": "All rights reserved to the Al Shakhra Association"
+    "rights": "All rights reserved to the Al Shakhra Association"
+  },
+  "cart": {
+    "addToBtn": "Add to cart",
+    "noData": "No Data",
+    "summary": "Summary",
+    "quantity": "Quantity",
+    "totalPrice": "Total Price"
+  },
+  "search": {
+    "results": "Search Results: ",
+    "noData": "No Data Found..."
+  },
+  "store": {},
+  "admin": {
+    "users": "Users",
+    "products": "Products",
+    "categories": "Gateories",
+    "slider": "Slider sections",
+    "aboutUs": "About us sections",
+    "vision": "Vision sections",
+    "goals": "Goals sections"
+  },
+  "forms": {
+    "profile": {
+      "emailField": {
+        "label": "Enter The New Email",
+        "placeholder": "New Email",
+        "confirmChange": "update the email ?"
+      },
+      "imageField": {
+        "confirmChange": "Change Image ?"
+      },
+      "nameField": {
+        "label": "Enter The new Name",
+        "placeholder": "New Name",
+        "confirmChange": "update the name ?"
+      },
+      "oldPasswordField": {
+        "label": "Confirm The Old Password",
+        "placeholder": "Confirm Password",
+        "confirmChange": "update the password ?"
+      },
+      "newPasswordField": {
+        "label": "Enter The New Password",
+        "placeholder": "Enter New Password"
+      },
+
+      "changeEmailTitle": "Change Email",
+      "changeNameTitle": "Change Username",
+      "changePasswordTitle": "Change Password",
+      "confirm": "Confirm",
+      "logoutBtn": "Logout"
+    },
+    "admin": {
+      "nameField": {
+        "label": "Name : ",
+        "placeholder": "enter name"
+      },
+      "emailField": {
+        "label": "Email : ",
+        "placeholder": "enter email"
+      },
+      "passwordField": {
+        "label": "Password : ",
+        "placeholder": "enter password"
+      },
+      "confirmPasswordField": {
+        "label": "Confirm Password : ",
+        "placeholder": "enter confirm password"
+      },
+      "productNameField": {
+        "label": "Product Name :",
+        "placeholder": "enter product name"
+      },
+      "categoryField": {
+        "label": "Category :",
+        "defaultOption": "Select Category"
+      },
+      "imagesField": {
+        "outerLabel": "Product Image :",
+        "innerLabel": "Upload Product Images By Drag And Drop them here"
+      },
+      "priceField": {
+        "label": "Price :",
+        "placeholder": "enter price"
+      },
+      "sellingPriceField": {
+        "label": "Selling Price :",
+        "placeholder": "enter selling price"
+      },
+      "descriptionField": {
+        "label": "Description :",
+        "placeholder": "enter product description"
+      },
+      "selectRoleField": {
+        "label": "Select role"
+      },
+      "categoryNameField": {
+        "label": "Enter category Name: ",
+        "placeholder": "Category name"
+      },
+
+      "addUserBtn": "Add the user",
+      "addCategoryBtn": "Add the category",
+
+      "editProductBtn": "Edit Product",
+      "uploadProductBtn": "Upload Product",
+      "editRoleBtn": "Change Role",
+
+      "roleTitle": "Change User Role",
+      "nameLabel": "Name: ",
+      "emailLabel": "Email: ",
+      "roleLabel": "Role:",
+
+      "uploadBtnUserTitle": "All users",
+      "uploadProductTitle": "All products",
+      "uploadCategoryTitle": "All Categories",
+
+      "uploadBtnUserOpen": "Add user",
+      "uploadBtnProductOpen": "Upload Product",
+      "uploadBtnCategoryOpen": "Upload category"
+    },
+    "login": {
+      "emailField": {
+        "label": "Email :",
+        "placeholder": "enter email"
+      },
+      "passwordField": {
+        "label": "Password :",
+        "placeholder": "enter password"
+      },
+
+      "loginBtn": "Login",
+      "signupBtn": "Signup",
+      "askAccount": "Don't have an account ? "
+    },
+    "signup": {
+      "nameField": {
+        "label": "Name: ",
+        "placeholder": "enter your name"
+      },
+      "emailField": {
+        "label": "Email: ",
+        "placeholder": "enter email"
+      },
+      "passwordField": {
+        "label": "Password : ",
+        "placeholder": "enter password"
+      },
+      "confirmPasswordField": {
+        "label": "Confirm Password : ",
+        "placeholder": "enter confirm password"
+      },
+
+      "signupBtn": "Signup",
+      "askAccount": "Already have an account ? ",
+      "loginBtn": "Login"
+    }
+  },
+
+  "tables": {
+    "allUsers": {
+      "count": "Number",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "createdAt": "Create Data",
+      "action": "Actions"
+    },
+    "allCategories": {
+      "count": "Number",
+      "arabicName": "Arabic name",
+      "englishName": "English name",
+      "frenchName": "French name"
+    }
+  },
+
+  "messages": {
+    "yes": "Yes",
+    "no": "No",
+    "confirmQuestion1": "Are you sure you want to",
+    "confirmQuestion2": "This action can't be undo",
+    "errSpecialNameChars": "Name mustn't include special chars",
+    "errPasswordConfirm": "The password confirm is not correct. Check it please",
+    "errBigImage": "The image is bigger than 5MB. Pick another image please",
+    "errProductImg": "Please upload product image",
+    "errUploadingImage": "Something went wrong while updating the image. Try again",
+    "errUsernameReq": "Add username first",
+    "errUsernameLong": "Username is too long",
+    "errUsernameSame": "Username is the same. Change it please",
+    "errUnkown": "Something went wrong. Try again",
+    "errOldPasswordReq": "You must confirm your old password",
+    "errNewPasswordReq": "You must add the new password",
+    "genericErr": {
+      "title": "Something went wrong while getting the data.",
+      "btnTitle": "Click here to reload"
+    },
+    "errCartCount": "Something Went wrong while getting cart items count. Try again",
+    "errDeleteCartItem": "Couldn't delete the item from cart. Try again",
+    "errGetCartProducts": "Couldn't get cart's products. Try again",
+    "errUpdateQuantity": "Couldn't update item's quantity. Try again",
+    "errAddItemToCart": "Couldn't add the item to the cart. Try again",
+    "errNoUserLoggedin": "There is no user logged in",
+    "errProductNameLong": "The product name is too long",
+    "errCategoryNameLong": "The category name is too long",
+
+    "successUploadingImage": "New image updated successfully",
+    "successCreateUser": "User added successfully",
+    "successChangeRole": "User role updated successfully"
   }
 }

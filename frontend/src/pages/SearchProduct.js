@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import SummaryApi from "../common";
 import VerticalCard from "../components/store/VerticalCard";
+import { RotatingLines } from "react-loader-spinner";
 
-const SearchProduct = () => {
+function SearchProduct() {
+  const { t } = useTranslation();
   const query = useLocation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,14 +32,14 @@ const SearchProduct = () => {
 
   return (
     <div className="container mx-auto p-4">
-      {loading && <p className="text-lg text-center">Loading ...</p>}
+      {loading && <RotatingLines strokeColor="#c89329" />}
 
       <p className="text-lg font-semibold my-3">
-        Search Results : {data?.length}
+        {`${t("search.results")} ${data?.length}`}
       </p>
 
       {data?.length === 0 && !loading && (
-        <p className="bg-white text-lg text-center p-4">No Data Found....</p>
+        <p className="bg-white text-lg text-center p-4">{t("search.noData")}</p>
       )}
 
       {data?.length !== 0 && !loading && (
@@ -44,6 +47,6 @@ const SearchProduct = () => {
       )}
     </div>
   );
-};
+}
 
 export default SearchProduct;

@@ -25,6 +25,8 @@ import Store from "./pages/Store";
 import Vision from "./pages/Vision";
 import { store } from "./store/store";
 import "./i18next";
+import AboutUsAdmin from "./components/admin/AboutUsAdmin";
+import GoalsAdmin from "./components/admin/GoalsAdmin";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -61,6 +63,8 @@ root.render(
             <Route path="all-categories" element={<AllCategories />} />
             <Route path="slider" element={<SliderAdmin />} />
             <Route path="vision" element={<VisionAdmin />} />
+            <Route path="about-us" element={<AboutUsAdmin />} />
+            <Route path="goals" element={<GoalsAdmin />} />
           </Route>
           <Route path="about-us" element={<AboutUs />} />
           <Route path="vision" element={<Vision />} />

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 // When update something here make sure to reload the page because there is some classes added by side effects
 function HeaderCard({ imgUrl, content, title, getElement, onRechange }) {
@@ -9,15 +9,14 @@ function HeaderCard({ imgUrl, content, title, getElement, onRechange }) {
     getElement?.(cardRef);
   }, []);
 
-
   return (
     <div className={cardClass} ref={cardRef}>
-      {imgUrl && (
+      {imgUrl ? (
         <div className="relative w-full">
           <img
             alt="details"
             src={imgUrl}
-            className={`object-cover h-full w-full cursor-pointer`}
+            className={`object-cover h-full w-full cursor-pointer bg-gray-700`}
           />
           {content !== "" ? (
             <>
@@ -33,6 +32,8 @@ function HeaderCard({ imgUrl, content, title, getElement, onRechange }) {
             </>
           ) : null}
         </div>
+      ) : (
+        <div className="absolute left-0 h-full w-full top-0 bg-gray-700 animate-pulse" />
       )}
     </div>
   );
