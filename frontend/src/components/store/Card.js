@@ -1,7 +1,21 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import displayINRCurrency from "../../helpers/displayCurrency";
+import { useLazyloadingImgs } from "../../hooks/useLazyLoadingImages";
 
-function Card({ images, brand, price, originalPrice, onAddToCart }) {
+function Card({
+  images,
+  name,
+  price,
+  originalPrice,
+  classes,
+  onAddToCart,
+  onShowDetails,
+}) {
   const [currentImage, setCurrentImage] = useState(0);
+  const { i18n } = useTranslation();
+  const loadedImages = useLazyloadingImgs(images);
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % images.length);
@@ -12,41 +26,70 @@ function Card({ images, brand, price, originalPrice, onAddToCart }) {
   };
 
   return (
-    <div className="max-w-xs bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div
+      className={`max-w-xs bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
+        classes ? classes : ""
+      }`}
+    >
       <div className="relative">
-        <img
-          src={images[currentImage]}
-          alt={`${brand} product`}
-          className="w-full h-56 object-cover bg-red-400"
-        />
-        <button
-          onClick={prevImage}
-          className="absolute top-1/2 left-2 -translate-y-1/2 bg-gray-800/50 text-white p-1 rounded-full hover:bg-gray-800"
-        >
-          ◀
-        </button>
-        <button
-          onClick={nextImage}
-          className="absolute top-1/2 right-2 -translate-y-1/2 bg-gray-800/50 text-white p-1 rounded-full hover:bg-gray-800"
-        >
-          ▶
-        </button>
+        {loadedImages[currentImage] !== "" ? (
+          <img
+            src={loadedImages[currentImage]}
+            alt={`${name} product`}
+            className="w-full h-56 object-cover"
+          />
+        ) : (
+          <div className="w-full h-56 bg-gray-500 animate-pulse" />
+        )}
       </div>
 
-      <div className="p-4">
-        <h2 className="text-lg font-semibold text-gray-800">{brand}</h2>
-        <div className="flex items-center justify-between mt-2">
-          <span className="text-xl font-bold text-blue-600">${price}</span>
-          <span className="text-sm text-gray-500 line-through">
-            ${originalPrice}
+      <div>
+        <div className="flex justify-between">
+          <button
+            onClick={() => (i18n.language === "en" ? prevImage() : nextImage())}
+            className="bg-primary-900 text-white p-2 hover:bg-primary-700 "
+          >
+            {i18n.language === "en" ? <FaAngleLeft /> : <FaAngleRight />}
+          </button>
+          <span>
+            {currentImage + 1} / {images.length}
           </span>
+          <button
+            onClick={() => (i18n.language === "en" ? nextImage() : prevImage())}
+            className=" bg-primary-900 text-white p-2 hover:bg-primary-700"
+          >
+            {i18n.language === "en" ? <FaAngleRight /> : <FaAngleLeft />}
+          </button>
         </div>
-        <button
-          onClick={onAddToCart}
-          className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors"
-        >
-          Add to Cart
-        </button>
+
+        <div className="p-4">
+          <h2 className="text-2xl font-semibold text-gray-800">{name}</h2>
+          <div className="flex items-center justify-between mt-2">
+            <span className="text-xl font-bold">
+              {displayINRCurrency(price)}
+            </span>
+            {originalPrice !== 0 && (
+              <span className="text-sm text-gray-500 line-through">
+                {displayINRCurrency(originalPrice)}
+              </span>
+            )}
+          </div>
+
+          <div className="flex gap-[1.5rem]">
+            <button
+              onClick={onAddToCart}
+              className="mt-4 w-full bg-primary-900 text-white py-2 px-4 basis-[calc(50%-0.75rem)] rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Add to Cart
+            </button>
+            <button
+              onClick={onAddToCart}
+              className="mt-4 w-full bg-primary-900 text-white py-2 px-4 basis-[calc(50%-0.75rem)] rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Show details
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

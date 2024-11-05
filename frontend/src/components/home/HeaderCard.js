@@ -1,7 +1,13 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 
 // When update something here make sure to reload the page because there is some classes added by side effects
-function HeaderCard({ imgUrl, content, title, getElement, onRechange }) {
+const HeaderCard = memo(function HeaderCard({
+  imgUrl,
+  content,
+  title,
+  getElement,
+  onRechange,
+}) {
   const cardRef = useRef(null);
   const cardClass = `flex h-full w-full left-0 absolute transition-position`;
 
@@ -37,6 +43,6 @@ function HeaderCard({ imgUrl, content, title, getElement, onRechange }) {
       )}
     </div>
   );
-}
+});
 
 export default HeaderCard;

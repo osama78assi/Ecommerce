@@ -95,3 +95,9 @@
 .hover\:bg-primary-900:hover {
   background: var(--primary-color-900);
 }
+
+@media (max-width: 767px) {
+  .store-container {
+    justify-content: center !important;
+  }
+}
