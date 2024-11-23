@@ -25,7 +25,7 @@ function SelectLang() {
   return (
     <select onChange={handleChangeLang} className="w-full py-2 hover:bg-slate-100 transition-colors bg-transparent lg:w-[5rem] h-[95%] cursor-pointer focus-within:focus:focus-visible:outline-none">
       {langs.map((ele) => (
-        <option key={ele.label} value={ele.value} defaultValue={ele.value === i18n.language}>
+        <option key={ele.label} value={ele.value} selected={ele.value === i18n.language}>
           {ele.label}
         </option>
       ))}

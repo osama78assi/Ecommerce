@@ -33,7 +33,12 @@
     "results": "Search Results: ",
     "noData": "No Data Found..."
   },
-  "store": {},
+  "store": {
+    "filterCategoryTitle": "Filter By category",
+    "categorySelect": "Select category",
+    "next": "Next Page",
+    "prev": "Previous Page"
+  },
   "admin": {
     "users": "Users",
     "products": "Products",
@@ -203,6 +208,7 @@
     "no": "No",
     "confirmQuestion1": "Are you sure you want to",
     "confirmQuestion2": "This action can't be undo",
+
     "errSpecialNameChars": "Name mustn't include special chars",
     "errPasswordConfirm": "The password confirm is not correct. Check it please",
     "errBigImage": "The image is bigger than 5MB. Pick another image please",
@@ -226,9 +232,14 @@
     "errNoUserLoggedin": "There is no user logged in",
     "errProductNameLong": "The product name is too long",
     "errCategoryNameLong": "The category name is too long",
+    "errGetCategories": "Faild to get the categories",
+    "errCategoryNotFound": "Category {{category}} not found",
+    "errGetProducts": "Faild to get products",
 
     "successUploadingImage": "New image updated successfully",
     "successCreateUser": "User added successfully",
-    "successChangeRole": "User role updated successfully"
+    "successChangeRole": "User role updated successfully",
+
+    "warnNoProducts": "There is no products yet"
   }
 }

@@ -1,17 +1,22 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const addToCart = mongoose.Schema({
-   productId : {
-        ref : 'product',
-        type : String,
-   },
-   quantity : Number,
-   userId : String,
-},{
-    timestamps : true
-})
+const addToCart = mongoose.Schema(
+  {
+    productId: {
+      ref: "product",
+      type: mongoose.Schema.Types.ObjectId,
+    },
+    quantity: Number,
+    userId: {
+      ref: "users",
+      type: mongoose.Schema.Types.ObjectId,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
+const addToCartModel = mongoose.model("addToCart", addToCart);
 
-const addToCartModel = mongoose.model("addToCart",addToCart)
-
-module.exports = addToCartModel
+module.exports = addToCartModel;

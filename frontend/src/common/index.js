@@ -105,6 +105,14 @@ const SummaryApi = {
     url: `${backendDomin}/api/update-image`,
     method: "post",
   },
+  getAllCategories: {
+    url: `${backendDomin}/api/all-categories`,
+    method: "get",
+  },
+  getAllProducts: {
+    url: `${backendDomin}/api/category-products`,
+    method: "post",
+  },
 };
 
 export default SummaryApi;

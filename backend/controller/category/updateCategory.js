@@ -9,7 +9,7 @@ async function updateCategoryController(req, res) {
       throw new Error("Permission denied");
     }
 
-    const { categoryId, categoryName, description } = req.body;
+    const { categoryId, categoryName } = req.body;
 
     // Find the category by ID
     const category = await categoryModel.findById(categoryId);
@@ -28,10 +28,6 @@ async function updateCategoryController(req, res) {
       }
 
       category.categoryName = categoryName;
-    }
-
-    if (description) {
-      category.description = description;
     }
 
     const updatedCategory = await category.save();

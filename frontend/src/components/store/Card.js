@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 import displayINRCurrency from "../../helpers/displayCurrency";
 import { useLazyloadingImgs } from "../../hooks/useLazyLoadingImages";
+import CardImage from "./CardImage";
 
 function Card({
+  id,
   images,
   name,
+  sellingPrice,
   price,
-  originalPrice,
   classes,
   onAddToCart,
   onShowDetails,
@@ -16,31 +19,28 @@ function Card({
   const [currentImage, setCurrentImage] = useState(0);
   const { i18n } = useTranslation();
   const loadedImages = useLazyloadingImgs(images);
+  const nav = useNavigate();
 
-  const nextImage = () => {
+  function nextImage() {
     setCurrentImage((prev) => (prev + 1) % images.length);
-  };
+  }
 
-  const prevImage = () => {
+  function prevImage() {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
-  };
+  }
+
+  function showDetails() {
+    nav(`/product/${id}`);
+  }
 
   return (
     <div
-      className={`max-w-xs bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
+      className={`w-[20rem] basis-[20rem] sm:w-auto sm:basis-[calc(50%-1rem)] md:basis-[calc(33.333333333% - 1rem)] lg:basis-[calc(25%-1rem)] bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
         classes ? classes : ""
       }`}
     >
       <div className="relative">
-        {loadedImages[currentImage] !== "" ? (
-          <img
-            src={loadedImages[currentImage]}
-            alt={`${name} product`}
-            className="w-full h-56 object-cover"
-          />
-        ) : (
-          <div className="w-full h-56 bg-gray-500 animate-pulse" />
-        )}
+        {<CardImage imgUrl={loadedImages[currentImage]} name={name} />}
       </div>
 
       <div>
@@ -66,11 +66,11 @@ function Card({
           <h2 className="text-2xl font-semibold text-gray-800">{name}</h2>
           <div className="flex items-center justify-between mt-2">
             <span className="text-xl font-bold">
-              {displayINRCurrency(price)}
+              {displayINRCurrency(sellingPrice)}
             </span>
-            {originalPrice !== 0 && (
+            {price !== 0 && (
               <span className="text-sm text-gray-500 line-through">
-                {displayINRCurrency(originalPrice)}
+                {displayINRCurrency(price)}
               </span>
             )}
           </div>
@@ -83,7 +83,7 @@ function Card({
               Add to Cart
             </button>
             <button
-              onClick={onAddToCart}
+              onClick={showDetails}
               className="mt-4 w-full bg-primary-900 text-white py-2 px-4 basis-[calc(50%-0.75rem)] rounded-lg hover:bg-primary-700 transition-colors"
             >
               Show details

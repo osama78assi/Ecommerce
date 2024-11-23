@@ -33,7 +33,12 @@
     "results": "نتائج البحث: ",
     "noData": "لا يوجد نتائج..."
   },
-  "store": {},
+  "store": {
+    "filterCategoryTitle": "تصفية عن طريق الفئات",
+    "categorySelect": "اختار الفئة",
+    "next": "الصفحة التالية",
+    "prev": "الصفحة السابقة"
+  },
   "admin": {
     "users": "المستخدمين",
     "products": "المنتجات",
@@ -203,6 +208,7 @@
     "no": "لا",
     "confirmQuestion1": "هل أنت متأكد من ",
     "confirmQuestion2": "لا يمكن التراجع عن هذه العملية ",
+
     "errSpecialNameChars": "لا يجب ان يحتوي الاسم على احرف مميزة",
     "errPasswordConfirm": "تأكيد كلمة المرور غير صحيح يرجى التأكد منه",
     "errBigImage": "حجم الصورة أكبر من 5 ميغا بايت يرجى اختيار صورة اخرى",
@@ -226,9 +232,14 @@
     "errNoUserLoggedin": "انتهت مدة الجلسة الرجاء المحاولة مرة اخرى",
     "errProductNameLong": "اسم المنتج طويل جداً",
     "errCategoryNameLong": "اسم الفئة طويل جداً",
+    "errGetCategories": "فشل في تحميل الفئات",
+    "errCategoryNotFound": "لا يوجد فئة بالاسم {{category}}",
+    "errGetProducts": "فشل في تحميل المنتجات",
 
     "successUploadingImage": "تم تحديث الصورة بنجاح",
     "successCreateUser": "تمت اضافة مستخدم بنجاح",
-    "successChangeRole": "تم تعديل صلاحية المستخدم بنجاح"
+    "successChangeRole": "تم تعديل صلاحية المستخدم بنجاح",
+
+    "warnNoProducts": "لم يتم اضافة منتجات بعد"
   }
 }

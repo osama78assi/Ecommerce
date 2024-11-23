@@ -7,31 +7,26 @@ export function useLazyloadingImgs(images) {
 
   // To load the images async
   useEffect(() => {
-    (async function () {
-      if (images) {
-        images.map(async function (image, index) {
-          try {
-            const res = await fetch(image, { method: "GET" });
-            const blob = await res.blob();
-            const url = URL.createObjectURL(blob);
-            setImgsUrls((imgs) => {
-              imgs[index] = url;
-              return imgs;
-            });
-            return url;
-          } catch (err) {
-            console.log(err);
-            // To know if the there is an error to handle in user interface
-            setImgsUrls((imgs) => {
-              imgs[index] = "error";
-              return imgs;
-            });
-            return "";
-          }
-        });
+    const loadImages = async () => {
+      const newImgs = [...imgsUrls]; // Start with an initial array
+      for (let index = 0; index < images.length; index++) {
+        try {
+          const res = await fetch(images[index], { method: "GET" });
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          newImgs[index] = url;
+        } catch (err) {
+          console.error(err);
+          newImgs[index] = "error";
+        }
       }
-    })();
+      setImgsUrls(newImgs); // Set state once after all images are processed
+    };
+    if (images && images.length) {
+      loadImages();
+    }
   }, [images]);
+  
 
   return imgsUrls;
 }

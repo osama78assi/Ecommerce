@@ -1,9 +1,8 @@
-import { useTransition } from "react";
 import { useTranslation } from "react-i18next";
 import { FaTriangleExclamation } from "react-icons/fa6";
 
-function ErrorComponent({ refetchFunction }) {
-  const {t} = useTranslation();
+function ErrorComponent({ refetchFunction, disable }) {
+  const { t } = useTranslation();
   return (
     <div className="bg-red-200 rounded-lg p-3">
       <div className="bg-gradient-to-bl mb-3 flex items-center flex-wrap gap-4">
@@ -15,7 +14,9 @@ function ErrorComponent({ refetchFunction }) {
 
       {refetchFunction ? (
         <p
-          className="text-red-500 underline transition-colors cursor-pointer hover:text-red-800"
+          className={`text-red-500 underline transition-colors cursor-pointer hover:text-red-800 ${
+            disable ? "pointer-events-none cursor-not-allowed" : ""
+          }`}
           onClick={() => refetchFunction?.()}
         >
           {t("messages.genericErr.btnTitle")}

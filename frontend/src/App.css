@@ -2,6 +2,7 @@
   --primary-color-1100: #c89329;
   --primary-color-900: #cda452;
   --primary-color-700: #edb542;
+  --primary-color-200: #ffcf7057;
 }
 
 .customShadow {
@@ -77,6 +78,9 @@
 
 /* Colors */
 
+.bg-primary-200 {
+  background-color: var(--primary-color-200);
+}
 .bg-primary-900 {
   background-color: var(--primary-color-900);
 }

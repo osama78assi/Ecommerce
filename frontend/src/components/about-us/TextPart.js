@@ -12,7 +12,7 @@ function TextPart({ images }) {
   }
 
   return (
-    <div className="basis-full mb-2 p-0 md:p-3 lg:basis-6/12 sm:mb-0">
+    <div className="basis-full mb-2 p-0 md:p-3 md:px-6 lg:basis-6/12 sm:mb-0">
       <h1 className="text-2xl md:text-4xl py-3 text-primary-700">
         {t("aboutUs.title")}
       </h1>

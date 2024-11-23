@@ -1,6 +1,6 @@
 import React from "react";
 
-function VisionSection({ content, title }) {
+function VisionSection({ description, title }) {
   const squareClasses =
     "absolute left-[-12.5px] rotate-45 w-[25px] h-[25px] bg-lsate-100 border-[1px] border-slate-600 bg-slate-100";
 
@@ -21,7 +21,7 @@ function VisionSection({ content, title }) {
         <h2 className="text-2xl font-semibold text-slate-800 mb-4">{title}</h2>
       )}
 
-      <p className="text-slate-600 text-lg leading-relaxed">{content}</p>
+      <p className="text-slate-600 text-lg leading-relaxed">{description}</p>
     </div>
   );
 }

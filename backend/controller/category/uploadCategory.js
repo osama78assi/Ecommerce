@@ -4,12 +4,12 @@ const categoryModel = require("../../models/categoryModel"); // The Category mod
 async function uploadCategoryController(req, res) {
   try {
     const sessionUserId = req.userId;
-
+         
     if (!uploadProductPermission(sessionUserId)) {
       throw new Error("Permission denied");
     }
 
-    const { categoryName, description } = req.body;
+    const { categoryName } = req.body;
 
     // Check if the category already exists
     const existingCategory = await categoryModel.findOne({ categoryName });
@@ -21,7 +21,6 @@ async function uploadCategoryController(req, res) {
     // Create a new category
     const newCategory = new categoryModel({
       categoryName,
-      description,
     });
 
     const savedCategory = await newCategory.save();

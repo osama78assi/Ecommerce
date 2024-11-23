@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef } from "react";
 
 // When update something here make sure to reload the page because there is some classes added by side effects
-const HeaderCard = memo(function HeaderCard({
+function HeaderCard({
   imgUrl,
   content,
   title,
@@ -43,6 +43,6 @@ const HeaderCard = memo(function HeaderCard({
       )}
     </div>
   );
-});
+};
 
 export default HeaderCard;

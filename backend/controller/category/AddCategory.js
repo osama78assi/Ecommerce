@@ -15,9 +15,9 @@ async function addCategoryController(req, res) {
     }
 
     // Extract and validate category data from request body
-    const { categoryName, description } = req.body;
+    const { categoryName } = req.body;
 
-    const newCategory = new categoryModel({ categoryName, description });
+    const newCategory = new categoryModel({ categoryName });
 
     const validationError = newCategory.validateSync();
     if (validationError) {

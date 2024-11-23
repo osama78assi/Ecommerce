@@ -1,26 +1,42 @@
-const addToCartModel = require("../../models/cartProduct")
+const addToCartModel = require("../../models/cartProduct");
+const CategoryModel = require("../../models/categoryModel"); // Assuming this is your category model
 
-const addToCartViewProduct = async(req,res)=>{
-    try{
-        const currentUser = req.userId
+const addToCartViewProduct = async (req, res) => {
+  try {
+    const currentUser = req.userId;
 
-        const allProduct = await addToCartModel.find({
-            userId : currentUser
-        }).populate("productId")
+    // Fetch cart products and populate productId
+    const allProducts = await addToCartModel.find({
+      userId: currentUser,
+    }).populate("productId");
 
-        res.json({
-            data : allProduct,
-            success : true,
-            error : false
-        })
+    // Fetch category details for each product and replace the category ID with full details
+    const result = await Promise.all(
+      allProducts.map(async (cartItem) => {
+        const categoryId = cartItem.productId.category;
 
-    }catch(err){
-        res.json({
-            message : err.message || err,
-            error : true,
-            success : false
-        })
-    }
-}
+        // Query the category data based on categoryId
+        const categoryData = await CategoryModel.findById(categoryId);
 
-module.exports =  addToCartViewProduct
+        // Replace category ID with category details
+        cartItem.productId.category = categoryData;
+
+        return cartItem;
+      })
+    );
+
+    res.json({
+      data: result,
+      success: true,
+      error: false,
+    });
+  } catch (err) {
+    res.json({
+      message: err.message || err,
+      error: true,
+      success: false,
+    });
+  }
+};
+
+module.exports = addToCartViewProduct;

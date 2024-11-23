@@ -34,3 +34,4 @@ connectDB().then(() => {
     console.log("Front host is : ", process.env.FRONTEND_URL);
   });
 });
+

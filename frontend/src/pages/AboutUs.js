@@ -7,8 +7,8 @@ import ImagesPart from "../components/about-us/ImagesPart";
 function AboutUs() {
   const [images, setImages] = useState([
     {
-      title: "Brokar",
-      imgUrl: image5Mobile,
+      title: "Title",
+      imgUrl: "/DSC_3535.jpg",
       content:
         "lasdf asf a sdfg sdf gsdfg sdfg  fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a",
     },
@@ -19,20 +19,20 @@ function AboutUs() {
     //     "lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a",
     // },
     {
-      title: "Anything",
-      imgUrl: "https://mdn.github.io/css-examples/howto/balloon.jpg",
+      title: "test",
+      imgUrl: "/DSC_3306.jpg",
       content:
         "lasdf asfghj  rtwqqafgh f a sdfg sdfg sdfg sdf gsd ghgfh sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a",
     },
     {
-      title: "Anything1",
-      imgUrl: "https://www.entireflight.com/cdn/shop/articles/airplane_landing.png",
+      title: "test",
+      imgUrl: "/DSC_3283.jpg",
       content:
         "lasdf asfghj ghj rtwqqafgh f sdfg sa sdfg sdfg sdfg sdf gsd ghgfh sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a",
     },
     {
-      title: "Anything2",
-      imgUrl: "https://mdn.github.io/css-examples/howto/balloon.jpg",
+      title: "test",
+      imgUrl: "/DSC_3487.jpg",
       content:
         "lasdf ghj rtwqqafgh f jhgf a sdfg sdfg sdfg sdf gsd ghgfh sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a lasdf asf a sdfg sdf gsdfg sdfg dfgasj [oijeutr[gj uoidsfgu aposj fasdfg hpaojg asj pioasdj podf jdfg afdsjg dpofjg a",
     },
