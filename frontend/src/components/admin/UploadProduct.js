@@ -44,7 +44,7 @@ function UploadProduct({ onClose, fetchData }) {
   return (
     <ModalWindow onClose={onClose}>
       <form
-        className="grid p-4 gap-2 overflow-y-scroll pb-5 h-[90%]"
+        className="grid p-4 gap-2 overflow-y-auto pb-5"
         onSubmit={handleSubmit}
       >
         <AdminInput

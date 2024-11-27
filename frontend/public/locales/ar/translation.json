@@ -24,6 +24,7 @@
   },
   "cart": {
     "addToBtn": "اضف إلى السلة",
+    "removeFromBtn": "ازالة من السلة",
     "noData": "لا يوجد بيانات",
     "summary": "ملخص",
     "quantity": "الكمية",
@@ -208,6 +209,8 @@
     "no": "لا",
     "confirmQuestion1": "هل أنت متأكد من ",
     "confirmQuestion2": "لا يمكن التراجع عن هذه العملية ",
+    "confirmRemoveFromCart": "ازالة العنصر من السلة",
+
 
     "errSpecialNameChars": "لا يجب ان يحتوي الاسم على احرف مميزة",
     "errPasswordConfirm": "تأكيد كلمة المرور غير صحيح يرجى التأكد منه",
@@ -239,6 +242,8 @@
     "successUploadingImage": "تم تحديث الصورة بنجاح",
     "successCreateUser": "تمت اضافة مستخدم بنجاح",
     "successChangeRole": "تم تعديل صلاحية المستخدم بنجاح",
+    "successRemoveFromCart": "تمت ازالة المنتج من السلة بنجاح",
+
 
     "warnNoProducts": "لم يتم اضافة منتجات بعد"
   }

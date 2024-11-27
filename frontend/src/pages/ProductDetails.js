@@ -7,11 +7,17 @@ import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
+import Confirm from "../components/ui/Confirm";
 import DisplayImage from "../components/ui/DisplayImage";
 import displayINRCurrency from "../helpers/displayCurrency";
-import { addToCart } from "../store/cartSlice";
+import {
+  addToCart,
+  deleteCartProduct,
+  getCartProducts,
+} from "../store/cartSlice";
 
 function ProductDetails() {
+  const [showConfirm, setShowConfirm] = useState(false);
   const [show, setShow] = useState(false);
   const [data, setData] = useState({
     productName: "",
@@ -22,20 +28,27 @@ function ProductDetails() {
     price: "",
     sellingPrice: "",
   });
+  const user = useSelector((state) => state.user.user);
   const [showArrows, setShowArrows] = useState(true);
   const { i18n } = useTranslation();
   const params = useParams();
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(0);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
   const isLoadingCart = useSelector((state) => state.cart.isLoading);
   const { t } = useTranslation();
+  const nav = useNavigate();
+  const productId = params?.id;
+  const isExist = cart.filter(
+    (cartItem) => cartItem.productId._id === productId
+  ).length;
 
-  // const { fetchUserAddToCart } = useContext(Context);
+  function deleteProduct(id) {
+    dispatch(deleteCartProduct(id));
+  }
 
-  const navigate = useNavigate();
-
-  const fetchProductDetails = async () => {
+  async function fetchProductDetails() {
     try {
       setLoading(true);
       const response = await fetch(SummaryApi.productDetails.url, {
@@ -44,7 +57,7 @@ function ProductDetails() {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          productId: params?.id,
+          productId: productId,
         }),
       });
 
@@ -56,13 +69,9 @@ function ProductDetails() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   console.log("data", data);
-
-  useEffect(() => {
-    fetchProductDetails();
-  }, [params]);
 
   function slideRight() {
     setActiveImage(
@@ -78,17 +87,34 @@ function ProductDetails() {
     );
   }
 
-  const handleAddToCart = async (e, id) => {
+  async function handleAddToCart(e) {
     try {
-      // await addToCart(e, id);
-      // fetchUserAddToCart();
       e?.stopPropagation();
       e?.preventDefault();
-      dispatch(addToCart(id));
+
+      if (!user) {
+        nav("/login/");
+        return;
+      }
+
+      if (isExist) {
+        setShowConfirm(true);
+        return;
+      }
+
+      dispatch(addToCart(productId));
     } catch (err) {
       console.log(err.message);
     }
-  };
+  }
+
+  useEffect(() => {
+    fetchProductDetails();
+  }, [params]);
+
+  useEffect(() => {
+    dispatch(getCartProducts());
+  }, []);
 
   return (
     <div className="container mx-auto p-4 lg:mt-[5rem]">
@@ -188,7 +214,7 @@ function ProductDetails() {
                 onClick={(e) => handleAddToCart(e, data?._id)}
                 disabled={isLoadingCart}
               >
-                {t("cart.addToBtn")}
+                {isExist ? t("cart.removeFromBtn") : t("cart.addToBtn")}
               </button>
             </div>
 
@@ -208,6 +234,17 @@ function ProductDetails() {
           />,
           document.body
         )}
+
+      {showConfirm && (
+        <Confirm
+          about={t("messages.confirmRemoveFromCart")}
+          onClose={() => setShowConfirm(false)}
+          onConfirm={() => {
+            deleteProduct(productId);
+            setShowConfirm(false);
+          }}
+        />
+      )}
     </div>
   );
 }

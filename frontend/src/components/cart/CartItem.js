@@ -1,16 +1,20 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import displayINRCurrency from "../../helpers/displayCurrency";
 import {
   decreaseQty,
   deleteCartProduct,
   increastQty,
 } from "../../store/cartSlice";
-import displayINRCurrency from "../../helpers/displayCurrency";
+import Confirm from "../ui/Confirm";
 
 function CartItem({ data, quantity }) {
   const dispatch = useDispatch();
-  
+  const { t, i18n } = useTranslation();
+  const [showConfirm, setShowConfirm] = useState(false);
+
   function increaseQuantity(id, quantity) {
     dispatch(increastQty({ id, qty: quantity }));
   }
@@ -37,8 +41,10 @@ function CartItem({ data, quantity }) {
       </div>
       <div className="px-4 py-2 relative">
         <div
-          className="absolute right-0 text-red-600 rounded-full p-2 hover:bg-red-600 hover:text-white cursor-pointer"
-          onClick={() => deleteProduct(data?._id)}
+          className={`absolute ${
+            i18n.language === "ar" ? "left-0" : "right-0"
+          } text-red-600 rounded-full p-2 hover:bg-red-600 hover:text-white cursor-pointer`}
+          onClick={() => setShowConfirm(true)}
         >
           <MdDelete />
         </div>
@@ -54,9 +60,7 @@ function CartItem({ data, quantity }) {
             {displayINRCurrency(data?.sellingPrice)}
           </p>
           <p className="text-slate-600 font-semibold text-lg">
-            {displayINRCurrency(
-              data?.sellingPrice * quantity
-            )}
+            {displayINRCurrency(data?.sellingPrice * quantity)}
           </p>
         </div>
         <div className="flex items-center gap-3 mt-1">
@@ -75,6 +79,17 @@ function CartItem({ data, quantity }) {
           </button>
         </div>
       </div>
+
+      {showConfirm && (
+        <Confirm
+          about={t("messages.confirmRemoveFromCart")}
+          onClose={() => setShowConfirm(false)}
+          onConfirm={() => {
+            deleteProduct(data?._id);
+            setShowConfirm(false);
+          }}
+        />
+      )}
     </div>
   );
 }

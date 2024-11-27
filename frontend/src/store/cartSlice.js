@@ -147,6 +147,7 @@ export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async function (id, thunkAPI) {
     try {
+      console.log("FUCK ", id)
       const response = await fetch(SummaryApi.addToCartProduct.url, {
         method: SummaryApi.addToCartProduct.method,
         credentials: "include",
@@ -160,6 +161,7 @@ export const addToCart = createAsyncThunk(
 
       if (responseData.success) {
         thunkAPI.dispatch(getCartProducts());
+        thunkAPI.dispatch(getCartCount());
         toast.success(responseData.message);
       }
 
@@ -224,10 +226,12 @@ const slice = createSlice({
     builder.addCase(deleteCartProduct.fulfilled, function (state, action) {
       state.isLoading = false;
       // The cart will be dynamically update by calling another reducer above
+      toast.success(t("messages.successRemoveFromCart"));
     });
     builder.addCase(deleteCartProduct.rejected, function (state, action) {
       state.isLoading = false;
       toast.error(t("messages.errDeleteCartItem"));
+      toast.success(t("messages.errDeleteCartItem"));
     });
 
     // Increase quantity

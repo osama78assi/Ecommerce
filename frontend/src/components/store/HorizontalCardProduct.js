@@ -91,6 +91,7 @@ const HorizontalCardProduct = ({ category, heading }) => {
                 <div className="bg-slate-200 h-full p-4 min-w-[120px] md:min-w-[145px]">
                   <img
                     src={product.productImage[0]}
+                    alt="product"
                     className="object-scale-down h-full hover:scale-110 transition-all"
                   />
                 </div>

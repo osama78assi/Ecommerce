@@ -24,6 +24,7 @@
   },
   "cart": {
     "addToBtn": "Add to cart",
+    "removeFromBtn": "Remove from the cart",
     "noData": "No Data",
     "summary": "Summary",
     "quantity": "Quantity",
@@ -208,6 +209,7 @@
     "no": "No",
     "confirmQuestion1": "Are you sure you want to",
     "confirmQuestion2": "This action can't be undo",
+    "confirmRemoveFromCart": "Remove the item from the cart",
 
     "errSpecialNameChars": "Name mustn't include special chars",
     "errPasswordConfirm": "The password confirm is not correct. Check it please",
@@ -239,6 +241,7 @@
     "successUploadingImage": "New image updated successfully",
     "successCreateUser": "User added successfully",
     "successChangeRole": "User role updated successfully",
+    "successRemoveFromCart": "Item reomved from the cart successfully",
 
     "warnNoProducts": "There is no products yet"
   }

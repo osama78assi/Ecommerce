@@ -87,7 +87,6 @@ router.post("/update-category", authToken, updateCategoryController);
 router.post("/upload-category", authToken, uploadCategoryController);
 router.post("/add-category", authToken, addCategoryController); // New route for adding categories
 
-
 // product
 router.get("/get-product", getProductController);
 router.get("/get-categoryProduct", getCategoryProduct);

@@ -5,6 +5,7 @@ const addToCart = mongoose.Schema(
     productId: {
       ref: "product",
       type: mongoose.Schema.Types.ObjectId,
+      unique: true,
     },
     quantity: Number,
     userId: {

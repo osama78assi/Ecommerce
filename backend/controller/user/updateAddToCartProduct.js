@@ -7,10 +7,10 @@ const updateAddToCartProduct = async (req, res) => {
 
     const qty = req.body.quantity;
 
-    console.log("AMJAD: " , qty);
+    console.log("AMJAD: " , addToCartProductId);
 
     const updateProduct = await addToCartModel.updateOne(
-      { _id: addToCartProductId },
+      { productId: addToCartProductId },
       {
         ...(qty ? { quantity: qty } : {}),
       }

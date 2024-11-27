@@ -10,7 +10,7 @@ function Home () {
       {/* <CategoryList/> */}
       {/* <BannerProduct/>
        */}
-      <HeaderSlider />
+      {/* <HeaderSlider /> */}
       <Goals />
       <Store />
     </div>

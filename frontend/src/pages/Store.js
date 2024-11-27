@@ -10,7 +10,6 @@ import ErrorComponent from "../components/ui/ErrorComponent";
 
 function Store() {
   const { t, i18n } = useTranslation();
-
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   const [categories, setCategories] = useState([]);
   const [err, setErr] = useState("");
@@ -78,7 +77,7 @@ function Store() {
       if (!error) {
         setCategories(data);
       } else {
-        toast.error(t("message.errGetCategories"));
+        toast.error(t("messages.errGetCategories"));
         console.log(message);
         setErr("Something went wrong");
       }
@@ -228,11 +227,11 @@ function Store() {
           ) : (
             <button
               onClick={() =>
-                i18n.language === "en" ? setPrevPage() : setNextPage()
+                i18n.language === "ar" ? setNextPage() : setPrevPage()
               }
               className="flex items-center rounded-lg bg-primary-900 text-white p-2 hover:bg-primary-700"
             >
-              {i18n.language === "en" ? <FaAngleLeft /> : <FaAngleRight />}
+              {i18n.language === "ar" ? <FaAngleRight /> : <FaAngleLeft />}
               <span>{t("store.prev")}</span>
             </button>
           )}

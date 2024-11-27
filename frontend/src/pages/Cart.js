@@ -46,7 +46,7 @@ function Cart() {
         {/***view product */}
         <div className="w-full max-w-3xl">
           {!isLoading &&
-            data.map((data, index) => {
+            data.map((data) => {
               return (
                 <CartItem data={data.productId} quantity={data.quantity} />
               );
@@ -56,7 +56,7 @@ function Cart() {
         {/***summary  */}
         <div className="mt-5 lg:mt-0 w-full lg:max-w-sm">
           {!isLoading && (
-            <div className="h-36 bg-white">
+            <div className="h-36 bg-white sticky top-[5rem]">
               <h2 className="text-white bg-primary-900 px-4 py-1">
                 {t("cart.summary")}
               </h2>

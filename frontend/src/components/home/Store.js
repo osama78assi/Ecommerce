@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import SummaryApi from "../../common";
+import { getCartProducts } from "../../store/cartSlice";
 import Card from "../store/Card";
 import LoadingCard from "../store/LoadingCard";
 import ErrorComponent from "../ui/ErrorComponent";
@@ -11,6 +13,7 @@ function Store() {
   const { t } = useTranslation();
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [err, setErr] = useState("");
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
   async function getProducts() {
@@ -55,14 +58,26 @@ function Store() {
     getProducts();
   }, []);
 
+  useEffect(() => {
+    dispatch(getCartProducts());
+  }, []);
+
   if (err) {
-    return <ErrorComponent refetchFunction={getProducts} disable={isLoadingProducts} />;
+    return (
+      <ErrorComponent
+        refetchFunction={getProducts}
+        disable={isLoadingProducts}
+      />
+    );
   }
 
   return (
     <>
       <HeaderTag title={t("headers.store")} />
-      <div className="store-container container mx-auto p-8 gap-5 flex flex-wrap" style={{rowGap: "1.5rem"}}>
+      <div
+        className="store-container container mx-auto p-8 gap-5 flex flex-wrap"
+        style={{ rowGap: "1.5rem" }}
+      >
         {isLoadingProducts ? (
           <LoadingCard />
         ) : !isLoadingProducts && !products.length ? (
@@ -70,6 +85,7 @@ function Store() {
         ) : (
           products.map((product) => (
             <Card
+              id={product._id}
               key={product._id}
               images={product.productImage}
               name={product.productName}
