@@ -11,11 +11,10 @@ const allUsers = require("../controller/user/allUsers");
 const updateUser = require("../controller/user/updateUser");
 const uploadProductController = require("../controller/product/uploadProduct");
 const getProducts = require("../controller/product/getProduct");
-const getAllSlidersController = require('../controller/landingPage/getAllLandingPageItems/getAllSliders');
-const getAllVisionsController = require('../controller/landingPage/getAllLandingPageItems/getAllvisions'); 
-const getAllGoalsController = require('../controller/landingPage/getAllLandingPageItems/getAllGoals'); 
-const getAllAboutUsController = require('../controller/landingPage/getAllLandingPageItems/getAllaboutUs');
-
+const getAllSlidersController = require("../controller/landingPage/getAllLandingPageItems/getAllSliders");
+const getAllVisionsController = require("../controller/landingPage/getAllLandingPageItems/getAllvisions");
+const getAllGoalsController = require("../controller/landingPage/getAllLandingPageItems/getAllGoals");
+const getAllAboutUsController = require("../controller/landingPage/getAllLandingPageItems/getAllaboutUs");
 
 //const DeleteProductController = require("../controller/product/deleteProduct");
 const getProductController = require("../controller/product/getProduct");
@@ -47,19 +46,34 @@ const deleteAboutUsController = require("../controller/landingPage/deleteAboutUs
 const addGoalController = require("../controller/landingPage/addGoal");
 const deleteGoalController = require("../controller/landingPage/deleteGoals");
 const uploadProductPermission = require("../helpers/permission");
-const imageUploadController = require('../controller/uploads/imageUploadService');
-const imageUploadService = require('../controller/uploads/imageUploadService');
-const uploadSliderImage = imageUploadService('slider-images');
-const imageVisionUploadService = require('../controller/uploads/visionImageUploadService');
-const uploadVisionImage = imageVisionUploadService('vision-images');
-const DeleteProductController =  require("../controller/product/DeleteProductController");
+const imageUploadController = require("../controller/uploads/imageUploadService");
+const imageUploadService = require("../controller/uploads/imageUploadService");
+const uploadSliderImage = imageUploadService("slider-images");
+const imageVisionUploadService = require("../controller/uploads/visionImageUploadService");
+const uploadVisionImage = imageVisionUploadService("vision-images");
+const aboutUsImageUploadService = require("../controller/uploads/aboutUsImageUploadService")
+const uploadAboutUsImage = aboutUsImageUploadService("aboutus-images");
+const DeleteProductController = require("../controller/product/DeleteProductController");
+const productImageUploadService = require("../controller/uploads/ProductImgUploadService");
+const deleteCategoryController = require("../controller/category/DeleteCategory");
 
-
+router.post(
+  "/upload",
+  authToken,
+  productImageUploadService("product-images"),
+  (req, res) => {
+    res.status(200).json({
+      message: "Images uploaded successfully!",
+      imagePaths: req.imagePaths,
+      error: false,
+      success: true,
+    });
+  }
+);
 
 // Image upload route
 
-
- // Use addCategoryController instead of uploadCategoryController
+// Use addCategoryController instead of uploadCategoryController
 // Signin & signup
 router.post("/signup", userSignUpController);
 router.post("/signin", userSignInController);
@@ -72,20 +86,16 @@ router.get("/all-user", authToken, allUsers);
 router.post("/update-user", authToken, updateUser);
 router.post("/update-product", authToken, updateProductController);
 
-
-
-router.post("/upload-product", authToken , uploadProductController);
+router.post("/upload-product", authToken, uploadProductController);
 router.get("/products", getProducts);
-router.delete("/delete-product/:id", DeleteProductController);
-
-
-
+router.delete("/delete-product/:productId", authToken, DeleteProductController);
 
 // Categories
 router.get("/all-categories", getAllCategoriesController);
 router.post("/update-category", authToken, updateCategoryController);
 router.post("/upload-category", authToken, uploadCategoryController);
 router.post("/add-category", authToken, addCategoryController); // New route for adding categories
+router.delete("/delete-category", authToken, deleteCategoryController)
 
 // product
 router.get("/get-product", getProductController);
@@ -102,44 +112,32 @@ router.get("/view-card-product", authToken, addToCartViewProduct);
 router.post("/update-cart-product", authToken, updateAddToCartProduct);
 router.post("/delete-cart-product", authToken, deleteAddToCartProduct);
 
-
-
 router.post("/add-aboutus", authToken, addAboutUsController);
+router.post("/upload-aboutus-image", authToken, uploadAboutUsImage)
 router.delete("/delete-aboutus/:id", authToken, deleteAboutUsController);
 router.get("/AboutUs", getAllAboutUsController);
-
-
-
 
 router.post("/add-goal", authToken, addGoalController);
 router.delete("/delete-goal/:id", authToken, deleteGoalController);
 router.get("/goals", getAllGoalsController);
 
-
-
-//  
+//
 
 router.post("/add-vision", authToken, addVisionController);
-router.delete("/delete-vision/:id", authToken, deleteAboutUsController);
-router.post('/upload-vision-image', uploadVisionImage);
-router.get('/visions', getAllVisionsController);
+router.delete("/delete-vision/:visionId", authToken, deleteVisionController);
+router.post("/upload-vision-image", authToken, uploadVisionImage);
+router.get("/visions", getAllVisionsController);
 
-
-
-
-
-
-// user slider 
+// user slider
 //router.post("/update-sliderimage", authToken, addSliderController)
 router.post("/add-slider", authToken, addSliderController);
 router.delete("/delete-slider/:id", authToken, deleteSliderController);
 router.get("/sliders", getAllSlidersController);
-router.post('/upload-slider-image', uploadSliderImage);
-
+router.post("/upload-slider-image", authToken, uploadSliderImage);
 
 // User Controls
 router.post("/update-password", authToken, updatePasswordController);
 router.post("/update-email", authToken, updateEmailController);
 router.post("/update-name", authToken, updateNameController);
-router.post("/update-image", authToken, updateImageController)
+router.post("/update-image", authToken, updateImageController);
 module.exports = router;

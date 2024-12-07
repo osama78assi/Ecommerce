@@ -18,17 +18,7 @@ async function updateCategoryController(req, res) {
       throw new Error("Category not found");
     }
 
-    // Update the category's fields if provided
-    if (categoryName) {
-      const existingCategory = await categoryModel.findOne({ categoryName });
-
-      // Prevent updating to a duplicate name
-      if (existingCategory && existingCategory._id.toString() !== categoryId) {
-        throw new Error("A category with this name already exists");
-      }
-
-      category.categoryName = categoryName;
-    }
+    category.categoryName = categoryName;
 
     const updatedCategory = await category.save();
 

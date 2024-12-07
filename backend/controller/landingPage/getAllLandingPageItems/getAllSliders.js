@@ -8,9 +8,10 @@ async function getAllSlidersController(req, res) {
     // Check if there are any sliders
     if (!sliders.length) {
       return res.status(404).json({
+        data: [],
         message: "No sliders found",
-        error: true,
-        success: false,
+        error: false,
+        success: true,
       });
     }
 

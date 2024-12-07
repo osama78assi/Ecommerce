@@ -5,7 +5,7 @@ const path = require("path");
 
 async function deleteVisionController(req, res) {
   try {
-    const visionId = req.params.id; // Get the vision ID from the request URL
+    const visionId = req.params.visionId; // Get the vision ID from the request URL
 
     // Check if the vision ID is provided
     if (!visionId) {

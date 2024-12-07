@@ -1,11 +1,6 @@
 const uploadProductPermission = require("../../helpers/permission");
 const categoryModel = require("../../models/categoryModel");
 
-
-
-
-
-
 async function addCategoryController(req, res) {
   try {
     const sessionUserId = req.userId;

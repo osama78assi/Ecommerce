@@ -9,8 +9,9 @@ async function getAllVisionsController(req, res) {
     if (!visions.length) {
       return res.status(404).json({
         message: "No visions found.",
-        success: false,
-        error: true,
+        success: true,
+        error: false,
+        data:[]
       });
     }
 

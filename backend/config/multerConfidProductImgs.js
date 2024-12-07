@@ -1,4 +1,4 @@
-const multer = require('multer');
+const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
@@ -21,6 +21,6 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // Limit the size to 5MB (adjustable)
-}).array('productImage');
+}).array("productImage", 5);
 
 module.exports = upload;

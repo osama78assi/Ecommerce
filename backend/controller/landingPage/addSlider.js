@@ -1,13 +1,11 @@
 const Slider = require("../../models/landingPageModels/slider");
-const upload = require("../../config/multerConfig");
-const uploadProductPermission = require("../../helpers/permission");
-const multer = require('multer');
+
 
 async function addSliderController(req, res) {
   try {
-    const { id, desc, imgPath } = req.body;
+    const { title, description, imgPath } = req.body;
 
-    if (!Array.isArray(desc)) {
+    if (!Array.isArray(description)) {
       return res.status(400).json({
         message: "Desc must be an array of objects with language and text",
         error: true,
@@ -15,15 +13,18 @@ async function addSliderController(req, res) {
       });
     }
 
-    const existingSlider = await Slider.findOne({ id });
-    if (existingSlider) {
-      throw new Error("Slider with this ID already exists.");
+    if (!Array.isArray(title)) {
+      return res.status(400).json({
+        message: "Desc must be an array of objects with language and text",
+        error: true,
+        success: false,
+      });
     }
 
     const sliderData = new Slider({
-      id,
-      desc,
+      description,
       img: imgPath,
+      title,
     });
 
     const savedSlider = await sliderData.save();

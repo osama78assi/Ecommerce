@@ -1,9 +1,11 @@
+const mongoose = require("mongoose");
 const productModel = require("../../models/productModel");
+const categoryModel = require("../../models/categoryModel");
 
 const getCategoryWiseProduct = async (req, res) => {
   try {
     let { category = "", page = 1, limit = 10 } = req?.body;
-    const query = category ? { category } : {}; // Filter products by category if provided
+    // const query = category ? { category } : {}; // Filter products by category if provided
 
     // Pagination options
     page = parseInt(page, 10);
@@ -14,24 +16,64 @@ const getCategoryWiseProduct = async (req, res) => {
 
     const skip = (page - 1) * limit;
 
-    // Fetch products with pagination
-    const products = await productModel
-      .find(query)
-      .skip(skip)
-      .limit(limit)
-      .sort({ createdAt: -1 });
+    // Validate category ID
+    if (category && !mongoose.Types.ObjectId.isValid(category)) {
+      return res.status(400).json({
+        message: "Invalid category ID",
+        success: false,
+        error: true,
+      });
+    }
+    let products;
+
+    if (category) {
+      // Fetch products with pagination
+      products = await productModel
+        .where("category")
+        .equals(category) // Apply category filter
+        .skip(skip)
+        .limit(limit)
+        .sort({ createdAt: -1 })
+        .exec();
+      console.log("\n\n\n#########\n\n\n", products, "\n\n\n\n#####\n\n\n");
+    } else {
+      products = await productModel
+        .find({})
+        .skip(skip)
+        .limit(limit)
+        .sort({ createdAt: -1 });
+    }
+
+    // Fetch and update category details for each product
+    const updatedProducts = await Promise.all(
+      products.map(async (product) => {
+        const categoryData = await categoryModel.findById(
+          product.category,
+          "categoryName"
+        );
+
+        return {
+          ...product._doc, // Spread the original product fields
+          category: categoryData || null, // Replace the category ID with the category details
+        };
+      })
+    );
 
     // Fetch total counts for each category
     const categoryCounts = await productModel.aggregate([
       { $group: { _id: "$category", count: { $sum: 1 } } },
     ]);
 
+    let query = {};
+    if (category) {
+      query.category = category; // Apply category filter if provided
+    }
     // Total number of products for the current filter
     const totalProducts = await productModel.countDocuments(query);
 
     res.status(200).json({
       data: {
-        products,
+        products: updatedProducts,
         categoryCounts, // Array of categories with counts
         totalProducts,
         currentPage: page,

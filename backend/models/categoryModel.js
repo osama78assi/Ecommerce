@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 
 const categorySchema = mongoose.Schema(
   {
-    categoryName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+    categoryName: [{
+        language: { type: String, required: true },
+        text: { type: String, required: true },
+      }],
   },
   {
     timestamps: true,

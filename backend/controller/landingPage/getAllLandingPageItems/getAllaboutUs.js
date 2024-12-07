@@ -8,9 +8,10 @@ async function getAllAboutUsController(req, res) {
     // Check if there are any About Us entries
     if (aboutUsList.length === 0) {
       return res.status(404).json({
-        success: false,
-        error: true,
+        success: true,
+        error: false,
         message: "No About Us entries found.",
+        data: [],
       });
     }
 
@@ -21,7 +22,6 @@ async function getAllAboutUsController(req, res) {
       data: aboutUsList,
       message: "About Us entries retrieved successfully!",
     });
-
   } catch (err) {
     // Handle any errors that may occur during database interaction
     res.status(500).json({

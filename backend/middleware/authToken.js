@@ -23,7 +23,7 @@ async function authToken(req,res,next){
 
             req.userId = decoded?._id
 
-            next()
+            next();
         });
 
 

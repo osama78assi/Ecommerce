@@ -4,15 +4,23 @@ const categoryModel = require("../../models/categoryModel"); // The Category mod
 async function uploadCategoryController(req, res) {
   try {
     const sessionUserId = req.userId;
-         
     if (!uploadProductPermission(sessionUserId)) {
       throw new Error("Permission denied");
     }
 
     const { categoryName } = req.body;
 
-    // Check if the category already exists
-    const existingCategory = await categoryModel.findOne({ categoryName });
+    let existingCategory = false;
+
+    // Check for duplicate category names
+    for (let i = 0; i < 3; ++i) {
+      const isExist = await categoryModel.findOne({
+        categoryName: {
+          $elemMatch: { text: categoryName[i].text },
+        },
+      });
+      existingCategory = existingCategory || isExist;
+    }
 
     if (existingCategory) {
       throw new Error("Category already exists");

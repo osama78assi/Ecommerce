@@ -1,5 +1,5 @@
 // services/visionImageUploadService.js
-const upload = require('../../config/multerConfigVision'); // Assuming you have a dedicated multer config for vision images
+const upload = require('../../config/multerConfigVision');
 
 const visionImageUploadService = (destination) => {
     return async (req, res) => {
