@@ -22,7 +22,6 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(e);
-    console.log(data);
     // Send request
 
     // try {

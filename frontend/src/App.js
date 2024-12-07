@@ -1,6 +1,6 @@
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -8,14 +8,17 @@ import Footer from "./components/ui/Footer";
 import Header from "./components/ui/Header";
 // import Context from "./context";
 import { useTranslation } from "react-i18next";
+import useScrollToTop from "./hooks/useScrollToTop";
 import FullPageLoading from "./pages/FullPageLoading";
 import { fetchCurrentUser } from "./store/userSlice";
 
 function App() {
+  const loc = useLocation();
   const dispatch = useDispatch();
+  useScrollToTop();
   const isLoadingUser = useSelector((state) => state.user.isLoading);
-  // const [cartProductCount, setCartProductCount] = useState(0);
   const { i18n } = useTranslation();
+  const [renderFooter, setRenderFooter] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -30,37 +33,13 @@ function App() {
     document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
   }, [i18n.language]); // Runs on language change
 
-  // const fetchUserDetails = async () => {
-  //   try {
-  //     const dataResponse = await fetch(SummaryApi.current_user.url, {
-  //       method: SummaryApi.current_user.method,
-  //       credentials: "include",
-  //     });
-
-  //     const dataApi = await dataResponse.json();
-
-  //     if (dataApi.success) {
-  //       dispatch(setUserDetails(dataApi.data));
-  //     }
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
-
-  // const fetchUserAddToCart = async () => {
-  //   try {
-  //     const dataResponse = await fetch(SummaryApi.addToCartProductCount.url, {
-  //       method: SummaryApi.addToCartProductCount.method,
-  //       credentials: "include",
-  //     });
-
-  //     const dataApi = await dataResponse.json();
-
-  //     setCartProductCount(dataApi?.data?.count);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
+  useEffect(() => {
+    if (loc && loc.pathname.search(/(admin-panel|profile)/) !== -1) {
+      setRenderFooter(false);
+      return;
+    }
+    setRenderFooter(true);
+  }, [loc]);
 
   if (isLoadingUser) {
     return <FullPageLoading />;
@@ -68,21 +47,13 @@ function App() {
 
   return (
     <Suspense fallback={<FullPageLoading />}>
-      {/* <Context.Provider
-        value={{
-          fetchUserDetails, // user detail fetch
-          cartProductCount, // current user add to cart product count,
-          fetchUserAddToCart,
-        }}
-      > */}
       <ToastContainer position="top-center" />
 
       <Header />
       <main className="min-h-[calc(100dvh-120px)]">
         <Outlet />
       </main>
-      <Footer />
-      {/* </Context.Provider> */}
+      {renderFooter && <Footer />}
     </Suspense>
   );
 }

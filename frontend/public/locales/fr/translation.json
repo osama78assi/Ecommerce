@@ -1,3 +1,394 @@
 {
-  
+  "SEO": {
+    "titles": {
+      "home": "Bienvenue - Association Al-Sakhra",
+      "aboutus": "À propos - Association Al-Sakhra",
+      "vision": "Vision - Association Al-Sakhra",
+      "cart": "Panier - Association Al-Sakhra",
+      "signup": "Inscription - Association Al-Sakhra",
+      "search": "Résultats de recherche - Association Al-Sakhra",
+      "profile": "Profil - Association Al-Sakhra",
+      "store": "Magasin - Association Al-Sakhra",
+      "adminPanel": "Tableau de bord - Association Al-Sakhra",
+      "login": "Se connecter - Association Al-Sakhra",
+      "detailsProduct": "Détails du produit - Association Al-Sakhra"
+    }
+  },
+  "navbar": {
+    "home": "Accueil",
+    "aboutUs": "À propos de nous",
+    "vision": "Vision",
+    "login": "Se connecter",
+    "profile": "Profil",
+    "adminPanel": "Panneau d'administration",
+    "cart": "Panier",
+    "store": "Magasin",
+    "searchPlaceholder": "Rechercher un produit ici..."
+  },
+  "headers": {
+    "goals": "Objectifs",
+    "store": "Magasin"
+  },
+  "aboutUs": {
+    "title": "Quelques mots sur nous"
+  },
+  "footer": {
+    "contactWithUs": "Contactez-nous",
+    "quickLinks": "Liens rapides",
+    "rights": "Tous les droits réservés à l'Association Al-Sakhra"
+  },
+  "cart": {
+    "addToBtn": "Ajouter au panier",
+    "removeFromBtn": "Retirer du panier",
+    "noData": "Aucune donnée",
+    "summary": "Résumé",
+    "quantity": "Quantité",
+    "totalPrice": "Prix total"
+  },
+  "search": {
+    "results": "Résultats de recherche : ",
+    "noData": "Aucune donnée trouvée..."
+  },
+  "store": {
+    "filterCategoryTitle": "Filtrer par catégorie",
+    "categorySelect": "Sélectionner la catégorie",
+    "next": "Page suivante",
+    "prev": "Page précédente",
+    "showDetailsBtn": "Voir les détails"
+  },
+  "productDetails": {
+    "description": "Description : "
+  },
+  "admin": {
+    "users": "Utilisateurs",
+    "products": "Produits",
+    "categories": "Catégories",
+    "slider": "Sections du slider",
+    "aboutUs": "Sections à propos de nous",
+    "vision": "Sections vision",
+    "goals": "Sections objectifs"
+  },
+  "forms": {
+    "profile": {
+      "emailField": {
+        "label": "Entrez le nouvel e-mail",
+        "placeholder": "Nouvel e-mail",
+        "confirmChange": "Mettre à jour l'e-mail ?"
+      },
+      "imageField": {
+        "confirmChange": "Changer l'image ?"
+      },
+      "nameField": {
+        "label": "Entrez le nouveau nom",
+        "placeholder": "Nouveau nom",
+        "confirmChange": "Mettre à jour le nom ?"
+      },
+      "oldPasswordField": {
+        "label": "Confirmer l'ancien mot de passe",
+        "placeholder": "Confirmer le mot de passe",
+        "confirmChange": "Mettre à jour le mot de passe ?"
+      },
+      "newPasswordField": {
+        "label": "Entrez le nouveau mot de passe",
+        "placeholder": "Entrez le nouveau mot de passe"
+      },
+      "changeEmailTitle": "Changer l'e-mail",
+      "changeNameTitle": "Changer le nom d'utilisateur",
+      "changePasswordTitle": "Changer le mot de passe",
+      "confirm": "Confirmer",
+      "logoutBtn": "Se déconnecter"
+    },
+    "admin": {
+      "nameField": {
+        "label": "Nom : ",
+        "placeholder": "entrer le nom"
+      },
+      "emailField": {
+        "label": "Email : ",
+        "placeholder": "entrer l'email"
+      },
+      "passwordField": {
+        "label": "Mot de passe : ",
+        "placeholder": "entrer le mot de passe"
+      },
+      "confirmPasswordField": {
+        "label": "Confirmer le mot de passe : ",
+        "placeholder": "entrer la confirmation du mot de passe"
+      },
+      "productNameField": {
+        "label": "Nom du produit (Anglais) :",
+        "placeholder": "entrer le nom du produit (Anglais)"
+      },
+      "productNameFieldAR": {
+        "label": "Nom du produit (Arabe) :",
+        "placeholder": "entrer le nom du produit (Arabe)"
+      },
+      "productNameFieldFR": {
+        "label": "Nom du produit (Français) :",
+        "placeholder": "entrer le nom du produit (Français)"
+      },
+      "categoryField": {
+        "label": "Catégorie :",
+        "defaultOption": "Sélectionner la catégorie"
+      },
+      "imagesProductField": {
+        "label": "Images du produit : "
+      },
+      "priceField": {
+        "label": "Prix :",
+        "placeholder": "entrer le prix"
+      },
+      "sellingPriceField": {
+        "label": "Prix de vente :",
+        "placeholder": "entrer le prix de vente"
+      },
+      "descriptionField": {
+        "label": "Description (Anglais) :",
+        "placeholder": "entrer la description du produit (Anglais)"
+      },
+      "descriptionFieldAR": {
+        "label": "Description (Arabe) :",
+        "placeholder": "entrer la description du produit (Arabe)"
+      },
+      "descriptionFieldFR": {
+        "label": "Description (Français) :",
+        "placeholder": "entrer la description du produit (Français)"
+      },
+      "selectRoleField": {
+        "label": "Sélectionner le rôle"
+      },
+      "categoryNameField": {
+        "label": "Entrer le nom de la catégorie (Anglais) : ",
+        "placeholder": "Nom de la catégorie (Anglais)"
+      },
+      "categoryNameFieldAR": {
+        "label": "Entrer le nom de la catégorie (Arabe) : ",
+        "placeholder": "Nom de la catégorie (Arabe)"
+      },
+      "categoryNameFieldFR": {
+        "label": "Entrer le nom de la catégorie (Français) : ",
+        "placeholder": "Nom de la catégorie (Français)"
+      },
+      "imgsSliderField": {
+        "label": "Sélectionner l'image du slider : "
+      },
+      "imgsVisionField": {
+        "label": "Sélectionner l'image de la vision : "
+      },
+      "imgsAboutusField": {
+        "label": "Sélectionner l'image à propos de nous : "
+      },
+      "interpolationFields": {
+        "title": {
+          "label": "Entrer le titre de {{section}} ({{lang}}) : ",
+          "placeholder": "Titre de {{section}} ({{lang}})"
+        },
+        "description": {
+          "label": "Entrer la description de {{section}} ({{lang}}) : ",
+          "placeholder": "Description de {{section}} ({{lang}})"
+        }
+      },
+      "interpolationKeyword": {
+        "vision": "vision",
+        "goal": "Objectif",
+        "aboutus": "à propos de nous",
+        "slider": "slider",
+        "en": "Anglais",
+        "ar": "Arabe",
+        "fr": "Français"
+      },
+      "imagesField": {
+        "label": "Téléchargez les images en les glissant et déposant ici"
+      },
+      "addUserBtn": "Ajouter l'utilisateur",
+      "addCategoryBtn": "Ajouter la catégorie",
+      "editProductBtn": "Modifier le produit",
+      "uploadProductBtn": "Télécharger le produit",
+      "editRoleBtn": "Changer de rôle",
+      "uploadSliderBtn": "Télécharger l'élément du slider",
+      "uploadVisionBtn": "Télécharger l'élément de la vision",
+      "uploadAboutUsBtn": "Télécharger la section à propos de nous",
+      "uploadGoalBtn": "Télécharger l'élément de l'objectif",
+      "updateCategory": "Mettre à jour la catégorie",
+      "roleTitle": "Changer le rôle de l'utilisateur",
+      "nameLabel": "Nom : ",
+      "emailLabel": "Email : ",
+      "roleLabel": "Rôle :",
+      "uploadBtnUserTitle": "Tous les utilisateurs",
+      "uploadProductTitle": "Tous les produits",
+      "uploadCategoryTitle": "Toutes les catégories",
+      "uploadSliderTitle": "Tous les sliders",
+      "uploadVisionTitle": "Toutes les visions",
+      "uploadGoalsTitle": "Tous les objectifs",
+      "uploadAboutUsTitle": "Toutes les informations à propos de nous",
+      "uploadBtnUserOpen": "Ajouter un utilisateur",
+      "uploadBtnProductOpen": "Télécharger un produit",
+      "uploadBtnCategoryOpen": "Télécharger une catégorie",
+      "uploadBtnSliderOpen": "Télécharger un élément du slider",
+      "uploadVisionOpen": "Télécharger un élément de la vision",
+      "uploadAboutUsOpen": "Télécharger la section à propos de nous",
+      "uploadGoalOpen": "Télécharger un élément de l'objectif"
+    },
+    "login": {
+      "emailField": {
+        "label": "E-mail :",
+        "placeholder": "entrez l'e-mail"
+      },
+      "passwordField": {
+        "label": "Mot de passe :",
+        "placeholder": "entrez le mot de passe"
+      },
+      "loginBtn": "Se connecter",
+      "signupBtn": "S'inscrire",
+      "askAccount": "Vous n'avez pas de compte ? "
+    },
+    "signup": {
+      "nameField": {
+        "label": "Nom : ",
+        "placeholder": "entrez votre nom"
+      },
+      "emailField": {
+        "label": "E-mail : ",
+        "placeholder": "entrez l'e-mail"
+      },
+      "passwordField": {
+        "label": "Mot de passe : ",
+        "placeholder": "entrez le mot de passe"
+      },
+      "confirmPasswordField": {
+        "label": "Confirmer le mot de passe : ",
+        "placeholder": "entrez le mot de passe de confirmation"
+      },
+      "signupBtn": "S'inscrire",
+      "askAccount": "Vous avez déjà un compte ? ",
+      "loginBtn": "Se connecter"
+    }
+  },
+  "tables": {
+    "allUsers": {
+      "name": "Nom",
+      "email": "E-mail",
+      "role": "Rôle",
+      "createdAt": "Date de création"
+    },
+    "allCategories": {
+      "arabicName": "Nom en arabe",
+      "englishName": "Nom en anglais",
+      "frenchName": "Nom en français"
+    },
+    "common": {
+      "image": "Image",
+      "count": "Nombre",
+      "action": "Actions",
+      "titleEN": "Titre (Anglais)",
+      "titleAR": "Titre (Arabe)",
+      "titleFR": "Titre (Français)",
+      "descEN": "Description (Anglais)",
+      "descAR": "Description (Arabe)",
+      "descFR": "Description (Français)"
+    }
+  },
+  "messages": {
+    "yes": "Oui",
+    "no": "Non",
+    "confirmQuestion1": "Êtes-vous sûr de vouloir",
+    "confirmQuestion2": "Cette action ne peut pas être annulée",
+    "confirmRemoveFromCart": "Supprimer l'article du panier",
+    "confirmDeleteProduct": "Supprimer définitivement le produit",
+    "confirmDeleteCategory": "Supprimer la catégorie définitivement ? Cela entraînera la suppression de tous les produits associés",
+    "confirmDeleteSlider": "Supprimer les données du slider",
+    "confirmDeleteGoal": "Supprimer les données de l'objectif",
+    "confirmDeleteVision": "Supprimer les données de la vision",
+    "confirmDeleteAboutus": "Supprimer la section À propos",
+
+    "errSpecialNameChars": "Le nom ne doit pas inclure de caractères spéciaux",
+    "errPasswordConfirm": "La confirmation du mot de passe n'est pas correcte. Veuillez vérifier",
+    "errBigImage": "L'image est plus grande que 5 Mo. Veuillez choisir une autre image",
+    "errProductImg": "Veuillez télécharger l'image du produit",
+    "errUploadingImage": "Une erreur est survenue lors de la mise à jour de l'image. Essayez à nouveau",
+    "errUsernameReq": "Ajoutez d'abord un nom d'utilisateur",
+    "errUsernameLong": "Le nom d'utilisateur est trop long",
+    "errUsernameSame": "Le nom d'utilisateur est le même. Veuillez le changer",
+    "errUnkown": "Une erreur est survenue. Essayez à nouveau",
+    "errOldPasswordReq": "Vous devez confirmer votre ancien mot de passe",
+    "errNewPasswordReq": "Vous devez ajouter le nouveau mot de passe",
+    "genericErr": {
+      "title": "Une erreur est survenue lors de la récupération des données.",
+      "btnTitle": "Cliquez ici pour recharger"
+    },
+    "errCartCount": "Une erreur est survenue lors de la récupération du nombre d'articles dans le panier. Essayez à nouveau",
+    "errDeleteCartItem": "Impossible de supprimer l'article du panier. Essayez à nouveau",
+    "errGetCartProducts": "Impossible de récupérer les produits du panier. Essayez à nouveau",
+    "errUpdateQuantity": "Impossible de mettre à jour la quantité de l'article. Essayez à nouveau",
+    "errAddItemToCart": "Impossible d'ajouter l'article au panier. Essayez à nouveau",
+    "errNoUserLoggedin": "Aucun utilisateur n'est connecté",
+    "errProductNameLong": "Le nom du produit est trop long",
+    "errCategoryNameLong": "Le nom de la catégorie est trop long",
+    "errGetCategories": "Échec de la récupération des catégories",
+    "errCategoryNotFound": "Catégorie requise introuvable",
+    "errGetProducts": "Échec de la récupération des produits",
+    "errGetAboustUs": "Échec de la récupération des données de la section À propos",
+    "errGetVision": "Échec de la récupération des données de la vision",
+    "errGetSlider": "Échec de la récupération des données du slider",
+    "errGetGoals": "Échec de la récupération des données des objectifs",
+    "errDeleteProduct": "Échec de la suppression des données du produit. Essayez à nouveau",
+    "errUploadProductImgs": "Échec du téléchargement des images du produit. Essayez à nouveau",
+    "errUploadProductData": "Échec du téléchargement des données du produit. Essayez à nouveau",
+    "errOnlyArabic": "Seuls les caractères arabes, les chiffres et les espaces sont acceptés",
+    "errOnlyFrench": "Seuls les caractères français, les chiffres et les espaces sont acceptés",
+    "errOnlyEnglish": "Seuls les caractères anglais, les chiffres et les espaces sont acceptés",
+    "errUploadCategory": "Échec du téléchargement des données de la catégorie. Essayez à nouveau",
+    "errExistCategory": "Le nom de la catégorie existe déjà",
+    "errTitleLong": "Le titre est trop long",
+    "errSliderImage": "Veuillez sélectionner une image",
+    "errUploadSliderImage": "Échec du téléchargement de l'image du slider. Essayez à nouveau",
+    "errUploadSliderData": "Échec du téléchargement des données du slider. Essayez à nouveau",
+    "errAddAllTranslationTitle": "Ajoutez toutes les traductions pour le titre ou ne rajoutez pas de titre",
+    "errAddAllTranslationDesc": "Ajoutez toutes les traductions pour la description ou ne rajoutez pas de description",
+    "errDeleteSlider": "Échec de la suppression des données du slider. Essayez à nouveau",
+    "errDeleteGoal": "Échec de la suppression de l'objectif. Essayez à nouveau",
+    "errAddGoal": "Échec de l'ajout de l'objectif. Essayez à nouveau",
+    "errDeleteVision": "Échec de la suppression de la vision. Essayez à nouveau",
+    "errVisionImage": "Veuillez télécharger l'image de la vision",
+    "errVisionUploadImage": "Échec du téléchargement de l'image de la vision. Essayez à nouveau",
+    "errUploadingVision": "Échec du téléchargement des données de la vision. Essayez à nouveau",
+    "errDeleteAboutusSection": "Échec de la suppression de la section À propos. Essayez à nouveau",
+    "errUploadAboutusImage": "Échec du téléchargement de l'image de la section À propos. Essayez à nouveau",
+    "errUploadAboutusSection": "Échec du téléchargement des données de la section À propos. Essayez à nouveau",
+    "errAboutusImage": "Veuillez télécharger l'image de la section À propos",
+    "errLogin": "Échec de la connexion. Essayez à nouveau",
+    "errSignup": "Échec de la création du compte. Essayez à nouveau",
+    "errLogout": "Échec de la déconnexion. Essayez à nouveau",
+    "errAddToCart": "Échec de l'ajout de l'article au panier. Essayez à nouveau",
+    "errChangeRole": "Échec du changement de rôle de l'utilisateur. Essayez à nouveau",
+
+    "successUploadingImage": "Nouvelle image mise à jour avec succès",
+    "successCreateUser": "Utilisateur ajouté avec succès",
+    "successChangeRole": "Rôle de l'utilisateur mis à jour avec succès",
+    "successRemoveFromCart": "Article supprimé du panier avec succès",
+    "successDeleteProduct": "Produit supprimé avec succès",
+    "successUploadProductData": "Données du produit téléchargées avec succès",
+    "successUploadCategory": "Catégorie téléchargée avec succès",
+    "successDeleteCategory": "La catégorie et ses produits associés ont été supprimés avec succès",
+    "successAddToCart": "Ajouté au panier avec succès",
+    "successUploadSliderData": "Slider ajouté avec succès",
+    "successDeleteSlider": "Slider supprimé avec succès",
+    "successDeleteGoal": "Objectif supprimé avec succès",
+    "successAddGoal": "Objectif ajouté avec succès",
+    "successDeleteVision": "Vision supprimée avec succès",
+    "successAddVision": "Vision ajoutée avec succès",
+    "successDeleteAboutus": "Section À propos supprimée avec succès",
+    "successAddAboutusSection": "Section À propos ajoutée avec succès",
+    "successLogin": "Connecté avec succès",
+    "successSignup": "Compte créé avec succès",
+    "successLogout": "Déconnecté avec succès",
+
+    "warnNoProducts": "Il n'y a pas encore de produits",
+    "warnNoData": "Il n'y a pas encore de données",
+    "warnUploadProduct": "Veuillez ne pas fermer la fenêtre modale ni recharger la page. Téléchargement des données du produit en cours",
+    "warnUploadSliderImage": "Veuillez ne pas fermer la fenêtre modale ni recharger la page. Téléchargement des données du slider en cours",
+    "warnUploadVisionImage": "Veuillez ne pas fermer la fenêtre modale ni recharger la page. Téléchargement des données de la vision en cours",
+    "warnUploadAboutusImage": "Veuillez ne pas fermer la fenêtre modale ni recharger la page. Téléchargement des données de la section À propos en cours",
+    "warnLimitGoals": "Vous ne pouvez pas ajouter plus de 3 objectifs"
+  }
 }

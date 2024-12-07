@@ -1,4 +1,19 @@
 {
+  "SEO" : {
+    "titles": {
+      "home": "مرحباً - جمعية الصخرة",
+      "aboutus": "حول - جمعية الصخرة",
+      "vision": "الرؤية - جمعية الصخرة",
+      "cart": "السلة - جمعية الصخرة",
+      "signup": "انشاء حساب - جمعية الصخرة",
+      "search": "نتائج البحث - جمعية الصخرة",
+      "profile": "الملف الشخصي - جمعية الصخرة",
+      "store": "المتجر - جمعية الصخرة",
+      "adminPanel": "لوحة التحكم - جمعية الصخرة",
+      "login": "تسجيل الدخول - جمعية الصخرة",
+      "detailsProduct": "معلومات المنتج - جمعية الصخرة"
+    }
+  },
   "navbar": {
     "home": "الصفحة الرئيسية",
     "aboutUs": "من نحن",
@@ -38,7 +53,11 @@
     "filterCategoryTitle": "تصفية عن طريق الفئات",
     "categorySelect": "اختار الفئة",
     "next": "الصفحة التالية",
-    "prev": "الصفحة السابقة"
+    "prev": "الصفحة السابقة",
+    "showDetailsBtn": "رؤية التفاصيل"
+  },
+  "productDetails": {
+    "description": "الوصف: "
   },
   "admin": {
     "users": "المستخدمين",
@@ -98,16 +117,23 @@
         "placeholder": "تاكيد كلمة المرور"
       },
       "productNameField": {
-        "label": "اسم المنتج : ",
-        "placeholder": "ادخل اسم المنتج"
+        "label": "اسم المنتج (انجليزي): ",
+        "placeholder": "ادخل اسم المنتج (انجليزي)"
+      },
+      "productNameFieldAR": {
+        "label": "اسم المنتج (عربي): ",
+        "placeholder": "ادخل اسم المنتج (عربي)"
+      },
+      "productNameFieldFR": {
+        "label": "اسم المنتج (فرنسي): ",
+        "placeholder": "ادخل المنتج (فرنسي)"
       },
       "categoryField": {
         "label": "الفئة : ",
         "defaultOption": "قم باختيار الفئة"
       },
-      "imagesField": {
-        "outerLabel": "صورة المنتج : ",
-        "innerLabel": "قم برفع الصور من خلال سحبهم وافلاتهم هنا"
+      "imagesProductField": {
+        "label": "اختار صور للمنتج: "
       },
       "priceField": {
         "label": "السعر : ",
@@ -118,15 +144,65 @@
         "placeholder": "ادخل سعر المبيع"
       },
       "descriptionField": {
-        "label": "الوصف : ",
-        "placeholder": "ادخل وصف المنتج"
+        "label": "الوصف (نجليزية): ",
+        "placeholder": "ادخل وصف المنتج (انجليزية)"
+      },
+      "descriptionFieldAR": {
+        "label": "الوصف (عربية): ",
+        "placeholder": "ادخل وصف المنتج (عربية)"
+      },
+      "descriptionFieldFR": {
+        "label": "الوصف (فرنسية): ",
+        "placeholder": "ادخل وصف المنتج (فرنسية)"
       },
       "selectRoleField": {
         "label": "اختيار الدور"
       },
       "categoryNameField": {
-        "label": "ادخل اسم الفئة: ",
-        "placeholder": "اسم الفئة"
+        "label": "ادخل اسم الفئة (انجليزي): ",
+        "placeholder": "اسم الفئة (انجليزي)"
+      },
+      "categoryNameFieldAR": {
+        "label": "ادخل اسم الفئة (عربي): ",
+        "placeholder": "اسم الفئة (عربي)"
+      },
+      "categoryNameFieldFR": {
+        "label": "ادخل اسم الفئة (فرنسي): ",
+        "placeholder": "اسم الفئة (فرنسي)"
+      },
+      "imgsSliderField": {
+        "label": "اختار صورة للشريحة: "
+      },
+      "imgsVisionField": {
+        "label": "اختار صورة للرؤية: "
+      },
+      "imgsAboutusField": {
+        "label": "اختار صورة للفقرة"
+      },
+
+      "interpolationFields": {
+        "title": {
+          "label": "ادخل عنوان {{section}} ({{lang}}): ",
+          "placeholder": "عنوان {{section}} ({{lang}})"
+        },
+        "description": {
+          "label": "ادخل وصف {{section}} ({{lang}}): ",
+          "placeholder": "وصف {{section}} ({{lang}})"
+        }
+      },
+
+      "interpolationKeyword": {
+        "vision": "الرؤية",
+        "goal": "الهدف",
+        "aboutus": "فقرة المعلومات عنا",
+        "slider": "الشريحة",
+        "en":"انجليزي",
+        "ar": "عربي",
+        "fr":"فرنسي"
+      },
+
+      "imagesField": {
+        "label": "اختار الصور من خلال سحبهم وافلاتهم هنا"
       },
 
       "addUserBtn": "إضافة المستخدم",
@@ -135,6 +211,12 @@
       "editProductBtn": "تعديل المنتج",
       "uploadProductBtn": "رفع منتج",
       "editRoleBtn": "تغير الصلاحية",
+      "uploadSliderBtn": "اضافة الشريحة",
+      "uploadVisionBtn": "اضافة الرؤية",
+      "uploadAboutUsBtn": "اضافة المعلومة",
+      "uploadGoalBtn": "اضافة الهدف",
+
+      "updateCategory": "تعديل الفئة",
 
       "roleTitle": "تغير صلاحية المستخدم",
       "nameLabel": "الاسم : ",
@@ -144,10 +226,18 @@
       "uploadBtnUserTitle": "جميع المستخدمين",
       "uploadProductTitle": "كل المنتجات",
       "uploadCategoryTitle": "جميع الفئات",
+      "uploadSliderTitle": "جميع الشرائح",
+      "uploadVisionTitle": "جميع الرؤية",
+      "uploadGoalsTitle": "جميع الاهداف",
+      "uploadAboutUsTitle": "جميع المعلومات عنا",
 
       "uploadBtnUserOpen": "إضافة مستخدم",
       "uploadBtnProductOpen": "رفع المنتج",
-      "uploadBtnCategoryOpen": "إضافة فئة"
+      "uploadBtnCategoryOpen": "إضافة فئة",
+      "uploadBtnSliderOpen": "اضافة شريحة",
+      "uploadVisionOpen": "اضافة رؤية",
+      "uploadAboutUsOpen": "اضافة معلومة عنا",
+      "uploadGoalOpen": "اضافة هدف"
     },
     "login": {
       "emailField": {
@@ -189,18 +279,26 @@
 
   "tables": {
     "allUsers": {
-      "count": "الرقم",
       "name": "الاسم",
       "email": "البريد الالكتروني",
       "role": "الصلاحية",
-      "createdAt": "تاريخ الانشاء",
-      "action": "التحكم"
+      "createdAt": "تاريخ الانشاء"
     },
     "allCategories": {
-      "count": "الرقم",
       "arabicName": "الاسم العربي",
       "englishName": "الاسم الانجليزي",
       "frenchName": "الاسم الفرنسي"
+    },
+    "common": {
+      "image": "الصورة",
+      "count": "الرقم",
+      "action": "التحكم",
+      "titleEN": "العنوان (انجليزي)",
+      "titleAR": "العنوان (عربي)",
+      "titleFR": "العنوان (فرنسي)",
+      "descEN": "الوصف (انجليزي)",
+      "descAR": "الوصف (عربي)",
+      "descFR": "الوصف (فرنسي)"
     }
   },
 
@@ -210,7 +308,12 @@
     "confirmQuestion1": "هل أنت متأكد من ",
     "confirmQuestion2": "لا يمكن التراجع عن هذه العملية ",
     "confirmRemoveFromCart": "ازالة العنصر من السلة",
-
+    "confirmDeleteProduct": "حذف المنتج بشكل دائم",
+    "confirmDeleteCategory": "حذف الفئة بشكل نهائي ؟ هذا سيؤدي الى حذف جميع المنتجات المرتبطة بهذه الفئة",
+    "confirmDeleteSlider": "حذف بيانات الشريحة",
+    "confirmDeleteGoal": "حذف بيانات الهدف",
+    "confirmDeleteVision": "حذف بيانات الرؤية",
+    "confirmDeleteAboutus": "حذف فقرة المعلومات عنا",
 
     "errSpecialNameChars": "لا يجب ان يحتوي الاسم على احرف مميزة",
     "errPasswordConfirm": "تأكيد كلمة المرور غير صحيح يرجى التأكد منه",
@@ -236,15 +339,71 @@
     "errProductNameLong": "اسم المنتج طويل جداً",
     "errCategoryNameLong": "اسم الفئة طويل جداً",
     "errGetCategories": "فشل في تحميل الفئات",
-    "errCategoryNotFound": "لا يوجد فئة بالاسم {{category}}",
+    "errCategoryNotFound": "الفئة المطلوبة غير موجودة",
     "errGetProducts": "فشل في تحميل المنتجات",
+    "errGetAboustUs": "فشل في تحميل البيانات الخاصة بالمعلومات عنا",
+    "errGetVision": "فشل في تحميل البيانات الخاصة بالرؤية",
+    "errGetSlider": "فشل في تحميل البيانات الخاصة بالمعرض",
+    "errGetGoals": "فشل في تحميل البيانات الخاصة بالاهداف",
+    "errDeleteProduct": "فشل في حذف المنتج. حاول مرة اخرى",
+    "errUploadProductImgs": "فشل في رفع صور المنتج. الرجاء المحاولة مرة اخرى",
+    "errUploadProductData": "فشل في رفع بيانات المنتج، الرجاء المحاولة مرة اخرى",
+    "errOnlyArabic": "فقط الاحرف العربية والارقام والمسافات مقبولة",
+    "errOnlyFrench": "فقط الاحرف الفرنسية والارقام والمسافات مقبولة",
+    "errOnlyEnglish": "فقط الاحرف الانجليزية والارقام والمسافات مقبولة",
+    "errUploadCategory": "فشل في رفع بيانات الفئة الرجاء المحاولة مرة اخرى",
+    "errExistCategory": "اسم الفئة موجود بالفعل",
+    "errTitleLong": "العنوان طويل جداً",
+
+    "errSliderImage": "الرجاء اختيار صورة",
+    "errUploadSliderImage": "فشل في رفع صورة الشريحة الرجاء المحاولة مرة اخرى",
+    "errUploadSliderData": "فشل في رفع بيانات الشريحة الرجاء المحاولة مرة اخرى",
+    "errAddAllTranslationTitle": "يجب ان تضيف كل الترجمات للعنوان او لا تضيف عنوان",
+    "errAddAllTranslationDesc": "يجب ان تضيف كل الترجمات للوصف او لا تضيف وصف",
+    "errDeleteSlider": "فشل في حذف بيانات الشريحة الرجاء المحاولة مرة اخرى",
+    "errDeleteGoal": "فشل في حذف الهدف الرجاء المحاولة مرة اخرى",
+    "errAddGoal": "فشل في اضافة الهدف الرجاء المحاولة مرة اخرى",
+    "errDeleteVision": "فشل في حذف الرؤية الرجاء المحاولة مرة اخرى",
+    "errVisionImage": "الرجاء رفع صورة للرؤية",
+    "errVisionUploadImage": "فشل في رفع صورة الرؤية الرجاء المحاولة مرة اخرى",
+    "errUploadingVision": "فشل في رفع بيانات الرؤية الرجاء المحاولة مرة اخرى",
+    "errDeleteAboutusSection": "فشل في حذف فقرة من المعلومات عنا الرجاء المحاولة مرة اخرى",
+    "errUploadAboutusImage": "فشل في رفع صورة فقرة المعلومات عنا الرجاء المحاولة مرة اخرى",
+    "errUploadAboutusSection": "فشل في رفع فقرة من المعلومات عنا الرجاءالمحاولة مرة اخرى",
+    "errAboutusImage": "الرجاء رفع صورة للفقرة",
+    "errLogin": "فشل تسجيل الدخول الرجاء المحاولة مرة اخرى",
+    "errSignup": "فشل في انشاء الحساب الرجاء المحاولة مرة اخرى",
+    "errLogout": "فشل في تسجل الخروج الرجاء المحاولة مرة اخرى",
+    "errAddToCart": "فشل في اضافة العنصر الى السلة الرجاء المحاولة مرة اخرى",
+    "errChangeRole": "فشل في تغير دور المستخدم الرجاء المحاولة مرة اخرى",
 
     "successUploadingImage": "تم تحديث الصورة بنجاح",
     "successCreateUser": "تمت اضافة مستخدم بنجاح",
     "successChangeRole": "تم تعديل صلاحية المستخدم بنجاح",
     "successRemoveFromCart": "تمت ازالة المنتج من السلة بنجاح",
+    "successDeleteProduct": "تم حذف المنتج بنجاح",
+    "successUploadProductData": "تمت اضافة المنتج بنجاح",
+    "successUploadCategory": "تمت اضافة الفئة بنجاح",
+    "successDeleteCategory": "نم حذف الفئة مع المنتجات المرتبطة بها بنجاح",
+    "successAddToCart": "تمت اضافة المنتج الى السلة بنجاح",
+    "successUploadSliderData": "تمت اضافة الشريحة بنجاح",
+    "successDeleteSlider": "تم حذف الشريحة بنجاح",
+    "successDeleteGoal": "تم حذف الهدف بنجاح",
+    "successAddGoal": "تمت اضافة الهدف بنجاح",
+    "successDeleteVision": "تم حذف الرؤية بنجاح",
+    "successAddVision": "تم اضافة رؤية بنجاح",
+    "successDeleteAboutus": "تم حذف فقرة من المعلومات عنا بنجاح",
+    "successAddAboutusSection": "تمت اضافة فقرة معلومات عنا بنجاح",
+    "successLogin": "تم تسجل الدخول بنجاح",
+    "successSignup": "تم انشاء الحساب بنجاح",
+    "successLogout": "تم تسجيل الخروج بنجاح",
 
-
-    "warnNoProducts": "لم يتم اضافة منتجات بعد"
+    "warnNoProducts": "لم يتم اضافة منتجات بعد",
+    "warnNoData": "لا يوجد بيانات بعد",
+    "warnUploadProduct": "الرجاء عدم اغلاق الصفحة او النافذة، يجري رفع بيانات المنتج",
+    "warnUploadSliderImage": "الرجاء عدم اغلاق الصفحة او النافذة، يجري رفع بيانات الشريحة",
+    "warnUploadVisionImage": "الرجاء عدم اغلاق الصفحة او النافذة، يجري رفع البيانات",
+    "warnUploadAboutusImage": "الرجاء عدم اغلاق الصفحة او النافذة، يجري رفع فقرة المعلومات عنا",
+    "warnLimitGoals": "لا يمكنك اضافة اكثر من 3 اهداف"
   }
 }

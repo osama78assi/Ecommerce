@@ -1,4 +1,19 @@
 {
+  "SEO": {
+    "titles": {
+      "home": "Welcome - Al-sakhra Association",
+      "aboutus": "Aboutus - Al-sakhra Association",
+      "vision": "Vision - Al-sakhra Association",
+      "cart": "Cart - Al-sakhra Association",
+      "signup": "Signup - Al-sakhra Association",
+      "search": "Search results - Al-sakhra Association",
+      "profile": "Profile - Al-sakhra Association",
+      "store": "Store - Al-sakhra Association",
+      "adminPanel": "Dashboard - Al-sakhra Association",
+      "login": "Login - Al-sakhra Association",
+      "detailsProduct": "Product Details - Al-sakhra Association"
+    }
+  },
   "navbar": {
     "home": "Home",
     "aboutUs": "About Us",
@@ -38,7 +53,11 @@
     "filterCategoryTitle": "Filter By category",
     "categorySelect": "Select category",
     "next": "Next Page",
-    "prev": "Previous Page"
+    "prev": "Previous Page",
+    "showDetailsBtn": "Show details"
+  },
+  "productDetails": {
+    "description": "Description: "
   },
   "admin": {
     "users": "Users",
@@ -98,16 +117,24 @@
         "placeholder": "enter confirm password"
       },
       "productNameField": {
-        "label": "Product Name :",
-        "placeholder": "enter product name"
+        "label": "Product Name (English):",
+        "placeholder": "enter product name (English)"
+      },
+      "productNameFieldAR": {
+        "label": "Product Name (Arabic):",
+        "placeholder": "enter product name (Arabic)"
+      },
+      "productNameFieldFR": {
+        "label": "Product Name (French):",
+        "placeholder": "enter product name (French)"
       },
       "categoryField": {
         "label": "Category :",
         "defaultOption": "Select Category"
       },
-      "imagesField": {
-        "outerLabel": "Product Image :",
-        "innerLabel": "Upload Product Images By Drag And Drop them here"
+
+      "imagesProductField": {
+        "label": "Product images: "
       },
       "priceField": {
         "label": "Price :",
@@ -118,15 +145,66 @@
         "placeholder": "enter selling price"
       },
       "descriptionField": {
-        "label": "Description :",
-        "placeholder": "enter product description"
+        "label": "Description (English):",
+        "placeholder": "enter product description (English)"
+      },
+      "descriptionFieldAR": {
+        "label": "Description (Arabic):",
+        "placeholder": "enter product description (Arabic)"
+      },
+      "descriptionFieldFR": {
+        "label": "Description (French):",
+        "placeholder": "enter product description (French)"
       },
       "selectRoleField": {
         "label": "Select role"
       },
       "categoryNameField": {
-        "label": "Enter category Name: ",
-        "placeholder": "Category name"
+        "label": "Enter category Name (English): ",
+        "placeholder": "Category name (English)"
+      },
+      "categoryNameFieldAR": {
+        "label": "Enter category name (Arabic): ",
+        "placeholder": "Cateory name (Arabic)"
+      },
+      "categoryNameFieldFR": {
+        "label": "Enter category name (French): ",
+        "placeholder": "Cateory name (French)"
+      },
+
+      "imgsSliderField": {
+        "label": "Select slider image: "
+      },
+      "imgsVisionField": {
+        "label": "Select vision image: "
+      },
+      "imgsAboutusField": {
+        "label": "Select aboutus image: "
+      },
+
+      "interpolationFields": {
+        "title": {
+          "label": "Enter {{section}} title ({{lang}}): ",
+          "placeholder": "{{section}} title ({{lang}})"
+        },
+        "description": {
+          "label": "Enter {{section}} description ({{lang}}): ",
+          "placeholder": "{{section}} description ({{lang}})"
+        }
+      },
+
+      "interpolationKeyword": {
+        "vision": "vision",
+        "goal": "Goal",
+        "aboutus": "aboutus",
+        "slider": "slider",
+        "en": "English",
+        "ar": "Arabic",
+        "fr": "French"
+      },
+
+      "imagesField": {
+        "label": "Upload Images By Drag And Drop them here"
       },
 
       "addUserBtn": "Add the user",
@@ -135,6 +213,12 @@
       "editProductBtn": "Edit Product",
       "uploadProductBtn": "Upload Product",
       "editRoleBtn": "Change Role",
+      "uploadSliderBtn": "Upload the slider item",
+      "uploadVisionBtn": "Upload the vision item",
+      "uploadAboutUsBtn": "Upload the about us section",
+      "uploadGoalBtn": "Upload the goal item",
+
+      "updateCategory": "Update category",
 
       "roleTitle": "Change User Role",
       "nameLabel": "Name: ",
@@ -144,10 +228,18 @@
       "uploadBtnUserTitle": "All users",
       "uploadProductTitle": "All products",
       "uploadCategoryTitle": "All Categories",
+      "uploadSliderTitle": "All Sliders",
+      "uploadVisionTitle": "All Visions",
+      "uploadGoalsTitle": "All Goals",
+      "uploadAboutUsTitle": "All About Us Info",
 
       "uploadBtnUserOpen": "Add user",
-      "uploadBtnProductOpen": "Upload Product",
-      "uploadBtnCategoryOpen": "Upload category"
+      "uploadBtnProductOpen": "Upload product",
+      "uploadBtnCategoryOpen": "Upload category",
+      "uploadBtnSliderOpen": "Upload slider item",
+      "uploadVisionOpen": "Upload vision item",
+      "uploadAboutUsOpen": "Upload about us section",
+      "uploadGoalOpen": "Upload goal item"
     },
     "login": {
       "emailField": {
@@ -189,18 +281,26 @@
 
   "tables": {
     "allUsers": {
-      "count": "Number",
       "name": "Name",
       "email": "Email",
       "role": "Role",
-      "createdAt": "Create Data",
-      "action": "Actions"
+      "createdAt": "Create Data"
     },
     "allCategories": {
-      "count": "Number",
       "arabicName": "Arabic name",
       "englishName": "English name",
       "frenchName": "French name"
+    },
+    "common": {
+      "image": "Image",
+      "count": "Number",
+      "action": "Actions",
+      "titleEN": "Title (English)",
+      "titleAR": "Title (Arabic)",
+      "titleFR": "Title (French)",
+      "descEN": "Description (English)",
+      "descAR": "Description (Arabic)",
+      "descFR": "Description (French)"
     }
   },
 
@@ -210,6 +310,12 @@
     "confirmQuestion1": "Are you sure you want to",
     "confirmQuestion2": "This action can't be undo",
     "confirmRemoveFromCart": "Remove the item from the cart",
+    "confirmDeleteProduct": "Delete product permanently",
+    "confirmDeleteCategory": "Delete cateory permanently ? This will lead to delete all related products",
+    "confirmDeleteSlider": "Delete slider data",
+    "confirmDeleteGoal": "Delete goal data",
+    "confirmDeleteVision": "Delete vision data",
+    "confirmDeleteAboutus": "Delete aboutus section",
 
     "errSpecialNameChars": "Name mustn't include special chars",
     "errPasswordConfirm": "The password confirm is not correct. Check it please",
@@ -235,14 +341,70 @@
     "errProductNameLong": "The product name is too long",
     "errCategoryNameLong": "The category name is too long",
     "errGetCategories": "Faild to get the categories",
-    "errCategoryNotFound": "Category {{category}} not found",
+    "errCategoryNotFound": "Required category not found",
     "errGetProducts": "Faild to get products",
+    "errGetAboustUs": "Faild to get the data of about us",
+    "errGetVision": "Faild to get the data of vision",
+    "errGetSlider": "Faild to get the data of slider",
+    "errGetGoals": "Faild to get the data of goals",
+    "errDeleteProduct": "Faild to delete product data. Try again",
+    "errUploadProductImgs": "Faild to upload product's images. Try again",
+    "errUploadProductData": "Faild to upload product's data. Try again",
+    "errOnlyArabic": "Only accept arabic chars, numbers and whitespace acceptable",
+    "errOnlyFrench": "Only accept french chars, numbers and whitespace acceptable",
+    "errOnlyEnglish": "Only accept english chars, numbers and whitespace acceptable",
+    "errUploadCategory": "Faild to upload category data. Try again",
+    "errExistCategory": "Category name already exist",
+    "errTitleLong": "title is too long",
+    "errSliderImage": "Please select image",
+    "errUploadSliderImage": "Faild to upload slider image. Try again",
+    "errUploadSliderData": "Faild to upload slider Data. Try again",
+    "errAddAllTranslationTitle": "Either add all translations for title or don't add title",
+    "errAddAllTranslationDesc": "Either add all translations for description or don't add description",
+    "errDeleteSlider": "Faild to delete slider data. Try again",
+    "errDeleteGoal": "Faild to delete the goal. Try again",
+    "errAddGoal": "Faild to add the goal. Try again",
+    "errDeleteVision": "Faild to delete the vision. Try again",
+    "errVisionImage": "Please upload vision image",
+    "errVisionUploadImage": "Faild to upload vision image. Try again",
+    "errUploadingVision": "Faild to upload vision data. Try again",
+    "errDeleteAboutusSection": "Faild to delete about us section. Try again",
+    "errUploadAboutusImage": "Faild to upload aboutus image. Try again",
+    "errUploadAboutusSection": "Faild to upload aboutus section data. Try again",
+    "errAboutusImage": "Please upload aboutus image",
+    "errLogin": "Faild to login. Try again",
+    "errSignup": "Faild to create account. Try again",
+    "errLogout": "Faild to logout. Try again",
+    "errAddToCart": "Faild add item to the cart. Please try again",
+    "errChangeRole": "Faild to change user's role. Please try again",
 
     "successUploadingImage": "New image updated successfully",
     "successCreateUser": "User added successfully",
     "successChangeRole": "User role updated successfully",
     "successRemoveFromCart": "Item reomved from the cart successfully",
+    "successDeleteProduct": "Product deleted successfully",
+    "successUploadProductData": "Product data uploaded successfully",
+    "successUploadCategory": "Category uploaded successfully",
+    "successDeleteCategory": "Category with its associated products have deleted successfully",
+    "successAddToCart": "Added to the cart successfully",
+    "successUploadSliderData": "Slider added successfully",
+    "successDeleteSlider": "Slider deleted successfully",
+    "successDeleteGoal": "Goal deleted successfully",
+    "successAddGoal": "Goal added successfully",
+    "successDeleteVision": "Vision deleted successfully",
+    "successAddVision": "Vision added successfully",
+    "successDeleteAboutus": "Aboutus section deleted successfully",
+    "successAddAboutusSection": "Aboutus section added successfully",
+    "successLogin": "Logged in successfully",
+    "successSignup": "Account created successfully",
+    "successLogout": "Logged out successfully",
 
-    "warnNoProducts": "There is no products yet"
+    "warnNoProducts": "There is no products yet",
+    "warnNoData": "There is no data yet",
+    "warnUploadProduct": "Please don't close the modal window or reload the page. Uploading product data",
+    "warnUploadSliderImage": "Please don't close the modal window or reload the page. Uploading slider data",
+    "warnUploadVisionImage": "Please don't close the modal window or reload the page. Uploading vision data",
+    "warnUploadAboutusImage": "Please don't close the modal window or reload the page. Uploading aboutus section data",
+    "warnLimitGoals": "You can't add more than 3 goals"
   }
 }

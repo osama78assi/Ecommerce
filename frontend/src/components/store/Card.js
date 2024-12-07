@@ -9,20 +9,20 @@ import { addToCart, deleteCartProduct } from "../../store/cartSlice";
 import Confirm from "../ui/Confirm";
 import CardImage from "./CardImage";
 
-function Card({ id, images, name, sellingPrice, price, classes }) {
+function Card({ id, images, name, price, classes }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const user = useSelector((state) => state.user.user);
   const cart = useSelector((state) => state.cart.cart);
   const isLoading = useSelector((state) => state.cart.isLoading);
   const [currentImage, setCurrentImage] = useState(0);
   const { i18n } = useTranslation();
-  const loadedImages = useLazyloadingImgs(images);
   const nav = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const isExist = cart.filter(
+  const isExist = cart?.filter(
     (cartItem) => cartItem.productId._id === id
   ).length;
+
 
   function nextImage() {
     setCurrentImage((prev) => (prev + 1) % images.length);
@@ -68,7 +68,7 @@ function Card({ id, images, name, sellingPrice, price, classes }) {
       }`}
     >
       <div className="relative">
-        {<CardImage imgUrl={loadedImages[currentImage]} name={name} />}
+        {<CardImage imgUrl={images[currentImage]} name={name?.filter((val) => val.language === i18n.language)[0]?.text} />}
       </div>
 
       <div>
@@ -91,16 +91,11 @@ function Card({ id, images, name, sellingPrice, price, classes }) {
         </div>
 
         <div className="p-4">
-          <h2 className="text-2xl font-semibold text-gray-800">{name}</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">{name?.filter((val) => val.language === i18n.language)[0]?.text}</h2>
           <div className="flex items-center justify-between mt-2">
             <span className="text-xl font-bold">
-              {displayINRCurrency(sellingPrice)}
+              {displayINRCurrency(price)}
             </span>
-            {price !== 0 && (
-              <span className="text-sm text-gray-500 line-through">
-                {displayINRCurrency(price)}
-              </span>
-            )}
           </div>
 
           <div className="flex gap-[1.5rem]">
@@ -120,7 +115,7 @@ function Card({ id, images, name, sellingPrice, price, classes }) {
               }`}
               disabled={isLoading}
             >
-              Show details
+              {t("store.showDetailsBtn")}
             </button>
           </div>
         </div>

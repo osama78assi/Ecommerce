@@ -21,7 +21,7 @@ function VisionSection({ description, title }) {
         <h2 className="text-2xl font-semibold text-slate-800 mb-4">{title}</h2>
       )}
 
-      <p className="text-slate-600 text-lg leading-relaxed">{description}</p>
+      <p className="text-slate-600 text-lg leading-relaxed text-break">{description}</p>
     </div>
   );
 }

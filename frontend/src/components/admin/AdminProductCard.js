@@ -1,46 +1,83 @@
 import React, { useState } from "react";
-import { MdModeEditOutline } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+import { MdDelete } from "react-icons/md";
 import displayINRCurrency from "../../helpers/displayCurrency";
-import AdminEditProduct from "./AdminEditProduct";
+import Confirm from "../ui/Confirm";
+import SummaryApi from "../../common";
+import { toast } from "react-toastify";
 
-function AdminProductCard ({ data, fetchdata }) {
-  const [editProduct, setEditProduct] = useState(false);
+function AdminProductCard({ data, fetchData }) {
+  // const [editProduct, setEditProduct] = useState(false);
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const [confirmDelete, setconfirmDelete] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  async function deleteProduct() {
+    try {
+      setIsDeleting(true);
+      const req = await fetch(`${SummaryApi.deleteProduct.url}${data._id}`, {
+        method: SummaryApi.deleteProduct.method,
+        credentials: "include",
+      });
+
+      const res = await req.json();
+      if(res.success) {
+        toast.success(t("messages.successDeleteProduct"))
+        fetchData?.();
+      } else {
+        throw new Error("Something went wrong");
+      }
+    } catch (err) {
+      console.log(err.message);
+      toast.error(t("messages.errDeleteProduct"))
+    } finally {
+      setIsDeleting(false);
+    }
+  }
 
   return (
     <div className="bg-white p-4 rounded ">
-      <div className="w-40">
-        <div className="w-32 h-32 flex justify-center items-center">
-          <img
-            src={data?.productImage[0]}
-            alt="product"
-            className="mx-auto object-fill h-full"
-          />
-        </div>
-        <h1 className="text-ellipsis line-clamp-2">{data.productName}</h1>
+      <div className="w-full h-[10rem] flex justify-center items-center">
+        <img
+          src={data?.productImage?.[0]}
+          alt="product"
+          className="w-full object-cover h-full"
+        />
+      </div>
+      <h1 className="text-ellipsis line-clamp-2">
+        {data.name?.filter((item) => item.language === i18n.language)[0].text}
+      </h1>
 
-        <div>
-          <p className="font-semibold">
-            {displayINRCurrency(data.sellingPrice)}
-          </p>
+      <div>
+        <p className="font-semibold">{displayINRCurrency(data.price)}</p>
 
-          <div
-            className="w-fit ml-auto p-2 bg-green-100 hover:bg-green-600 rounded-full hover:text-white cursor-pointer"
-            onClick={() => setEditProduct(true)}
-          >
-            <MdModeEditOutline />
-          </div>
-        </div>
+        <button
+          className="w-fit block ml-auto p-2 bg-red-300 hover:bg-red-600 rounded-full transition-colors hover:text-white cursor-pointer"
+          onClick={() => setconfirmDelete(true)}
+          disabled={isDeleting}
+        >
+          <MdDelete />
+        </button>
       </div>
 
-      {editProduct && (
+      {/* {editProduct && (
         <AdminEditProduct
           productData={data}
           onClose={() => setEditProduct(false)}
           fetchdata={fetchdata}
         />
+      )} */}
+
+      {confirmDelete && (
+        <Confirm
+          about={t("messages.confirmDeleteProduct")}
+          onClose={() => setconfirmDelete(false)}
+          onConfirm={() => deleteProduct()}
+        />
       )}
     </div>
   );
-};
+}
 
 export default AdminProductCard;

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import SummaryApi from "../common";
 import { getCartCount } from "../store/cartSlice";
 import { fetchCurrentUser } from "../store/userSlice";
+import { Helmet } from "react-helmet";
 // import Context from "../context";
 
 function Login() {
@@ -47,7 +48,7 @@ function Login() {
       const dataApi = await dataResponse.json();
 
       if (dataApi.success) {
-        toast.success(dataApi.message);
+        toast.success(t("messages.successLogin"));
         dispatch(fetchCurrentUser());
         dispatch(getCartCount());
         navigate("/");
@@ -56,81 +57,88 @@ function Login() {
       }
 
       if (dataApi.error) {
-        toast.error(dataApi.message);
+        throw new Error("Something went wrong")
       }
     } catch (err) {
       console.log(err.message);
+      toast.error(t("messages.errLogin"))
     }
   };
 
-  console.log("data login", data);
 
   return (
-    <section id="login">
-      <div className="mx-auto container p-4">
-        <div className="bg-white p-5 w-full max-w-sm mx-auto">
-          <div className="w-20 h-20 mx-auto">
-            <FaRegCircleUser className="text-[5rem] rounded-[50%] fill-[var(--primary-color-900)]" />
-          </div>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{t("SEO.titles.login")}</title>
+      </Helmet>
 
-          <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
-            <div className="grid">
-              <label>{t("forms.login.emailField.label")}</label>
-              <div className="bg-slate-100 p-2">
-                <input
-                  type="email"
-                  placeholder={t("forms.login.emailField.placeholder")}
-                  name="email"
-                  value={data.email}
-                  onChange={handleOnChange}
-                  className="w-full h-full outline-none bg-transparent"
-                />
-              </div>
+      <section id="login">
+        <div className="mx-auto container p-4">
+          <div className="bg-white p-5 w-full max-w-sm mx-auto">
+            <div className="w-20 h-20 mx-auto">
+              <FaRegCircleUser className="text-[5rem] rounded-[50%] fill-[var(--primary-color-900)]" />
             </div>
 
-            <div>
-              <label>{t("forms.login.passwordField.label")}</label>
-              <div className="bg-slate-100 p-2 flex">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder={t("forms.login.passwordField.placeholder")}
-                  value={data.password}
-                  name="password"
-                  onChange={handleOnChange}
-                  className="w-full h-full outline-none bg-transparent"
-                />
-                <div
-                  className="cursor-pointer text-xl"
-                  onClick={() => setShowPassword((preve) => !preve)}
-                >
-                  <span>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
+            <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
+              <div className="grid">
+                <label>{t("forms.login.emailField.label")}</label>
+                <div className="bg-slate-100 p-2">
+                  <input
+                    type="email"
+                    placeholder={t("forms.login.emailField.placeholder")}
+                    name="email"
+                    value={data.email}
+                    onChange={handleOnChange}
+                    className="w-full h-full outline-none bg-transparent"
+                  />
                 </div>
               </div>
-              {/* <Link
+
+              <div>
+                <label>{t("forms.login.passwordField.label")}</label>
+                <div className="bg-slate-100 p-2 flex">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder={t("forms.login.passwordField.placeholder")}
+                    value={data.password}
+                    name="password"
+                    onChange={handleOnChange}
+                    className="w-full h-full outline-none bg-transparent"
+                  />
+                  <div
+                    className="cursor-pointer text-xl"
+                    onClick={() => setShowPassword((preve) => !preve)}
+                  >
+                    <span>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
+                  </div>
+                </div>
+                {/* <Link
                 to={"/forgot-password"}
                 className="block w-fit ml-auto hover:underline hover:text-red-600"
               >
                 Forgot password ?
               </Link> */}
-            </div>
+              </div>
 
-            <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
-              {t("forms.login.loginBtn")}
-            </button>
-          </form>
+              <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
+                {t("forms.login.loginBtn")}
+              </button>
+            </form>
 
-          <p className="my-5">
-            {t("forms.login.askAccount")}
-            <Link
-              to={"/sign-up"}
-              className="text-[var(--primary-color-1100)] hover:underline"
-            >
-              {t("forms.login.signupBtn")}
-            </Link>
-          </p>
+            <p className="my-5">
+              {t("forms.login.askAccount")}
+              <Link
+                to={"/sign-up"}
+                className="text-[var(--primary-color-1100)] hover:underline"
+              >
+                {t("forms.login.signupBtn")}
+              </Link>
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

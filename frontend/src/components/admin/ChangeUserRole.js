@@ -13,8 +13,6 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
 
   const handleOnChangeSelect = (e) => {
     setUserRole(e.target.value);
-
-    console.log(e.target.value);
   };
 
   const updateUserRole = async () => {
@@ -39,10 +37,8 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
         onClose();
         callFunc();
       } else {
-        toast.error(responseData.message)
+        toast.error(t("messages.errChangeRole"))
       }
-
-      console.log("role updated", responseData);
     } catch (err) {
       console.log(err.message);
       setIsLoading(false);
@@ -50,8 +46,6 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
   };
 
   return (
-    // <div className="fixed top-0 bottom-0 left-0 right-0 w-full h-full z-10 flex justify-between items-center bg-slate-200 bg-opacity-50">
-    //   <div className="mx-auto bg-white shadow-md p-4 w-full max-w-sm" ref={ref}>
     <ModalWindow onClose={onClose} classes="h-fit my-auto">
       <h1 className="pb-4 text-lg font-medium">{t("forms.admin.roleTitle")}</h1>
 
@@ -83,8 +77,6 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
         {t("forms.admin.editRoleBtn")}
       </button>
     </ModalWindow>
-    //   </div>
-    // </div>
   );
 };
 

@@ -8,6 +8,7 @@ const initialState = {
   count: 0,
   cart: [],
   isLoading: true,
+  err: false
 };
 
 // This reducers must run when there is a logged in user
@@ -147,7 +148,6 @@ export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async function (id, thunkAPI) {
     try {
-      console.log("FUCK ", id)
       const response = await fetch(SummaryApi.addToCartProduct.url, {
         method: SummaryApi.addToCartProduct.method,
         credentials: "include",
@@ -162,7 +162,7 @@ export const addToCart = createAsyncThunk(
       if (responseData.success) {
         thunkAPI.dispatch(getCartProducts());
         thunkAPI.dispatch(getCartCount());
-        toast.success(responseData.message);
+        toast.success(t("messages.successAddToCart"));
       }
 
       if (responseData.error) {
@@ -195,6 +195,7 @@ const slice = createSlice({
 
     // Get Products
     builder.addCase(getCartProducts.pending, function (state) {
+      state.err = false;
       state.isLoading = true;
     });
     builder.addCase(getCartProducts.fulfilled, function (state, action) {
@@ -203,6 +204,7 @@ const slice = createSlice({
     });
     builder.addCase(getCartProducts.rejected, function (state, action) {
       toast.error(t("messages.errGetCartProducts"));
+      state.err = true;
       state.isLoading = false;
     });
 

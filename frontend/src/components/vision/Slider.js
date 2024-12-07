@@ -8,20 +8,20 @@ import ImageVision from "./ImageVision";
 
 function Slider({ imgs }) {
   const { i18n } = useTranslation();
-  const imgsURLs = useLazyloadingImgs(imgs);
   const [activeImage, setActiveImg] = useState(0);
   const [showArrows, setShowArrows] = useState(true);
   const [show, setShow] = useState(false);
+  
 
   function slideRight() {
     setActiveImg(
-      (current) => (current + 1 + imgsURLs.length) % imgsURLs.length
+      (current) => (current + 1 + imgs.length) % imgs.length
     );
   }
 
   function slideLeft() {
     setActiveImg(
-      (current) => (current - 1 + imgsURLs.length) % imgsURLs.length
+      (current) => (current - 1 + imgs.length) % imgs.length
     );
   }
 
@@ -31,7 +31,7 @@ function Slider({ imgs }) {
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}
     >
-      <ImageVision imageSrc={imgsURLs[activeImage]} />
+      <ImageVision imageSrc={imgs[activeImage]} />
       <div
         className={`w-full h-full flex justify-between ${
           showArrows ? "!visible" : ""
@@ -68,7 +68,7 @@ function Slider({ imgs }) {
       {show &&
         createPortal(
           <DisplayImage
-            imgUrl={imgsURLs[activeImage]}
+            imgUrl={imgs[activeImage]}
             onClose={() => setShow(false)}
           />,
           document.body

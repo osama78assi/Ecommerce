@@ -39,7 +39,7 @@ function EditNameSection({ isLoading, setIsLoading }) {
       setIsLoading?.(true);
       const res = await fetch(SummaryApi.updateName.url, {
         method: SummaryApi.updateName.method,
-        body: JSON.stringify({ newName: userName }),
+        body: JSON.stringify({ newName: userName.trim() }),
         credentials: "include",
         headers: {
           "Content-Type": "application/json",

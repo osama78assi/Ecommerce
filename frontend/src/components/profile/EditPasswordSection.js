@@ -31,7 +31,7 @@ function EditPasswordSection({ isLoading, setIsLoading }) {
         method: SummaryApi.updatePassword.method,
         body: JSON.stringify({
           oldPassword: userOldPassword,
-          newPassword: userNewPassword,
+          newPassword: userNewPassword.trim(),
         }),
         credentials: "include",
         headers: {

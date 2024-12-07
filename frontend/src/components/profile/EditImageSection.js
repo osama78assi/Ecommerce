@@ -38,7 +38,6 @@ function EditImageSection({ isLoading, setIsLoading }) {
       });
 
       const data = await res.json();
-      console.log(data.data);
       if (data.success) {
         toast.success(t("messages.successUploadingImage"));
         dispatch(setUserDetails(data.data));

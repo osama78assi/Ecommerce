@@ -1,13 +1,12 @@
 import { CgClose } from "react-icons/cg";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
-import { useState } from "react";
 
 function ModalWindow({ title, children, onClose, classes }) {
-  const ref = useOutsideClick(() => {
+  const ref = useOutsideClick((e) => {
+    if (e.target.closest(".Toastify__toast-container")) return;
+
     onClose?.();
   });
-
-  const [state, setState] = useState(true);
 
   return (
     <div className="fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex z-10 justify-center items-center">

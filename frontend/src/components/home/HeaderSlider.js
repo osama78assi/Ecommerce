@@ -3,49 +3,50 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { useLazyloadingImgs } from "../../hooks/useLazyLoadingImages";
+import { toast } from "react-toastify";
+import SummaryApi from "../../common";
 import HeaderCard from "./HeaderCard";
+import EmptyData from "../ui/EmptyData"
 
-function HeaderSlider() {
-  const { i18n } = useTranslation();
+function HeaderSlider({ setErr }) {
+  const { t, i18n } = useTranslation();
   const [showArrows, setShowArrows] = useState(false);
   const cooldown = useRef(false);
   const cardsRefs = useRef([]);
   const getElement = useCallback((ele) => cardsRefs.current.push(ele), []);
 
-  const [data, setData] = useState(() => [
-    {
-      title: "Title",
-      imgUrl: "/slider-1.jpg",
-      content:
-        "asdf asf agf qpojrgadpfs gjapsodifj apfdgh apsd jfapdoifgj apsdo fjadfogp jp hqwaer9 hsdpofias jgpoafds gqparg adsf gqerp adsfdgakjdfg padf gpart pugafdsjga;psdf jqaprg jpaodfgj asdkl jafbn adf;gno;pxvjapodifjs kla gjpifdshg asdfg pagadfgadfgerdadfg ",
-    },
-    {
-      title: "Title",
-      imgUrl: "/slider-2.jpg",
-      content:
-        "asdf asd gafdiodfg houhyoidsfu alkjgh lqupiwh adsl;fja;slj fg;afgj a;ldfgj aosig l;fg had;foqgi ;j adslk jfa;lk gdafgh wiah adsf hdjkalg hadfg uhair ghadkgh aslg hafdkgh rakjlfgh aoigh adfgh adug adfklg hadfklgj hadfr g kjfadhgauifdhs gakldjfgh ka;jdgh akg adfg",
-    },
-    {
-      title: "Title",
-      imgUrl: "/slider-3.jpg",
-      content:
-        "asdf adf'g ajds goaks gop[gfdsiojg apo rgpaldf;gjasp;djf ;aslkdfj asoipdjfarehg afdl;gjasd;lkfgj adfgadlfg;ja;sdlfgj adflg aisdfrgjaoigj afldsgjaosidfgjaogjraf adfoig jadfg adfgoiajsgl;k fdjgaosidfgj alkdfgj aoperhj alrfgjadofpigj adoifg adfiogad jfl;gjfd apfog hafdlg haofd gadf ",
-    },
-  ]);
+  const [data, setData] = useState(() => []);
   const [curChild, setCurChild] = useState(data.length - 1);
-  const images = useLazyloadingImgs(data.map((ele) => ele.imgUrl));
   const prevChild = curChild === 0 ? data.length - 1 : curChild - 1;
   const nextChild = curChild === data.length - 1 ? 0 : curChild + 1;
   const [isLoading, setIsLoading] = useState(true);
 
-  async function fetchSliderData() {}
+  const fetchSliderData = useCallback(async function fetchSliderData() {
+    try {
+      setIsLoading(true);
+
+      const req = await fetch(SummaryApi.getSliderData.url, {
+        method: SummaryApi.getSliderData.method,
+      });
+
+      const res = await req.json();
+      if (res.success) {
+        setData(res.data);
+      } else {
+        throw new Error(res.message);
+      }
+    } catch (err) {
+      console.log(err.message);
+      setErr(true);
+      toast.error(t("messages.errGetSlider"));
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    setIsLoading(true);
     fetchSliderData();
-    setIsLoading(false);
-  }, []);
+  }, [fetchSliderData]);
 
   const slideRight = useCallback(
     function slideRight() {
@@ -142,6 +143,10 @@ function HeaderSlider() {
     return () => clearInterval(timer);
   }, [slideRight]);
 
+  if(!isLoading && !data.length) {
+    return <EmptyData />
+  }
+
   return (
     <div
       className="h-[calc(100dvh-200px)] relative overflow-hidden"
@@ -185,10 +190,19 @@ function HeaderSlider() {
         {!isLoading &&
           data.map((ele, index) => (
             <HeaderCard
-              imgUrl={images[index]}
-              content={ele?.content ? ele.content : ""}
-              title={ele?.title ? ele.title : ""}
-              key={ele?.imgUrl}
+              img={ele?.img}
+              description={
+                ele?.description &&
+                ele.description.filter(
+                  (item) => item.language === i18n.language
+                )[0].text
+              }
+              title={
+                ele?.title &&
+                ele.title.filter((item) => item.language === i18n.language)[0]
+                  .text
+              }
+              key={ele?.img}
               getElement={getElement}
             />
           ))}

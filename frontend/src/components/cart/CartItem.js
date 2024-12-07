@@ -50,17 +50,17 @@ function CartItem({ data, quantity }) {
         </div>
 
         <h2 className="text-lg lg:text-xl text-ellipsis line-clamp-1">
-          {data?.productName}
+          {data?.name?.filter((item) => item.language === i18n.language)[0]?.text}
         </h2>
         <p className="capitalize text-slate-500">
-          {data?.category?.categoryName}
+          {data?.category?.categoryName?.filter((item) => item.language === i18n.language)[0]?.text}
         </p>
         <div className="flex items-center justify-between">
           <p className="text-red-600 font-medium text-lg">
-            {displayINRCurrency(data?.sellingPrice)}
+            {displayINRCurrency(data?.price)}
           </p>
           <p className="text-slate-600 font-semibold text-lg">
-            {displayINRCurrency(data?.sellingPrice * quantity)}
+            {displayINRCurrency(data?.price * quantity)}
           </p>
         </div>
         <div className="flex items-center gap-3 mt-1">

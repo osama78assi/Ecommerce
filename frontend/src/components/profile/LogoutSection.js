@@ -27,16 +27,17 @@ function LogoutSection({ isLoading, setIsLoading }) {
       const data = await fetchData.json();
 
       if (data.success) {
-        toast.success(data.message);
+        toast.success(t("messages.successLogout"));
         dispatch(setUserDetails(null));
         navigate("/");
       }
 
       if (data.error) {
-        toast.error(t("messages.errUnkown"));
+        throw new Error("Something went wrong")
       }
     } catch (err) {
       console.log(err.message);
+      toast.error("messages.errLogout")
     } finally {
       setIsLoading?.(false);
     }

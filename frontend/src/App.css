@@ -12,7 +12,15 @@
 /***user table***/
 .userTable {
   @apply bg-white;
+  table-layout: fixed;
 }
+
+.userTable td {
+  padding: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 .userTable th {
   @apply border text-base font-medium;
 }
@@ -104,4 +112,12 @@
   .store-container {
     justify-content: center !important;
   }
+}
+
+/* Text */
+
+/* todo: add these properties to everything */
+.text-break {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }

@@ -9,10 +9,12 @@ import AddUserFrom from "./AddUserFrom";
 import ChangeUserRole from "./ChangeUserRole";
 import ModalWindow from "./ModalWindow";
 import Upload from "./Upload";
+import ErrorComponent from "../ui/ErrorComponent";
 
 function AllUsers() {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState(false);
 
   const [allUser, setAllUsers] = useState([]);
   const [openUpdateRole, setOpenUpdateRole] = useState(false);
@@ -27,6 +29,8 @@ function AllUsers() {
 
   async function fetchAllUsers() {
     try {
+      setErr(false)
+      setIsLoading(true)
       const fetchData = await fetch(SummaryApi.allUser.url, {
         method: SummaryApi.allUser.method,
         credentials: "include",
@@ -41,25 +45,37 @@ function AllUsers() {
       if (dataResponse.error) {
         toast.error(dataResponse.message);
       }
+
     } catch (err) {
+      setErr(true);
       console.log(err.message);
+    } finally {
+      setIsLoading(false)
     }
   }
 
   useEffect(() => {
-    setIsLoading(true);
     fetchAllUsers();
-    setIsLoading(false);
   }, []);
 
-  return (
-    <div className="bg-white pb-4">
-      {isLoading ? (
+  if (isLoading) {
+    return (
+      <div className="bg-white pb-4">
         <div className="flex items-center justify-center">
           <RotatingLines strokeColor="#c89329" />
         </div>
-      ) : (
-        <>
+      </div>
+    );
+  }
+
+  if(err) {
+    return <div className="p-4 w-full h-full">
+      <ErrorComponent refetchFunction={fetchAllUsers} disable={isLoading} />
+    </div>
+  }
+
+  return (
+    <div className="bg-white pb-4">
           <Upload
             title={t("forms.admin.uploadBtnUserTitle")}
             buttonTitle={t("forms.admin.uploadBtnUserOpen")}
@@ -68,12 +84,12 @@ function AllUsers() {
           <table className="w-full userTable">
             <thead>
               <tr className="bg-primary-700 text-white">
-                <th>{t("tables.allUsers.count")}</th>
+                <th>{t("tables.common.count")}</th>
                 <th>{t("tables.allUsers.name")}</th>
                 <th>{t("tables.allUsers.email")}</th>
                 <th>{t("tables.allUsers.role")}</th>
                 <th>{t("tables.allUsers.createdAt")}</th>
-                <th>{t("tables.allUsers.action")}</th>
+                <th>{t("tables.common.action")}</th>
               </tr>
             </thead>
             <tbody>
@@ -85,7 +101,7 @@ function AllUsers() {
                     <td>{el?.email}</td>
                     <td>{el?.role}</td>
                     <td>{moment(el?.createdAt).format("LL")}</td>
-                    <td>
+                    <td className="py-2">
                       <button
                         className="bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white"
                         onClick={() => {
@@ -101,8 +117,7 @@ function AllUsers() {
               })}
             </tbody>
           </table>
-        </>
-      )}
+
       {openUpdateRole && (
         <ChangeUserRole
           onClose={() => setOpenUpdateRole(false)}

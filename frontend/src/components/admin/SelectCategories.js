@@ -1,16 +1,49 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import SummaryApi from "../../common";
 
-function SelectCategories({ activeOption }) {
-  const { t } = useTranslation();
+function SelectCategories({ activeOption, disabled }) {
+  const { t, i18n } = useTranslation();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [active, setActive] = useState("Select a category");
+  const [err, setErr] = useState(false);
+
+  const getCategories = useCallback(async function getCategories() {
+    try {
+      setErr(false);
+      setIsLoading(true);
+      const req = await fetch(SummaryApi.getAllCategories.url, {
+        method: SummaryApi.getAllCategories.method,
+      });
+      const { data, error, message } = await req.json();
+
+      if (!error) {
+        setData(data);
+      } else {
+        toast.error(t("messages.errGetCategories"));
+        console.log(message);
+        throw new Error("Something went wrong");
+      }
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    // Fetch data
-    setIsLoading(false);
-  }, []);
+    getCategories();
+  }, [getCategories]);
+
+  if (err) {
+    return (
+      <p className="underline text-blue-600 text-xl" onClick={getCategories}>
+        {t("messages.genericErr.btnTitle")}
+      </p>
+    );
+  }
 
   return isLoading ? (
     <>
@@ -30,16 +63,23 @@ function SelectCategories({ activeOption }) {
         name="category"
         onChange={(e) => setActive(e.target.value)}
         className="p-2 bg-slate-100 border rounded"
+        disabled={disabled}
       >
-        <option value={""}>{t("forms.admin.categoryField.defaultOption")}</option>
+        <option value={""}>
+          {t("forms.admin.categoryField.defaultOption")}
+        </option>
         {data?.map((el, index) => {
           return (
             <option
-              value={el.categoryName}
-              key={el.id}
-              selected={el.categoryName === activeOption}
+              value={el._id}
+              key={el._id}
+              selected={el._id === activeOption}
             >
-              {el.categoryName}
+              {
+                el.categoryName.filter(
+                  (item) => item.language === i18n.language
+                )[0].text
+              }
             </option>
           );
         })}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ function Store() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
-  async function getProducts() {
+  const getProducts = useCallback(async function getProducts() {
     try {
       setErr("");
       setIsLoadingProducts(true);
@@ -38,9 +38,9 @@ function Store() {
       if (success) {
         setProducts(products);
       } else {
-        console.log(message);
         toast.error(t("messages.errGetProducts"));
         setErr("something went wrong");
+        throw new Error("Something went wrong")
       }
     } catch (err) {
       console.log(err.message);
@@ -48,15 +48,11 @@ function Store() {
     } finally {
       setIsLoadingProducts(false);
     }
-  }
-
-  const handleAddToCart = () => {
-    alert("Product added to cart!");
-  };
+  }, [])
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [getProducts]);
 
   useEffect(() => {
     dispatch(getCartProducts());
@@ -81,16 +77,15 @@ function Store() {
         {isLoadingProducts ? (
           <LoadingCard />
         ) : !isLoadingProducts && !products.length ? (
-          <p>{t("messages.warnNoProducts")}</p>
+          <p className="bg-slate-300 text-gray-800 p-3 text-xl rounded-lg mx-auto">{t("messages.warnNoProducts")}</p>
         ) : (
           products.map((product) => (
             <Card
               id={product._id}
               key={product._id}
               images={product.productImage}
-              name={product.productName}
+              name={product.name}
               price={product.price}
-              sellingPrice={product.sellingPrice}
             />
           ))
         )}

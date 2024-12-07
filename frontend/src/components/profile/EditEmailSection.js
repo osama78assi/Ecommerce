@@ -33,7 +33,7 @@ function EditEmailSection({ isLoading, setIsLoading }) {
       const res = await fetch(SummaryApi.updateEmail.url, {
         method: SummaryApi.updateEmail.method,
         credentials: "include",
-        body: JSON.stringify({ newEmail: email }),
+        body: JSON.stringify({ newEmail: email.trim() }),
         headers: {
           "Content-Type": "application/json",
         },

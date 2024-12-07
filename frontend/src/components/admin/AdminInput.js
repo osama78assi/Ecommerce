@@ -10,8 +10,9 @@ function AdminInput({
   placeholder,
   required = false,
   sterilizer,
+  disabled,
 }) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(defaultValue ? defaultValue : "");
 
   function hanldeChangeInput(e) {
     if (sterilizer) {
@@ -29,6 +30,7 @@ function AdminInput({
       <label htmlFor={id}>{label}</label>
       {type !== "textarea" ? (
         <input
+          disabled={disabled}
           type={type}
           id={id}
           placeholder={placeholder}
@@ -37,10 +39,10 @@ function AdminInput({
           onChange={hanldeChangeInput}
           className={classes}
           required={required}
-          {...(defaultValue ? { defaultValue } : {})}
         />
       ) : (
         <textarea
+          disabled={disabled}
           id={id}
           placeholder={placeholder}
           name={name}
@@ -48,7 +50,6 @@ function AdminInput({
           onChange={hanldeChangeInput}
           className={classes}
           required={required}
-          {...(defaultValue ? { defaultValue } : {})}
         />
       )}
     </>

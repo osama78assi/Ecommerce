@@ -3,30 +3,33 @@ import { useTranslation } from "react-i18next";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
-import { useLazyloadingImgs } from "../../hooks/useLazyLoadingImages";
 import DisplayImage from "../ui/DisplayImage";
 
-function UploadProductImages({ preImages, delImages }) {
+function UploadImages({ modifyImgs, label, error, disabled, multiple = true }) {
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [openFullScreenImage, setOpenFullScreenImage] = useState(false);
   const [fullScreenImage, setFullScreenImage] = useState("");
   const [dragableClass, setDragableClass] = useState("");
-  const images = useLazyloadingImgs(preImages || []);
 
   function handleSetImages(e, imgs) {
+    if (disabled) return;
+
     if (imgs) {
       imgs.forEach((file) => {
         // Ignore big image
         if (file.size > 5 * 1024 * 1024) {
-          toast.error(t("messages.errProductImg"));
+          toast.error(error);
           return;
         }
-
+        modifyImgs?.(file, "ADD", null);
         const reader = new FileReader();
         reader.onload = function (event) {
           const previewImageUrl = event.target.result;
-          setData((previousImgs) => [...previousImgs, previewImageUrl]);
+          if(multiple)
+            setData((previousImgs) => [...previousImgs, previewImageUrl]);
+          else
+            setData([previewImageUrl])
         };
         reader.readAsDataURL(file); // Read file as data URL
       });
@@ -34,14 +37,18 @@ function UploadProductImages({ preImages, delImages }) {
       [...e.target.files].forEach((file) => {
         // Ignore big image
         if (file.size > 5 * 1024 * 1024) {
-          toast.error(t("messages.errProductImg"));
+          toast.error(error);
           return;
         }
+        modifyImgs?.(file, "ADD", null);
 
         const reader = new FileReader();
         reader.onload = function (event) {
           const previewImageUrl = event.target.result;
-          setData((previousImgs) => [...previousImgs, previewImageUrl]);
+          if(multiple)
+            setData((previousImgs) => [...previousImgs, previewImageUrl]);
+          else
+            setData([previewImageUrl])
         };
         reader.readAsDataURL(file); // Read file as data URL
       });
@@ -49,16 +56,26 @@ function UploadProductImages({ preImages, delImages }) {
   }
 
   function handleDeleteProductImage(index) {
-    setData((previouseImgs) => previouseImgs.filter((_, i) => i !== index));
+    if (disabled) return;
+
+    if (multiple)
+      setData((previouseImgs) => previouseImgs.filter((_, i) => i !== index));
+    else
+      setData([])
+    modifyImgs?.(null, "DELETE", index);
   }
 
   function handleDragOver(e) {
+    if (disabled) return;
+
     e.stopPropagation();
     e.preventDefault();
     setDragableClass("border-[4px] border-dashed border-stone-700");
   }
 
   function handleDragLeave(e) {
+    if (disabled) return;
+
     e.stopPropagation();
     e.preventDefault();
 
@@ -66,19 +83,28 @@ function UploadProductImages({ preImages, delImages }) {
   }
 
   function handleDropFiles(e) {
+    if (disabled) return;
+
     e.stopPropagation();
     e.preventDefault();
-    const files = [...e.dataTransfer.files];
+    let files = [];
+    // Loop through the files and pick the first image if not multiple
+    for (const file of e.dataTransfer.files) {
+      if (/^(image)/.test(file.type)) {
+        files.push(file);
+        if (!multiple) break; // Exit the loop after finding the first image
+      }
+    }
     // Only images
-    const imgs = files.filter((file) => /^(image)/.test(file.type));
-    handleSetImages(null, imgs);
+    // const imgs = files.filter((file) => /^(image)/.test(file.type));
+    handleSetImages(null, files);
     setDragableClass("");
   }
 
   return (
     <>
       <label htmlFor="productImage" className="mt-3">
-        {t("forms.admin.imagesField.outerLabel")}
+        {label}
       </label>
       <label
         htmlFor="uploadImageInput"
@@ -93,16 +119,15 @@ function UploadProductImages({ preImages, delImages }) {
             <span className="text-4xl">
               <FaCloudUploadAlt />
             </span>
-            <p className="text-sm">
-              {t("forms.admin.imagesField.innerLabel")}
-            </p>
+            <p className="text-sm">{t("forms.admin.imagesField.label")}</p>
             <input
+              disabled={disabled}
               type="file"
               accept="image/*"
               id="uploadImageInput"
               className="hidden"
               onChange={handleSetImages}
-              multiple={true}
+              multiple={multiple}
             />
           </div>
         </div>
@@ -110,33 +135,14 @@ function UploadProductImages({ preImages, delImages }) {
       <div>
         {data[0] ? (
           <div className="flex items-center gap-2 w-full overflow-y-auto max-h-[20rem] flex-wrap">
-            {data.map((el, index) => {
-              return (
-                <div className="relative group basis-[calc(50%-0.5rem)]">
-                  <img
-                    src={el}
-                    alt="product"
-                    className="bg-slate-100 object-cover border-[3px] border-stone-500 cursor-pointer"
-                    onClick={() => {
-                      setOpenFullScreenImage(true);
-                      setFullScreenImage(el);
-                    }}
-                  />
-
-                  <div
-                    className="absolute bottom-0 right-0 p-1 text-white bg-red-600 rounded-full hidden group-hover:block cursor-pointer"
-                    onClick={() => handleDeleteProductImage(index)}
-                  >
-                    <MdDelete />
-                  </div>
-                </div>
-              );
-            })}
-            {images[0] &&
-              images.map((url, index) => {
+            {data[0] &&
+              data.map((url, index) => {
                 if (url)
                   return (
-                    <div className="relative group basis-[calc(50%-0.5rem)]">
+                    <div
+                      key={url}
+                      className="relative group basis-[calc(50%-0.5rem)]"
+                    >
                       <img
                         src={url}
                         alt="product"
@@ -149,7 +155,7 @@ function UploadProductImages({ preImages, delImages }) {
 
                       <div
                         className="absolute bottom-0 right-0 p-1 text-white bg-red-600 rounded-full hidden group-hover:block cursor-pointer"
-                        onClick={() => delImages?.(index)}
+                        onClick={() => handleDeleteProductImage?.(index)}
                       >
                         <MdDelete />
                       </div>
@@ -157,12 +163,15 @@ function UploadProductImages({ preImages, delImages }) {
                   );
                 else
                   return (
-                    <div className="relative group basis-[calc(50%-0.5rem)] h-[10rem] bg-gray-500 animate-pulse" />
+                    <div
+                      key={index}
+                      className="relative group basis-[calc(50%-0.5rem)] h-[10rem] bg-gray-500 animate-pulse"
+                    />
                   );
               })}
           </div>
         ) : (
-          <p className="text-red-600 text-xs">{t("messages.errProductImg")}</p>
+          <p className="text-red-600 text-xs">{error}</p>
         )}
       </div>
 
@@ -178,4 +187,4 @@ function UploadProductImages({ preImages, delImages }) {
   );
 }
 
-export default UploadProductImages;
+export default UploadImages;

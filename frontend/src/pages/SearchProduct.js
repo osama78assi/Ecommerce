@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { RotatingLines } from "react-loader-spinner";
 import { useLocation } from "react-router-dom";
 import SummaryApi from "../common";
-import VerticalCard from "../components/store/VerticalCard";
-import { RotatingLines } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
 
 function SearchProduct() {
   const { t } = useTranslation();
@@ -18,6 +18,7 @@ function SearchProduct() {
       setLoading(true);
       const response = await fetch(SummaryApi.searchProduct.url + query.search);
       const dataResponse = await response.json();
+      console.log(dataResponse);
       setLoading(false);
 
       setData(dataResponse.data);
@@ -31,21 +32,26 @@ function SearchProduct() {
   }, [query]);
 
   return (
-    <div className="container mx-auto p-4">
-      {loading && <RotatingLines strokeColor="#c89329" />}
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{t("SEO.titles.search")}</title>
+      </Helmet>
 
-      <p className="text-lg font-semibold my-3">
-        {`${t("search.results")} ${data?.length}`}
-      </p>
+      <div className="container mx-auto p-4">
+        {loading && <RotatingLines strokeColor="#c89329" />}
 
-      {data?.length === 0 && !loading && (
-        <p className="bg-white text-lg text-center p-4">{t("search.noData")}</p>
-      )}
+        <p className="text-lg font-semibold my-3">
+          {`${t("search.results")} ${data?.length}`}
+        </p>
 
-      {data?.length !== 0 && !loading && (
-        <VerticalCard loading={loading} data={data} />
-      )}
-    </div>
+        {data?.length === 0 && !loading && (
+          <p className="bg-white text-lg text-center p-4">
+            {t("search.noData")}
+          </p>
+        )}
+      </div>
+    </>
   );
 }
 
