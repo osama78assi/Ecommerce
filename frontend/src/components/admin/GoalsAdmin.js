@@ -145,6 +145,7 @@ function GoalsAdmin() {
               setShowAddGoal(false);
               fetchAllGoals();
             }}
+            allowed={data.length < 3}
           />
         </ModalWindow>
       )}

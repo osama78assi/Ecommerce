@@ -42,11 +42,11 @@ function AddGoalForm({ onSuccess, allowed }) {
   }
 
   function handleSubmit(e) {
+    e.preventDefault();
     if (!allowed) {
-      toast.warning(t("message.warnLimitGoals"));
+      toast.warning(t("messages.warnLimitGoals"));
       return;
     }
-    e.preventDefault();
     const formData = new FormData(e.target);
     const finallData = {
       title: [],
