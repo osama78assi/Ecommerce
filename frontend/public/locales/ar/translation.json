@@ -59,6 +59,9 @@
   "productDetails": {
     "description": "الوصف: "
   },
+  "home": {
+    "videos": "فيديوهات"
+  },
   "admin": {
     "users": "المستخدمين",
     "products": "المنتجات",

@@ -59,6 +59,9 @@
   "productDetails": {
     "description": "Description: "
   },
+  "home": {
+    "videos": "Videos"
+  },
   "admin": {
     "users": "Users",
     "products": "Products",
