@@ -32,7 +32,7 @@ function Store() {
       });
       const res = await req.json();
 
-      const { success, message } = res;
+      const { success } = res;
       const { products = [] } = res.data;
 
       if (success) {
@@ -71,7 +71,7 @@ function Store() {
     <>
       <HeaderTag title={t("headers.store")} />
       <div
-        className="store-container container mx-auto p-8 gap-5 flex flex-wrap"
+        className="store-container container mx-auto p-8 gap-5 flex flex-wrap bg-slate-100 rounded-lg shadow-lg"
         style={{ rowGap: "1.5rem" }}
       >
         {isLoadingProducts ? (

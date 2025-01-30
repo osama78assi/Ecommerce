@@ -1,7 +1,6 @@
 const multer = require('multer');
 const path = require("path");
 const fs = require("fs");
-const bcrypt = require("bcryptjs");
 
 
 const uploadDir = path.join(__dirname, "../uploads/slider-images/");

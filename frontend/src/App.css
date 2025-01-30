@@ -121,3 +121,9 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+
+/* Main page section */
+
+.main-section {
+  background-image: url("../public/bg.jpg");
+}

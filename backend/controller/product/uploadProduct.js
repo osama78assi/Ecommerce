@@ -29,7 +29,6 @@ async function UploadProductController(req, res) {
     }
 
     // Ensure that imgPaths is an array of strings
-   
 
     // Create a new product with the provided data
     const newProduct = new productModel({

@@ -20,8 +20,8 @@ function ImagesPart({ data }) {
   }, []);
   // The idea is simple if the image doesn't load yet then don't display it
 
-  if(!data.length) {
-    return 
+  if (!data.length) {
+    return;
   }
 
   return (
@@ -56,7 +56,13 @@ function ImagesPart({ data }) {
         ) : null}
       </div>
 
-      <div className="flex justify-between gap-1 overflow-x-auto w-full relative">
+      <div
+        className="grid overflow-x-auto w-full relative"
+        style={{
+          gridTemplateColumns: `repeat(${data.length}, 144px)`,
+          columnGap: "1rem",
+        }}
+      >
         {data.map((ele, index) => (
           <div key={ele.image}>
             <img
@@ -66,7 +72,6 @@ function ImagesPart({ data }) {
                     imgs.map((val, i) => (i === index ? true : val))
                   );
               }}
-              
               src={ele?.image}
               alt={`abou-us-${index}`}
               className={`cursor-pointer w-[144px] h-[144px] object-cover ${
@@ -79,10 +84,7 @@ function ImagesPart({ data }) {
             />
 
             {!isLoadedImages[index] ? (
-              <div
-                
-                className="w-[144px] h-[144px] bg-slate-500 animate-pulse shrink-0"
-              />
+              <div className="w-[144px] h-[144px] bg-slate-500 animate-pulse shrink-0" />
             ) : null}
           </div>
         ))}

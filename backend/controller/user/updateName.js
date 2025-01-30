@@ -5,7 +5,7 @@ async function changeUserName(req, res) {
     const sessionUser = req.userId; // The currently logged-in user
     const { newName } = req.body;
 
-    console.log(newName)
+    console.log('\n\n###########', req.body, '\n\n###########')
     if (!newName) {
       throw new Error("Please provide the new name.");
     }

@@ -19,6 +19,7 @@ function App() {
   const isLoadingUser = useSelector((state) => state.user.isLoading);
   const { i18n } = useTranslation();
   const [renderFooter, setRenderFooter] = useState(false);
+  const [bgImage, setBgImage] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -34,11 +35,18 @@ function App() {
   }, [i18n.language]); // Runs on language change
 
   useEffect(() => {
-    if (loc && loc.pathname.search(/(admin-panel|profile)/) !== -1) {
+    if (loc && loc.pathname.search(/(admin-panel|profile|store)/) !== -1) {
       setRenderFooter(false);
-      return;
+    } else {
+      setRenderFooter(true);
     }
-    setRenderFooter(true);
+
+    // Exclude the pages where we don't want the background iamge
+    if (loc && loc.pathname.search(/(profile|store|admin-panel)/) === -1) {
+      setBgImage(true);
+    } else {
+      setBgImage(false);
+    }
   }, [loc]);
 
   if (isLoadingUser) {
@@ -50,7 +58,12 @@ function App() {
       <ToastContainer position="top-center" />
 
       <Header />
-      <main className="min-h-[calc(100dvh-120px)]">
+      <main
+        className={`min-h-[calc(100dvh-120px)] ${
+          bgImage ? "main-section" : ""
+        }`}
+        {...(bgImage ? { style: { paddingBottom: "1rem" } } : {})}
+      >
         <Outlet />
       </main>
       {renderFooter && <Footer />}

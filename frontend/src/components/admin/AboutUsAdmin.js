@@ -61,10 +61,10 @@ function AboutUsAdmin() {
     }
   }
 
-  async function deleteVision() {
+  async function deleteAboutUs() {
     try {
       const req = await fetch(
-        `${SummaryApi.deleteVision.url}/${aboutusDelete.current}`,
+        `${SummaryApi.deleteAboutus.url}/${aboutusDelete.current}`,
         {
           method: SummaryApi.deleteVision.method,
           credentials: "include",
@@ -187,7 +187,7 @@ function AboutUsAdmin() {
             setShowConfirm(false);
           }}
           onConfirm={() => {
-            deleteVision();
+            deleteAboutUs();
             setShowConfirm(false);
           }}
         />

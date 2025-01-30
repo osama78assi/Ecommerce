@@ -33,7 +33,6 @@ function SignUp() {
   };
 
   function handleUploadPic(e) {
-    console.log(e.target.files);
     const file = e.target.files[0];
     if (file.size > 5 * 1024 * 1024) {
       toast.warn(t("messages.errBigImage"));
@@ -92,7 +91,7 @@ function SignUp() {
       }
     } catch (err) {
       console.log(err.message);
-      toast.success(t("messages.errSignup"));
+      toast.error(t("messages.errSignup"));
     }
   }
 

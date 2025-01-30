@@ -99,7 +99,7 @@ function VisionPage() {
             <>
               <Slider imgs={imgs} />
 
-              <div className="space-y-8 w-full relative before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-slate-600">
+              <div className="bg-slate-100 pb-1 rounded-lg shadow-lg space-y-8 w-full relative before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-slate-600">
                 {data.map((ele) => (
                   <VisionSection
                     key={ele._id}

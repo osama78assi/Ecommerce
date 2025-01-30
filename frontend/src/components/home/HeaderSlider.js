@@ -149,7 +149,7 @@ function HeaderSlider({ setErr }) {
 
   return (
     <div
-      className="h-[calc(100dvh-200px)] relative overflow-hidden"
+      className="h-[calc(100dvh-100px)] relative overflow-hidden"
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}
     >
