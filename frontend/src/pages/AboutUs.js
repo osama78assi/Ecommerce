@@ -73,7 +73,7 @@ function AboutUs() {
         <meta charSet="utf-8" />
         <title>{t("SEO.titles.aboutus")}</title>
       </Helmet>
-      <div className="container mx-auto bg-slate-100 p-6">
+      <div className="container w-[90%] mx-auto bg-white p-6 section-box-shadow rounded-lg">
         <div className="flex flex-wrap columns-12">
           <TextPart data={data} isLoading={isLoading} />
           {isLoading ? (

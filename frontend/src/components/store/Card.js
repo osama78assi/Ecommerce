@@ -63,7 +63,7 @@ function Card({ id, images, name, price, classes }) {
 
   return (
     <div
-      className={`w-[20rem] basis-[20rem] sm:w-auto sm:basis-[calc(50%-1rem)] md:basis-[calc(33.333333333% - 1rem)] lg:basis-[calc(25%-1rem)] bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
+      className={`w-[20rem] basis-[20rem] sm:w-auto sm:basis-[calc(50%-1rem)] md:basis-[calc(33.333333333% - 1.75rem)] lg:basis-[calc(25%-1rem)] border-[1px] border-[var(--primary-color-900)] bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
         classes ? classes : ""
       }`}
     >

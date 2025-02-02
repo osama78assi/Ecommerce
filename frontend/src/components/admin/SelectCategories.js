@@ -17,13 +17,12 @@ function SelectCategories({ activeOption, disabled }) {
       const req = await fetch(SummaryApi.getAllCategories.url, {
         method: SummaryApi.getAllCategories.method,
       });
-      const { data, error, message } = await req.json();
+      const { data, error } = await req.json();
 
       if (!error) {
         setData(data);
       } else {
         toast.error(t("messages.errGetCategories"));
-        console.log(message);
         throw new Error("Something went wrong");
       }
     } catch (err) {

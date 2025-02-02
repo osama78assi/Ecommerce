@@ -46,14 +46,13 @@ function Store() {
         });
         const res = await req.json();
 
-        const { success, message } = res;
+        const { success } = res;
 
         if (success) {
           const { totalPages, products } = res.data;
           setProducts(products);
           setPagesCount(totalPages);
         } else {
-          console.log(message);
           toast.error(t("messages.errGetProducts"));
           throw new Error("Something went wrong");
         }
@@ -108,7 +107,6 @@ function Store() {
 
   // Fetch products
   useEffect(() => {
-    console.log("I will fetch By ", selectedCategory);
     getProducts();
   }, [selectedCategory, page, getProducts]);
 
@@ -167,8 +165,8 @@ function Store() {
         <meta charSet="utf-8" />
         <title>{t("SEO.titles.store")}</title>
       </Helmet>
-      <div className="container mx-auto space-y-3">
-        <div className="bg-slate-50 mx-auto items-center pt-2">
+      <div className="container w-[90%] mx-auto space-y-3">
+        <div className="bg-white mx-auto items-center pt-2">
           <div className="flex py-4 px-2 gap-4 items-center">
             <h2 className="text-xl">{t("store.filterCategoryTitle")}</h2>
             {isLoadingCategories ? (
@@ -199,7 +197,7 @@ function Store() {
           </div>
 
           <div
-            className="store-container container mx-auto py-8 gap-[1rem] md:gap flex flex-wrap"
+            className="store-container container mx-auto py-8 gap-[1rem] md:gap flex flex-wrap px-3"
             style={{ rowGap: "1.5rem" }}
           >
             {isLoadingProducts ? (

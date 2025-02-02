@@ -23,7 +23,6 @@ function SearchProduct() {
       setIsLoading(true);
       const response = await fetch(SummaryApi.searchProduct.url + query.search);
       const dataResponse = await response.json();
-      console.log(dataResponse);
       setIsLoading(false);
 
       setData(dataResponse.data);

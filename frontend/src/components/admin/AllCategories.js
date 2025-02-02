@@ -28,6 +28,7 @@ function AllCategories() {
       setErr(false);
       setIsLoading(true);
 
+
       const req = await fetch(SummaryApi.getAllCategories.url, {
         method: SummaryApi.getAllCategories.method,
       });

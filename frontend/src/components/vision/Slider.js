@@ -2,7 +2,6 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { useLazyloadingImgs } from "../../hooks/useLazyLoadingImages";
 import DisplayImage from "../ui/DisplayImage";
 import ImageVision from "./ImageVision";
 
@@ -11,18 +10,13 @@ function Slider({ imgs }) {
   const [activeImage, setActiveImg] = useState(0);
   const [showArrows, setShowArrows] = useState(true);
   const [show, setShow] = useState(false);
-  
 
   function slideRight() {
-    setActiveImg(
-      (current) => (current + 1 + imgs.length) % imgs.length
-    );
+    setActiveImg((current) => (current + 1 + imgs.length) % imgs.length);
   }
 
   function slideLeft() {
-    setActiveImg(
-      (current) => (current - 1 + imgs.length) % imgs.length
-    );
+    setActiveImg((current) => (current - 1 + imgs.length) % imgs.length);
   }
 
   return (
@@ -43,7 +37,9 @@ function Slider({ imgs }) {
         }}
       >
         <span
-          className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer"
+          className={`w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer ${
+            i18n.language === "ar" ? "rounded-r-lg" : "rounded-l-lg"
+          }`}
           data-arr={true}
           onClick={i18n.language === "ar" ? slideRight : slideLeft}
         >
@@ -54,7 +50,9 @@ function Slider({ imgs }) {
           )}
         </span>
         <span
-          className="w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer"
+          className={`w-[50px] h-full flex justify-center items-center relative z-[3] backdrop-brightness-75 cursor-pointer ${
+            i18n.language === "ar" ? "rounded-l-lg" : "rounded-r-lg"
+          }`}
           onClick={i18n.language === "ar" ? slideLeft : slideRight}
           data-arr={true}
         >

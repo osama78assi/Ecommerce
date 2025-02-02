@@ -1,35 +1,36 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
-import AboutUsAdmin from "./components/admin/AboutUsAdmin";
-import AllCategories from "./components/admin/AllCategories";
-import AllProducts from "./components/admin/AllProducts";
-import AllUsers from "./components/admin/AllUsers";
-import GoalsAdmin from "./components/admin/GoalsAdmin";
-import SliderAdmin from "./components/admin/SliderAdmin";
-import VisionAdmin from "./components/admin/VisionAdmin";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 import "./i18next";
 import "./index.css";
-import AboutUs from "./pages/AboutUs";
-import AdminPanel from "./pages/AdminPanel";
-import Cart from "./pages/Cart";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import ProductDetails from "./pages/ProductDetails";
-import Profile from "./pages/Profile";
-import SearchProduct from "./pages/SearchProduct";
-import SignUp from "./pages/SignUp";
-import Store from "./pages/Store";
-import Vision from "./pages/Vision";
 import { store } from "./store/store";
+
+const AllCategories = lazy(() => import("./components/admin/AllCategories"));
+const AllProducts = lazy(() => import("./components/admin/AllProducts"));
+const AllUsers = lazy(() => import("./components/admin/AllUsers"));
+const GoalsAdmin = lazy(() => import("./components/admin/GoalsAdmin"));
+const SliderAdmin = lazy(() => import("./components/admin/SliderAdmin"));
+const VisionAdmin = lazy(() => import("./components/admin/VisionAdmin"));
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const AdminPanel = lazy(() => import("./pages/AdminPanel"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const Profile = lazy(() => import("./pages/Profile"));
+const SearchProduct = lazy(() => import("./pages/SearchProduct"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const Store = lazy(() => import("./pages/Store"));
+const Vision = lazy(() => import("./pages/Vision"));
+const AboutUsAdmin = lazy(() => import("./components/admin/AboutUsAdmin"));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="sakhrasyria.github.io/sakhrasyria/">
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="" element={<Home />} />

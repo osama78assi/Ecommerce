@@ -104,7 +104,7 @@ function SignUp() {
 
       <section id="signup">
         <div className="mx-auto container p-4">
-          <div className="bg-white p-5 w-full max-w-sm mx-auto">
+          <div className="bg-white p-5 w-full max-w-sm mx-auto section-box-shadow rounded-lg border-[1px] border-[var(--primary-color-900)]">
             <div className="w-20 h-20 mx-auto relative rounded-full">
               <div className="w-[5rem] h-[5rem]">
                 {imgUrl ? (

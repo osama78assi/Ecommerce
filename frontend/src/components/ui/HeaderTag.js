@@ -1,6 +1,6 @@
 function HeaderTag({ title }) {
   const squareCommonClasses =
-    " absolute top-[50%] translate-y-[-50%] translate-x-[-50%] w-[25px] h-[25px] bg-slate-100 border-[1px] border-[var(--primary-color-900)] rotate-45";
+    " absolute top-[50%] translate-y-[-50%] translate-x-[-50%] w-[25px] h-[25px] bg-white border-[1px] border-[var(--primary-color-900)] rotate-45";
 
   return (
     <div className="py-5 w-full">

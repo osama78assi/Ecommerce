@@ -70,8 +70,6 @@ function ProductDetails() {
     }
   }
 
-  console.log("data", data);
-
   function slideRight() {
     setActiveImage(
       (current) =>
@@ -122,15 +120,15 @@ function ProductDetails() {
         <title>{t("SEO.titles.detailsProduct")}</title>
       </Helmet>
 
-      <div className="container mx-auto p-4 lg:mt-[5rem]">
+      <div className="container section-box-shadow rounded-lg w-[95%] bg-white mx-auto p-4 my-4 lg:mt-[5rem] lg:mb-0">
         <div className="min-h-[200px] flex flex-col lg:flex-row gap-4">
           {/***product Image */}
-          <div className="lg:h-96 flex flex-col lg:flex-row-reverse gap-4">
+          <div className="lg:h-96 h-[100%] flex flex-col lg:flex-row-reverse gap-4">
             {loading ? (
-              <div className="h-[300px] w-[600px] bg-gray-400 animate-pulse" />
+              <div className="h-[400px] w-[600px] bg-gray-400 animate-pulse" />
             ) : (
               <div
-                className="h-[400px] w-full lg:h-[300px] lg:w-[600px] bg-gray-00 relative"
+                className="w-full h-[400px] lg:h-full lg:w-[600px] bg-gray-00 relative"
                 onMouseEnter={() => setShowArrows(true)}
                 onMouseLeave={() => setShowArrows(false)}
               >
@@ -202,7 +200,7 @@ function ProductDetails() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col gap-1 lg:w-[calc(100%-600px)]">
+            <div className="flex flex-col gap-1 lg:w-[calc(100%-600px)] h-[100%]">
               <p className="bg-primary-200 text-[#e59c07] px-2 rounded-full inline-block w-fit">
                 {
                   data?.category?.categoryName?.filter(

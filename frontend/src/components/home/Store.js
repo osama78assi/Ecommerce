@@ -71,7 +71,7 @@ function Store() {
     <>
       <HeaderTag title={t("headers.store")} />
       <div
-        className="store-container container mx-auto p-8 gap-5 flex flex-wrap bg-slate-100 rounded-lg shadow-lg"
+        className="store-container container w-[95%] mx-auto py-8 px-3 gap-5 flex flex-wrap bg-white rounded-lg section-box-shadow"
         style={{ rowGap: "1.5rem" }}
       >
         {isLoadingProducts ? (

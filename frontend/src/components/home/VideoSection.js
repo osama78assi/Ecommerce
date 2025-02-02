@@ -5,7 +5,7 @@ import HeaderTag from "../ui/HeaderTag";
 import VideoContainer from "./VideoContainer";
 
 function Video() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [translateX, setTranslateX] = useState(0);
   const containerRef = useRef(null);
   const videosCount = useRef(null);
@@ -62,7 +62,6 @@ function Video() {
         videosCount.current - shownVideos.current - videosLeft.current === 1 ||
         videosLeft.current === 0
       ) {
-        console.log("THis shouldn'y pass");
         setTranslateX(
           (val) =>
             val + (Number.parseInt(videoWidth) + Number.parseInt(padding))
@@ -76,7 +75,6 @@ function Video() {
         videosLeft.current !== 0 &&
         videosCount.current - shownVideos.current - videosLeft.current !== 0
       ) {
-        console.log("THis Passed");
         setTranslateX(
           (val) =>
             val + (Number.parseInt(videoWidth) + Number.parseInt(gapping))
@@ -91,11 +89,11 @@ function Video() {
   // Calculate the videos that able to show in the available screen viewport
   function calcShownLeftVideos() {
     let visible = getVisibleWidth();
-    console.log("Before", visible);
+
     let elements = 0;
     do {
       // When it's not last or first element sub the gap else sub the padding
-      if (elements !== 1 || elements !== videosCount.current - 1) {
+      if (elements === 0 || elements === videosCount.current - 1) {
         visible -= Number.parseInt(padding);
       } else {
         visible -= Number.parseInt(gapping);
@@ -138,7 +136,7 @@ function Video() {
   }, []);
 
   return (
-    <div>
+    <div dir="ltr">
       <HeaderTag title={t("home.videos")} />
 
       <div className="relative overflow-hidden">
@@ -151,19 +149,20 @@ function Video() {
         </div>
 
         <div
-          className={`flex transition-transform`}
+          className={`flex transition-transform justify-between`}
           ref={containerRef}
           style={{
             transform: `translate(${translateX}px, 0px)`,
             gap: `${gapping}`,
             padding: padding,
+            width: `${5 * parseInt(videoWidth)}px`
           }}
         >
-          <VideoContainer src={"/test.mp4"} width={videoWidth} height="430px" />
-          <VideoContainer src={"/test.mp4"} width={videoWidth} height="430px" />
-          <VideoContainer src={"/test.mp4"} width={videoWidth} height="430px" />
-          <VideoContainer src={"/test.mp4"} width={videoWidth} height="430px" />
-          <VideoContainer src={"/test.mp4"} width={videoWidth} height="430px" />
+          <VideoContainer src={"./video1.mp4"} width={videoWidth} height="430px" />
+          <VideoContainer src={"./video1.mp4"} width={videoWidth} height="430px" />
+          <VideoContainer src={"./video2.mp4"} width={videoWidth} height="430px" />
+          <VideoContainer src={"./video3.mp4"} width={videoWidth} height="430px" />
+          <VideoContainer src={"./video4.mp4"} width={videoWidth} height="430px" />
         </div>
 
         <div

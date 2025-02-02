@@ -56,7 +56,7 @@ function CartItem({ data, quantity }) {
           {data?.category?.categoryName?.filter((item) => item.language === i18n.language)[0]?.text}
         </p>
         <div className="flex items-center justify-between">
-          <p className="text-red-600 font-medium text-lg">
+          <p className="text-green-700 font-bold text-lg">
             {displayINRCurrency(data?.price)}
           </p>
           <p className="text-slate-600 font-semibold text-lg">
@@ -65,14 +65,14 @@ function CartItem({ data, quantity }) {
         </div>
         <div className="flex items-center gap-3 mt-1">
           <button
-            className="border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded "
+            className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white w-6 h-6 flex justify-center items-center rounded "
             onClick={() => decraseQuantity(data._id, quantity)}
           >
             -
           </button>
           <span>{quantity}</span>
           <button
-            className="border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded "
+            className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white w-6 h-6 flex justify-center items-center rounded "
             onClick={() => increaseQuantity(data?._id, quantity)}
           >
             +

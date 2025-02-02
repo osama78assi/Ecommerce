@@ -92,14 +92,14 @@ function VisionPage() {
         <title>{t("SEO.titles.vision")}</title>
       </Helmet>
       <div className="py-12">
-        <div className="flex flex-col items-center gap-8 p-6 max-w-4xl mx-auto">
+        <div className="flex flex-col items-center gap-8 p-4 px-8 max-w-4xl mx-auto bg-white section-box-shadow rounded-lg">
           {isLoading ? (
             <RotatingLines strokeColor="#c89329" />
           ) : (
             <>
               <Slider imgs={imgs} />
 
-              <div className="bg-slate-100 pb-1 rounded-lg shadow-lg space-y-8 w-full relative before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-slate-600">
+              <div className="py-[2rem] space-y-8 w-full relative before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-slate-600">
                 {data.map((ele) => (
                   <VisionSection
                     key={ele._id}

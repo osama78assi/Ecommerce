@@ -7,6 +7,11 @@ i18next
   .use(backend)
   .use(languageDetector)
   .use(initReactI18next)
-  .init({ debug: true, fallbackLang: "en", lang: "en" });
+  .init({
+    debug: true,
+    fallbackLang: "en",
+    lang: "en",
+    backend: { loadPath: "./locales/{{lng}}/{{ns}}.json" },
+  });
 
 export default i18next;

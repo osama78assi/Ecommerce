@@ -4,9 +4,9 @@ function ImageVision({ imageSrc }) {
   const [isLoadedImage, setIsLoadedImage] = useState(false);
 
   return (
-    <div className="flex-1 w-full h-full">
+    <div className="flex-1 w-full h-full rounded-lg">
       <div
-        className={`w-full h-[20rem] bg-gray-500 animate-pulse1 ${
+        className={`w-full h-[20rem] bg-gray-500 animate-pulse1 rounded-lg ${
           isLoadedImage ? "hidden" : ""
         }`}
       />
@@ -14,7 +14,7 @@ function ImageVision({ imageSrc }) {
         onLoad={() => setIsLoadedImage(true)}
         src={imageSrc}
         alt="Vision"
-        className={`rounded-lg shadow-lg w-full object-cover h-[500px] cursor-pointer ${
+        className={`w-full object-cover h-[500px] cursor-pointer rounded-lg ${
           !isLoadedImage ? "hidden" : ""
         }`}
       />

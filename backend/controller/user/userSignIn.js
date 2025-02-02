@@ -19,24 +19,22 @@ async function userSignInController(req, res) {
     if (!user) {
       throw new Error("User not found");
     }
-    
-    console.log('\n\n###########', user, '\n\n###########')
 
     const checkPassword = await bcrypt.compare(password, user.password);
-
-    console.log("checkPassoword", checkPassword);
 
     if (checkPassword) {
       const tokenData = {
         _id: user._id,
       };
       const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, {
-        expiresIn: 60 * 60 * 8,
+        expiresIn: 60 * 60 * 24 * 7,
       });
 
       const tokenOption = {
         httpOnly: true,
       };
+
+      delete user.password;
 
       res.cookie("token", token, tokenOption).status(200).json({
         message: "Login successfully",

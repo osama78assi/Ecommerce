@@ -53,18 +53,18 @@ function HeaderSlider({ setErr }) {
       if (!cooldown?.current) {
         cooldown.current = true;
         // Take all cards except current one to the left, Hide every element excpect the target and current one
-        cardsRefs?.current.forEach((ele, index) => {
+        cardsRefs?.current?.forEach((ele, index) => {
           // If the class was rihg make it middle first
-          ele?.current.classList.remove("!-left-[100%]");
+          ele?.current?.classList.remove("!-left-[100%]");
 
           if (index !== curChild && index !== nextChild) {
-            ele?.current.classList.add("z-slide--1");
+            ele?.current?.classList.add("z-slide--1");
           }
           if (index !== curChild) {
-            ele?.current.classList.add("!left-[100%]");
+            ele?.current?.classList.add("!left-[100%]");
           }
           if (index === nextChild) {
-            ele?.current.classList.remove("z-slide--1");
+            ele?.current?.classList.remove("z-slide--1");
           }
         });
 
@@ -73,16 +73,16 @@ function HeaderSlider({ setErr }) {
         const targetCard = cardsRefs?.current[nextChild];
 
         let timer1 = setTimeout(() => {
-          curCard?.current.classList.add("!-left-[100%]");
-          targetCard?.current.classList.remove("!left-[100%]");
+          curCard?.current?.classList.add("!-left-[100%]");
+          targetCard?.current?.classList.remove("!left-[100%]");
           clearTimeout(timer1);
         }, 400);
 
         let timer = setTimeout(() => {
           // Clear the classes
-          cardsRefs?.current.forEach((ele, index) => {
+          cardsRefs?.current?.forEach((ele, index) => {
             if (index === curChild) {
-              ele?.current.classList.remove("z-slide--1");
+              ele?.current?.classList.remove("z-slide--1");
             }
           });
           setCurChild(nextChild);
@@ -101,13 +101,13 @@ function HeaderSlider({ setErr }) {
         cardsRefs?.current.forEach((ele, index) => {
           ele?.current.classList.remove("!left-[100%]");
           if (index !== curChild && index !== prevChild) {
-            ele?.current.classList.add("z-slide--1");
+            ele?.current?.classList.add("z-slide--1");
           }
           if (index !== curChild) {
-            ele?.current.classList.add("!-left-[100%]");
+            ele?.current?.classList.add("!-left-[100%]");
           }
           if (index === prevChild) {
-            ele?.current.classList.remove("z-slide--1");
+            ele?.current?.classList.remove("z-slide--1");
           }
         });
 
@@ -116,16 +116,16 @@ function HeaderSlider({ setErr }) {
         const targetCard = cardsRefs?.current[prevChild];
 
         let timer1 = setTimeout(() => {
-          curCard?.current.classList.add("!left-[100%]");
-          targetCard?.current.classList.remove("!-left-[100%]");
+          curCard?.current?.classList.add("!left-[100%]");
+          targetCard?.current?.classList.remove("!-left-[100%]");
           clearTimeout(timer1);
         }, 400);
 
         let timer = setTimeout(() => {
           // Clear the classes
-          cardsRefs?.current.forEach((ele, index) => {
+          cardsRefs?.current?.forEach((ele, index) => {
             if (index === curChild) {
-              ele?.current.classList.remove("z-slide--1");
+              ele?.current?.classList.remove("z-slide--1");
             }
           });
           setCurChild(prevChild);

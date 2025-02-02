@@ -20,6 +20,7 @@ function App() {
   const { i18n } = useTranslation();
   const [renderFooter, setRenderFooter] = useState(false);
   const [bgImage, setBgImage] = useState(false);
+  const [paddingTop, setPaddingTop] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -35,15 +36,20 @@ function App() {
   }, [i18n.language]); // Runs on language change
 
   useEffect(() => {
-    if (loc && loc.pathname.search(/(admin-panel|profile|store)/) !== -1) {
+    if (loc && loc.pathname.search(/(admin-panel|profile|store|search)/) !== -1) {
       setRenderFooter(false);
     } else {
       setRenderFooter(true);
     }
 
     // Exclude the pages where we don't want the background iamge
-    if (loc && loc.pathname.search(/(profile|store|admin-panel)/) === -1) {
+    if (loc && loc.pathname.search(/(profile|store|admin-panel|cart|product|search)/) === -1) {
       setBgImage(true);
+      if (loc.pathname.search(/(about-us|vision)/) !== -1) {
+        setPaddingTop(true);
+      } else {
+        setPaddingTop(false);
+      }
     } else {
       setBgImage(false);
     }
@@ -59,10 +65,17 @@ function App() {
 
       <Header />
       <main
-        className={`min-h-[calc(100dvh-120px)] ${
+        className={`${renderFooter ? "main-with-footer" : "main-without-footer"} ${
           bgImage ? "main-section" : ""
         }`}
-        {...(bgImage ? { style: { paddingBottom: "1rem" } } : {})}
+        {...(bgImage
+          ? {
+              style: {
+                paddingBottom: "1rem",
+                paddingTop: `${paddingTop ? "1rem" : ""}`,
+              },
+            }
+          : {})}
       >
         <Outlet />
       </main>

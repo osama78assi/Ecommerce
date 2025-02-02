@@ -68,7 +68,7 @@ function Goals({ setErr }) {
           ) : (
             goals.map((item, index) =>
               isLoading ? (
-                <div className="basis-4/12 relative h-[15rem] bg-gray-400 animate-pulse" />
+                <div className="basis-4/12 relative h-[15rem] bg-white animate-pulse" />
               ) : (
                 <Goal
                   key={item._id}
