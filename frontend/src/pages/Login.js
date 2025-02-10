@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -8,7 +9,6 @@ import { toast } from "react-toastify";
 import SummaryApi from "../common";
 import { getCartCount } from "../store/cartSlice";
 import { fetchCurrentUser } from "../store/userSlice";
-import { Helmet } from "react-helmet";
 // import Context from "../context";
 
 function Login() {
@@ -20,6 +20,7 @@ function Login() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   // const { fetchUserDetails, fetchUserAddToCart } = useContext(Context);
 
   const handleOnChange = (e) => {
@@ -36,6 +37,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const dataResponse = await fetch(SummaryApi.signIn.url, {
         method: SummaryApi.signIn.method,
         credentials: "include",
@@ -57,14 +59,15 @@ function Login() {
       }
 
       if (dataApi.error) {
-        throw new Error("Something went wrong")
+        throw new Error("Something went wrong");
       }
     } catch (err) {
       console.log(err.message);
-      toast.error(t("messages.errLogin"))
+      toast.error(t("messages.errLogin"));
+    } finally {
+      setIsLoading(false);
     }
   };
-
 
   return (
     <>
@@ -121,7 +124,10 @@ function Login() {
               </Link> */}
               </div>
 
-              <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
+              <button
+                disabled={isLoading}
+                className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6"
+              >
                 {t("forms.login.loginBtn")}
               </button>
             </form>

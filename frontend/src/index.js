@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 import "./i18next";
@@ -30,7 +30,7 @@ const AboutUsAdmin = lazy(() => import("./components/admin/AboutUsAdmin"));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <BrowserRouter basename="sakhrasyria.github.io/sakhrasyria/">
+    <HashRouter>
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="" element={<Home />} />
@@ -89,6 +89,6 @@ root.render(
           />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
 );

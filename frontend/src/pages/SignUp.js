@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaPen, FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SummaryApi from "../common";
-import { Helmet } from "react-helmet";
 
 function SignUp() {
   const { t } = useTranslation();
@@ -20,6 +20,7 @@ function SignUp() {
   });
   const [imgUrl, setImgUrl] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -67,6 +68,7 @@ function SignUp() {
         toast.warn(t("messages.errPasswordConfirm"));
         return;
       }
+      setIsLoading(true);
 
       const formData = new FormData();
       formData.append("email", data.email);
@@ -92,6 +94,8 @@ function SignUp() {
     } catch (err) {
       console.log(err.message);
       toast.error(t("messages.errSignup"));
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -209,7 +213,10 @@ function SignUp() {
                 </div>
               </div>
 
-              <button className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
+              <button
+                disabled={isLoading}
+                className="bg-primary-900 hover:bg-primary-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6"
+              >
                 {t("forms.signup.signupBtn")}
               </button>
             </form>
