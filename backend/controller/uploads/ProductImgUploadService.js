@@ -28,7 +28,7 @@ const productImageUploadService = (destination) => {
         const host = req.get('host');
         const protocol = req.protocol;
         const imgPaths = req.files.map(
-          (file) => `${protocol}://${host}/uploads/${destination}/${file.filename}`
+          (file) => `${protocol}://${host}/alsakhra_photos/uploads/${destination}/${file.filename}`
         );
 
         // Attach the image paths to the request object for further use

@@ -1,4 +1,6 @@
 const AboutUs = require("../../models/landingPageModels/aboutUs");
+const path = require("path");
+const fs = require("fs");
 
 async function deleteAboutUsController(req, res) {
   try {
@@ -15,6 +17,25 @@ async function deleteAboutUsController(req, res) {
 
     // Find the document by ID and delete it
     const deletedAboutUs = await AboutUs.findByIdAndDelete(id);
+
+    // Get the image path to be deleted (if it exists)
+    const imagePath = deletedAboutUs.image;
+
+    // If an image path exists, delete the uploaded image
+    if (imagePath) {
+      const filePath = path.join(
+        __dirname,
+        "../../alsakhra_photos/uploads/aboutus-images/",
+        imagePath.split("/").pop()
+      ); // Adjust the relative path as needed
+      try {
+        fs.unlinkSync(filePath);
+        console.log("Image deleted successfully:", filePath);
+      } catch (error) {
+        console.error("Error deleting image:", error, filePath);
+        // You can optionally send an error response here if image deletion fails
+      }
+    }
 
     // If the document doesn't exist, return a 404 error
     if (!deletedAboutUs) {
@@ -33,7 +54,8 @@ async function deleteAboutUsController(req, res) {
     });
   } catch (err) {
     res.status(500).json({
-      message: err.message || "An error occurred while deleting About Us entry.",
+      message:
+        err.message || "An error occurred while deleting About Us entry.",
       error: true,
       success: false,
     });

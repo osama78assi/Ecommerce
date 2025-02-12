@@ -1,4 +1,4 @@
-// const backendDomain = "https://217.154.75.24";
+// const backendDomain = "http://localhost:5000";
 const backendDomain = "https://hostingsites.icu/alsakhra";
 
 const SummaryApi = {

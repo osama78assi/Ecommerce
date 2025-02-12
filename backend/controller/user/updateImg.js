@@ -4,7 +4,7 @@ const fs = require("fs");
 const userModel = require("../../models/userModel");
 
 // Ensure the upload directory exists
-const uploadDir = path.join(__dirname, "../../uploads/profile-pics/");
+const uploadDir = path.join(__dirname, "../../alsakhra_photos/uploads/profile-pics/");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -48,13 +48,13 @@ async function changeProfilePic(req, res) {
       }
 
       // Save the old profile picture path
-      const oldPicPath = user.profilePic ? path.join(__dirname, "../../", user.profilePic.split(host)[1]) : null;
+      const oldPicPath = user.profilePic ? path.join(__dirname, "../../alsakhra_photos/uploads", user.profilePic.split(host)[1]) : null;
 
       console.log("OLD PATH: ", oldPicPath, "\n\n\n")
 
       // Construct the new profile picture URL
       const newProfilePicUrl = req.file
-        ? `${protocol}://${host}/uploads/profile-pics/${req.file.filename}`
+        ? `${protocol}://${host}/alsakhra_photos/uploads/profile-pics/${req.file.filename}`
         : "";
 
       // Update the user's profile picture in the database

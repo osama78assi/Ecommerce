@@ -15,7 +15,7 @@ const imageUploadService = (destination) => {
           if (req.file) {
             const host = req.get('host'); 
             const protocol = req.protocol;
-            const imgPath = `${protocol}://${host}/uploads/${destination}/${req.file.filename}`;
+            const imgPath = `${protocol}://${host}/alsakhra_photos/uploads/${destination}/${req.file.filename}`;
   
             return res.status(200).json({
               imgPath,

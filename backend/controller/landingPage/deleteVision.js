@@ -32,7 +32,7 @@ async function deleteVisionController(req, res) {
 
     // If an image path exists, delete the uploaded image
     if (imagePath) {
-      const filePath = path.join(__dirname, '../../uploads/vision-images/', imagePath.split('/').pop()); // Adjust the relative path as needed
+      const filePath = path.join(__dirname, '../../alsakhra_photos/uploads/vision-images/', imagePath.split('/').pop()); // Adjust the relative path as needed
       try {
         fs.unlinkSync(filePath);
         console.log("Image deleted successfully:", filePath);

@@ -17,7 +17,7 @@ async function addVisionController(req, res) {
         });
       }
       if (image) {
-        const imagePath = path.join(__dirname, "../../uploads/vision-images/", path.basename(image));
+        const imagePath = path.join(__dirname, "../../alsakhra_photos/uploads/vision-images/", path.basename(image));
         if (!fs.existsSync(imagePath)) {
           return res.status(400).json({
             message: "The provided image does not exist in the upload folder.",

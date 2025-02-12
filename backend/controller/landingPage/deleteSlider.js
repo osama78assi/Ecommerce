@@ -32,7 +32,7 @@ async function deleteSliderController(req, res) {
 
     // If an image path exists, delete the uploaded image
     if (imagePath) {
-      const filePath = path.join(__dirname, '../../uploads/slider-images/', imagePath.split('/').pop()); 
+      const filePath = path.join(__dirname, '../../alsakhra_photos/uploads/slider-images/', imagePath.split('/').pop()); 
       console.log(filePath);
       // Adjust the relative path as needed
       try {

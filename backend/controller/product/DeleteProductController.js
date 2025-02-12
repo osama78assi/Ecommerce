@@ -25,7 +25,7 @@ async function DeleteProductController(req, res) {
           // Get the file path relative to the uploads directory
           const fileToDelete = path.join(
             __dirname,
-            "../../uploads/product-images",
+            "../../alsakhra_photos/uploads/product-images",
             path.basename(filePath)
           );
 

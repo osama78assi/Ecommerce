@@ -16,10 +16,12 @@ export const fetchCurrentUser = createAsyncThunk(
       });
 
       const dataApi = await dataResponse.json();
+      console.log(dataApi)
 
       if (dataApi.success) {
         return dataApi.data;
       } else {
+        console.log("WHAT")
         throw new Error("something went wrong");
       }
     } catch (err) {

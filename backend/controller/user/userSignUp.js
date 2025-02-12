@@ -62,7 +62,7 @@ async function userSignUpController(req, res) {
       const host = req.get('host'); // Get the host from the request
       const protocol = req.protocol; // Get the protocol (http or https)
       const profilePicUrl = req.file
-        ? `${protocol}://${host}/uploads/profile-pics/${req.file.filename}`
+        ? `${protocol}://${host}/alsakhra_photos/uploads/profile-pics/${req.file.filename}`
         : "";
 
       // Save user data along with the profile picture path

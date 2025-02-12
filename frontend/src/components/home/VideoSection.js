@@ -85,7 +85,6 @@ function Video() {
   // Calculate the videos that able to show in the available screen viewport
   function calcShownLeftVideos() {
     let visible = getVisibleWidth();
-    console.log("\n\n########### \nvisible is", visible, "\n\n###########");
     let elements = 0;
     do {
       // When it's not last or first element sub the gap else sub the padding
@@ -98,14 +97,8 @@ function Video() {
 
       visible -= Number.parseInt(videoWidth);
     } while (visible >= Number.parseInt(videoWidth));
-    console.log(
-      "\n\n########### \nvisible after is",
-      visible,
-      "\n\n###########"
-    );
     shownVideos.current = elements;
     videosLeft.current = videosCount.current - shownVideos.current;
-    console.log('\n\n########### here ', videosCount.current - shownVideos.current , '\n\n###########')
   }
 
   // Setting the amount of videos in the screen
